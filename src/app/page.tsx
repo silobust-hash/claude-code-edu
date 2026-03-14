@@ -41,6 +41,32 @@ const courses = [
   },
   {
     phase: "Phase 4",
+    title: "스킬 — Claude의 핵심 기능",
+    subtitle: "슬래시 한 번으로 전문가 모드 ON",
+    emoji: "🎪",
+    color: "from-sky-400 to-blue-500",
+    lessons: [
+      "스킬이란? — /명령어 하나로 복잡한 작업을 자동화",
+      "빌트인 스킬 활용 — /commit, /review-pr 등",
+      "커스텀 스킬 만들기 — 나만의 /임금계산, /취업규칙검토",
+      "스킬 체이닝 — 여러 스킬을 연결해 파이프라인 구축",
+    ],
+  },
+  {
+    phase: "Phase 5",
+    title: "코워크 & 플러그인",
+    subtitle: "AI 협업 시스템의 꽃",
+    emoji: "🤝",
+    color: "from-orange-400 to-red-500",
+    lessons: [
+      "코워크란? — Claude와 진짜 '협업'하는 방식",
+      "플러그인의 개념 — 전문 분야별 AI 확장 모듈",
+      "노무사 플러그인 실전 — 사건접수부터 문서검증까지",
+      "나만의 플러그인 설계 — 우리 사무실 맞춤 워크플로우",
+    ],
+  },
+  {
+    phase: "Phase 6",
     title: "MCP 서버로 업무 연동",
     subtitle: "Gmail, 캘린더, 노션 한방에",
     emoji: "🔗",
@@ -53,7 +79,7 @@ const courses = [
     ],
   },
   {
-    phase: "Phase 5",
+    phase: "Phase 7",
     title: "나만의 도구 만들기",
     subtitle: "코딩 제로에서 웹앱 배포까지",
     emoji: "🛠️",
@@ -66,16 +92,16 @@ const courses = [
     ],
   },
   {
-    phase: "Phase 6",
+    phase: "Phase 8",
     title: "고급 활용과 자동화",
     subtitle: "AI 노무사 워크플로우 완성",
     emoji: "🎯",
     color: "from-violet-400 to-purple-600",
     lessons: [
-      "커스텀 슬래시 명령어 만들기",
       "리모트 컨트롤 — 폰에서도 Claude Code",
       "Claude Code on Web — 클라우드에서 자동화",
       "팀 워크플로우 — 사무실 전체가 AI와 협업",
+      "전체 파이프라인 완성 — 스킬+코워크+MCP 통합",
     ],
   },
 ];
@@ -90,6 +116,16 @@ const features = [
     icon: "🧮",
     title: "계산은 코드로 검증",
     desc: "퇴직금, 연차수당, 평균임금 — 엑셀 대신 코드로 정확하게.",
+  },
+  {
+    icon: "🎪",
+    title: "스킬로 원클릭 자동화",
+    desc: "/임금계산 한 번이면 끝. 복잡한 작업을 슬래시 명령어 하나로 실행합니다.",
+  },
+  {
+    icon: "🤝",
+    title: "코워크 & 플러그인",
+    desc: "사건접수→분석→문서작성→검증까지, 플러그인으로 전문 파이프라인을 구축합니다.",
   },
   {
     icon: "📝",
@@ -187,7 +223,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">
             1M 컨텍스트로 달라지는 노무사 업무
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f, i) => (
               <div key={i} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
                 <div className="text-3xl mb-3">{f.icon}</div>
@@ -202,12 +238,12 @@ export default function Home() {
       {/* Curriculum Preview */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">6단계 커리큘럼</h2>
+          <h2 className="text-3xl font-bold mb-4">8단계 커리큘럼</h2>
           <p className="text-slate-500 text-lg">
             터미널을 처음 여는 순간부터, 나만의 웹서비스를 세상에 공개하는 날까지
           </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {courses.map((course, i) => (
             <div
               key={i}

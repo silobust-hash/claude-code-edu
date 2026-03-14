@@ -99,6 +99,73 @@ const curriculum = [
   },
   {
     phase: "Phase 4",
+    title: "스킬 — Claude의 핵심 기능",
+    subtitle: "슬래시 한 번으로 전문가 모드 ON",
+    emoji: "🎪",
+    duration: "약 4시간",
+    color: "border-sky-400",
+    bgColor: "bg-sky-50",
+    lessons: [
+      {
+        title: "스킬이란?",
+        desc: "/명령어 하나로 복잡한 작업을 자동 실행하는 Claude Code의 핵심 기능. 채팅으로 일일이 설명하지 않아도, 미리 정의된 전문 프롬프트가 즉시 동작합니다.",
+        tags: ["개념 이해", "핵심"],
+      },
+      {
+        title: "빌트인 스킬 마스터하기",
+        desc: "/commit으로 커밋, /review-pr로 코드 리뷰 — Claude Code에 기본 탑재된 스킬들을 하나씩 실습합니다.",
+        tags: ["실습", "기초"],
+      },
+      {
+        title: "커스텀 스킬 만들기",
+        desc: "나만의 /임금계산, /취업규칙검토, /판례검색 스킬을 직접 만듭니다. 마크다운 파일 하나면 끝.",
+        tags: ["실습", "자동화", "핵심"],
+      },
+      {
+        title: "스킬 체이닝과 파이프라인",
+        desc: "여러 스킬을 연결하여 '사건접수 → 분석 → 문서작성' 같은 자동화 파이프라인을 구축합니다.",
+        tags: ["실습", "고급"],
+      },
+    ],
+  },
+  {
+    phase: "Phase 5",
+    title: "코워크 & 플러그인",
+    subtitle: "AI 협업 시스템의 꽃",
+    emoji: "🤝",
+    duration: "약 5시간",
+    color: "border-orange-400",
+    bgColor: "bg-orange-50",
+    lessons: [
+      {
+        title: "코워크란?",
+        desc: "단순히 AI에게 '시키는' 것이 아니라, AI와 '함께 일하는' 방식. Claude Code를 팀원처럼 활용하는 협업 철학과 실전 방법론을 배웁니다.",
+        tags: ["개념 이해", "핵심"],
+      },
+      {
+        title: "플러그인의 개념과 구조",
+        desc: "플러그인은 특정 전문 분야를 위한 AI 확장 모듈입니다. CLAUDE.md에 전문 지시를 담아, Claude를 노동법 전문가·산업안전 전문가로 변신시킵니다.",
+        tags: ["개념 이해", "구조"],
+      },
+      {
+        title: "노무사 실전 플러그인 활용",
+        desc: "사건접수 라우팅, 노동법 분석 파이프라인, 산업안전 점검, 중대재해 긴급대응, 직장내 괴롭힘 처리 — 실제 노무사 업무별 플러그인을 체험합니다.",
+        tags: ["실습", "실무", "핵심"],
+      },
+      {
+        title: "나만의 플러그인 설계하기",
+        desc: "우리 사무실 업무 흐름에 맞는 플러그인을 직접 설계합니다. 진단 → 전략 → 산출물 파이프라인을 커스텀으로 구축합니다.",
+        tags: ["실습", "프로젝트"],
+      },
+      {
+        title: "플러그인 조합과 코워크 워크플로우",
+        desc: "여러 플러그인을 조합하여 4대 법률 통합 자문, 블로그 자동 발행, 법률문서 교차 검증 등 고급 워크플로우를 완성합니다.",
+        tags: ["실습", "고급"],
+      },
+    ],
+  },
+  {
+    phase: "Phase 6",
     title: "MCP 서버로 업무 연동",
     subtitle: "Gmail, 캘린더, 노션 한방에",
     emoji: "🔗",
@@ -129,7 +196,7 @@ const curriculum = [
     ],
   },
   {
-    phase: "Phase 5",
+    phase: "Phase 7",
     title: "나만의 도구 만들기",
     subtitle: "코딩 제로에서 웹앱 배포까지",
     emoji: "🛠️",
@@ -160,7 +227,7 @@ const curriculum = [
     ],
   },
   {
-    phase: "Phase 6",
+    phase: "Phase 8",
     title: "고급 활용과 자동화",
     subtitle: "AI 노무사 워크플로우 완성",
     emoji: "🎯",
@@ -168,11 +235,6 @@ const curriculum = [
     color: "border-violet-400",
     bgColor: "bg-violet-50",
     lessons: [
-      {
-        title: "커스텀 슬래시 명령어",
-        desc: "자주 쓰는 작업을 /임금계산, /취업규칙검토 같은 명령어로 만들어 한방에 실행합니다.",
-        tags: ["실습", "자동화"],
-      },
       {
         title: "리모트 컨트롤",
         desc: "폰에서도 Claude Code! 이동 중에도 AI와 협업하는 방법을 배웁니다.",
@@ -188,6 +250,11 @@ const curriculum = [
         desc: "사무실 전체가 AI와 함께 일하는 시스템을 구축합니다.",
         tags: ["전략", "팀"],
       },
+      {
+        title: "전체 파이프라인 완성",
+        desc: "스킬 + 코워크 플러그인 + MCP 서버를 통합하여, 노무사 사무실의 완전한 AI 워크플로우를 구축합니다.",
+        tags: ["실습", "통합", "핵심"],
+      },
     ],
   },
 ];
@@ -198,7 +265,7 @@ export default function CurriculumPage() {
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">전체 커리큘럼</h1>
         <p className="text-slate-500 text-lg leading-relaxed">
-          총 6단계, 약 24시간 분량의 교육 과정입니다.
+          총 8단계, 약 33시간 분량의 교육 과정입니다.
           <br />
           순서대로 따라가면 코딩 경험 없이도 웹앱 배포까지 가능합니다.
         </p>
