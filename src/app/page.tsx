@@ -41,6 +41,19 @@ const courses = [
   },
   {
     phase: "Phase 4",
+    title: "업무 도구 속의 Claude",
+    subtitle: "엑셀, PPT, 크롬에서 바로 쓰기",
+    emoji: "💼",
+    color: "from-lime-400 to-green-500",
+    lessons: [
+      "Claude in Excel — 엑셀 안에서 AI로 데이터 분석",
+      "Claude in PPT — 프레젠테이션을 AI가 함께 만든다",
+      "Claude for Chrome — 브라우저에서 바로 쓰는 AI 비서",
+      "실전: 임금대장 분석 + 강의 슬라이드 + 판례 요약 한번에",
+    ],
+  },
+  {
+    phase: "Phase 5",
     title: "스킬 — Claude의 핵심 기능",
     subtitle: "슬래시 한 번으로 전문가 모드 ON",
     emoji: "🎪",
@@ -53,7 +66,7 @@ const courses = [
     ],
   },
   {
-    phase: "Phase 5",
+    phase: "Phase 6",
     title: "코워크 & 플러그인",
     subtitle: "AI 협업 시스템의 꽃",
     emoji: "🤝",
@@ -66,7 +79,7 @@ const courses = [
     ],
   },
   {
-    phase: "Phase 6",
+    phase: "Phase 7",
     title: "MCP 서버로 업무 연동",
     subtitle: "Gmail, 캘린더, 노션 한방에",
     emoji: "🔗",
@@ -79,7 +92,7 @@ const courses = [
     ],
   },
   {
-    phase: "Phase 7",
+    phase: "Phase 8",
     title: "나만의 도구 만들기",
     subtitle: "코딩 제로에서 웹앱 배포까지",
     emoji: "🛠️",
@@ -92,7 +105,7 @@ const courses = [
     ],
   },
   {
-    phase: "Phase 8",
+    phase: "Phase 9",
     title: "고급 활용과 자동화",
     subtitle: "AI 노무사 워크플로우 완성",
     emoji: "🎯",
@@ -126,6 +139,11 @@ const features = [
     icon: "🤝",
     title: "코워크 & 플러그인",
     desc: "사건접수→분석→문서작성→검증까지, 플러그인으로 전문 파이프라인을 구축합니다.",
+  },
+  {
+    icon: "💼",
+    title: "엑셀·PPT·크롬에서도",
+    desc: "터미널 없이도 OK. 익숙한 엑셀, PPT, 크롬 브라우저에서 바로 Claude를 씁니다.",
   },
   {
     icon: "📝",
@@ -238,7 +256,7 @@ export default function Home() {
       {/* Curriculum Preview */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">8단계 커리큘럼</h2>
+          <h2 className="text-3xl font-bold mb-4">9단계 커리큘럼</h2>
           <p className="text-slate-500 text-lg">
             터미널을 처음 여는 순간부터, 나만의 웹서비스를 세상에 공개하는 날까지
           </p>

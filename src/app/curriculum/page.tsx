@@ -99,12 +99,44 @@ const curriculum = [
   },
   {
     phase: "Phase 4",
+    title: "업무 도구 속의 Claude",
+    subtitle: "엑셀, PPT, 크롬에서 바로 쓰기",
+    emoji: "💼",
+    duration: "약 4시간",
+    color: "border-lime-400",
+    bgColor: "bg-lime-50",
+    lessons: [
+      {
+        title: "Claude in Excel",
+        desc: "엑셀 안에서 AI를 쓴다? 임금대장 분석, 4대보험 계산, 데이터 정리를 셀 안에서 바로 처리합니다. 복잡한 함수 대신 자연어로 요청하세요.",
+        tags: ["실습", "엑셀", "핵심"],
+      },
+      {
+        title: "Claude in PPT",
+        desc: "노무관리 교육 슬라이드, 산업안전 보건교육 자료, 사업주 대상 프레젠테이션을 AI와 함께 만듭니다. 내용 구성부터 디자인까지.",
+        tags: ["실습", "프레젠테이션"],
+      },
+      {
+        title: "Claude for Chrome",
+        desc: "크롬 브라우저에서 판례 검색 중 바로 요약, 법령 조문 해석, 웹페이지 번역까지. 별도 앱 없이 브라우저만으로 AI를 활용합니다.",
+        tags: ["실습", "브라우저", "핵심"],
+      },
+      {
+        title: "실전: 노무사 일상 업무에 통합하기",
+        desc: "임금대장(Excel) 분석 → 교육자료(PPT) 생성 → 판례 검색(Chrome) 요약까지, 하루 업무를 AI와 함께 처리하는 실습.",
+        tags: ["실습", "프로젝트"],
+      },
+    ],
+  },
+  {
+    phase: "Phase 5",
     title: "스킬 — Claude의 핵심 기능",
     subtitle: "슬래시 한 번으로 전문가 모드 ON",
     emoji: "🎪",
     duration: "약 4시간",
     color: "border-sky-400",
     bgColor: "bg-sky-50",
+
     lessons: [
       {
         title: "스킬이란?",
@@ -129,7 +161,7 @@ const curriculum = [
     ],
   },
   {
-    phase: "Phase 5",
+    phase: "Phase 6",
     title: "코워크 & 플러그인",
     subtitle: "AI 협업 시스템의 꽃",
     emoji: "🤝",
@@ -165,7 +197,7 @@ const curriculum = [
     ],
   },
   {
-    phase: "Phase 6",
+    phase: "Phase 7",
     title: "MCP 서버로 업무 연동",
     subtitle: "Gmail, 캘린더, 노션 한방에",
     emoji: "🔗",
@@ -196,7 +228,7 @@ const curriculum = [
     ],
   },
   {
-    phase: "Phase 7",
+    phase: "Phase 8",
     title: "나만의 도구 만들기",
     subtitle: "코딩 제로에서 웹앱 배포까지",
     emoji: "🛠️",
@@ -227,7 +259,7 @@ const curriculum = [
     ],
   },
   {
-    phase: "Phase 8",
+    phase: "Phase 9",
     title: "고급 활용과 자동화",
     subtitle: "AI 노무사 워크플로우 완성",
     emoji: "🎯",
@@ -265,7 +297,7 @@ export default function CurriculumPage() {
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">전체 커리큘럼</h1>
         <p className="text-slate-500 text-lg leading-relaxed">
-          총 8단계, 약 33시간 분량의 교육 과정입니다.
+          총 9단계, 약 37시간 분량의 교육 과정입니다.
           <br />
           순서대로 따라가면 코딩 경험 없이도 웹앱 배포까지 가능합니다.
         </p>
