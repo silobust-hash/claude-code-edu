@@ -12,6 +12,7 @@ const courses = [
       "1M 컨텍스트의 의미 — 법령 전문을 통째로 읽는 AI",
       "ChatGPT vs Claude — 노무사에게 맞는 AI는?",
       "Claude Code란? 터미널에서 만나는 AI 파트너",
+      "IT 용어 사전 — 개발자 말, 노무사 말로 번역하기",
     ],
   },
   {

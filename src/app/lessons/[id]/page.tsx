@@ -1,22 +1,49 @@
 import { lessons } from "@/data/lessons";
+import { getLessonFromBlob } from "@/lib/storage";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+export const revalidate = 60; // Revalidate every 60 seconds for ISR
 
 export function generateStaticParams() {
   return Object.keys(lessons).map((id) => ({ id }));
 }
 
-export function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
-  return params.then(({ id }) => {
-    const lesson = lessons[id];
-    if (!lesson) return { title: "강의를 찾을 수 없습니다" };
-    return { title: `${lesson.title} | 노무사 x Claude Code` };
-  });
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+
+  // Try blob first for metadata
+  let lesson: Record<string, unknown> | null = null;
+  try {
+    lesson = await getLessonFromBlob(id);
+  } catch {
+    // Fall back to static
+  }
+
+  if (!lesson) {
+    const staticLesson = lessons[id];
+    if (!staticLesson) return { title: "강의를 찾을 수 없습니다" };
+    return { title: `${staticLesson.title} | 노무사 x Claude Code` };
+  }
+
+  return { title: `${lesson.title} | 노무사 x Claude Code` };
 }
 
 export default async function LessonPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const lesson = lessons[id];
+
+  // Try blob first, fall back to static data
+  let lesson: Record<string, any> | null = null;
+  try {
+    lesson = await getLessonFromBlob(id);
+  } catch {
+    // Blob not available, use static
+  }
+
+  if (!lesson) {
+    lesson = lessons[id];
+  }
+
   if (!lesson) notFound();
 
   const prevId = lesson.prev ? lesson.prev : null;
@@ -52,7 +79,7 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
             )}
             {section.tip && (
               <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
-                <span className="font-bold">💡 TIP: </span>{section.tip}
+                <span className="font-bold">TIP: </span>{section.tip}
               </div>
             )}
           </div>

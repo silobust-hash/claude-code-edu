@@ -7,6 +7,7 @@ const allLessons = [
       { id: "1-2", title: "1M 컨텍스트의 의미 — 법령 전문을 통째로 읽는 AI", status: "available" },
       { id: "1-3", title: "ChatGPT vs Claude — 노무사에게 맞는 AI는?", status: "available" },
       { id: "1-4", title: "Claude Code란? 터미널에서 만나는 AI 파트너", status: "available" },
+      { id: "1-5", title: "IT 용어 사전 — 개발자 말, 노무사 말로 번역하기", status: "available" },
     ],
   },
   {
@@ -157,7 +158,7 @@ export default function LessonsPage() {
       </div>
 
       <div className="mt-16 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100 text-center">
-        <h3 className="text-lg font-bold mb-2">전체 11단계, 46개 강의</h3>
+        <h3 className="text-lg font-bold mb-2">전체 11단계, 47개 강의</h3>
         <p className="text-slate-500 text-sm leading-relaxed">
           Phase 1부터 순서대로 따라가시면 됩니다.
           <br />

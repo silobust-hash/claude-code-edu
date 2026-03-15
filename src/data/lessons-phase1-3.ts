@@ -145,7 +145,7 @@ export const lessonsPhase1to3: Record<string, Lesson> = {
     summary:
       "Claude Code가 무엇인지, 웹 채팅과 어떻게 다른지, 노무사 업무에서 왜 강력한 도구인지 알아봅니다.",
     prev: "1-3",
-    next: "2-1",
+    next: "1-5",
     sections: [
       {
         heading: "Claude Code는 어떤 프로그램인가요?",
@@ -185,7 +185,7 @@ export const lessonsPhase1to3: Record<string, Lesson> = {
     title: "터미널 여는 법",
     summary:
       "Mac과 Windows에서 터미널을 여는 방법과 ls, cd, pwd 등 기본 명령어를 배웁니다.",
-    prev: "1-4",
+    prev: "1-5",
     next: "2-2",
     sections: [
       {
