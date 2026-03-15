@@ -1,12 +1,12 @@
 export const lessonsWorktree: Record<string, any> = {
-  "9-1": {
-    id: "9-1",
+  "10-1": {
+    id: "10-1",
     phase: "Worktree — 병렬 AI 코딩",
     title: "Worktree란? — 여러 사건을 동시에 펼쳐놓기",
     summary:
       "Git Worktree의 개념을 이해하고, 한 번에 하나의 작업만 하던 방식에서 여러 작업을 동시에 병렬 처리하는 방법의 원리를 배웁니다.",
-    prev: "8-4",
-    next: "9-2",
+    prev: "9-4",
+    next: "10-2",
     sections: [
       {
         heading: "왜 Worktree가 필요한가요?",
@@ -85,14 +85,14 @@ Kevin Z.라는 개발자는 "Worktree 덕분에 생산성이 3~5배 향상되었
     ]
   },
 
-  "9-2": {
-    id: "9-2",
+  "10-2": {
+    id: "10-2",
     phase: "Worktree — 병렬 AI 코딩",
     title: "Worktree 실전 — claude --worktree로 시작하기",
     summary:
       "Claude Code의 내장 Worktree 기능을 사용하여 실제로 여러 작업을 동시에 실행하는 방법을 단계별로 배웁니다.",
-    prev: "9-1",
-    next: "9-3",
+    prev: "10-1",
+    next: "10-3",
     sections: [
       {
         heading: "방법 A: claude --worktree (가장 쉬운 방법)",
@@ -198,14 +198,14 @@ claude -w work-rules-review
     ]
   },
 
-  "9-3": {
-    id: "9-3",
+  "10-3": {
+    id: "10-3",
     phase: "Worktree — 병렬 AI 코딩",
     title: "자주 쓰는 명령어와 문제 해결",
     summary:
       "Worktree 관련 필수 명령어를 정리하고, 자주 발생하는 오류와 해결 방법을 배웁니다. 터미널 출력 읽는 법도 함께 익힙니다.",
-    prev: "9-2",
-    next: "9-4",
+    prev: "10-2",
+    next: "10-4",
     sections: [
       {
         heading: "명령어 모음 — 이것만 알면 됩니다",
@@ -317,14 +317,14 @@ Claude Code의 --remote 기능(이전 레슨 참조)과 결합하면 5개 이상
     ]
   },
 
-  "9-4": {
-    id: "9-4",
+  "10-4": {
+    id: "10-4",
     phase: "Worktree — 병렬 AI 코딩",
     title: "노무사를 위한 Worktree 활용 시나리오",
     summary:
       "실무에서 바로 쓸 수 있는 Worktree 활용 시나리오를 배우고, 연습용 프로젝트로 직접 실습합니다.",
-    prev: "9-3",
-    next: "10-1",
+    prev: "10-3",
+    next: "11-1",
     sections: [
       {
         heading: "시나리오 1: 3건 사건 동시 처리",

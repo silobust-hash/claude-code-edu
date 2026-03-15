@@ -64,42 +64,52 @@ const allLessons = [
   },
   {
     phase: 7,
-    phaseTitle: "MCP 서버로 업무 연동",
+    phaseTitle: "마켓플레이스 — 만능 공구 사러 가기",
     lessons: [
-      { id: "7-1", title: "MCP 서버란? 왜 노무사에게 필요한가", status: "available" },
-      { id: "7-2", title: "Gmail 연동 — 의뢰인 이메일 자동 분류", status: "available" },
-      { id: "7-3", title: "Google Calendar — 사건 기일 관리", status: "available" },
-      { id: "7-4", title: "Notion 연동 — 사건 데이터베이스 구축", status: "available" },
+      { id: "7-1", title: "공식 마켓플레이스 — Anthropic 직영 공구상", status: "available" },
+      { id: "7-2", title: "커뮤니티 마켓 — 동네 철물점에서 보물 찾기", status: "available" },
+      { id: "7-3", title: "MCP 서버 레지스트리 — 전문 장비 대여점", status: "available" },
+      { id: "7-4", title: "나만의 공구함 꾸리기 — 실전 활용", status: "available" },
     ],
   },
   {
     phase: 8,
-    phaseTitle: "나만의 도구 만들기",
+    phaseTitle: "MCP 서버로 업무 연동",
     lessons: [
-      { id: "8-1", title: "HTML/CSS/JS 기초 — Claude가 알려주니까 쉬워요", status: "available" },
-      { id: "8-2", title: "Next.js로 웹사이트 뚝딱 만들기", status: "available" },
-      { id: "8-3", title: "Vercel 배포 — 내가 만든 서비스를 세상에", status: "available" },
-      { id: "8-4", title: "실전: 노무 상담 접수 폼 만들어 배포하기", status: "available" },
+      { id: "8-1", title: "MCP 서버란? 왜 노무사에게 필요한가", status: "available" },
+      { id: "8-2", title: "Gmail 연동 — 의뢰인 이메일 자동 분류", status: "available" },
+      { id: "8-3", title: "Google Calendar — 사건 기일 관리", status: "available" },
+      { id: "8-4", title: "Notion 연동 — 사건 데이터베이스 구축", status: "available" },
     ],
   },
   {
     phase: 9,
-    phaseTitle: "Worktree — 병렬 AI 코딩",
+    phaseTitle: "나만의 도구 만들기",
     lessons: [
-      { id: "9-1", title: "Worktree란? — 여러 사건을 동시에 펼쳐놓기", status: "available" },
-      { id: "9-2", title: "Worktree 실전 — claude --worktree로 시작하기", status: "available" },
-      { id: "9-3", title: "자주 쓰는 명령어와 문제 해결", status: "available" },
-      { id: "9-4", title: "노무사를 위한 Worktree 활용 시나리오", status: "available" },
+      { id: "9-1", title: "HTML/CSS/JS 기초 — Claude가 알려주니까 쉬워요", status: "available" },
+      { id: "9-2", title: "Next.js로 웹사이트 뚝딱 만들기", status: "available" },
+      { id: "9-3", title: "Vercel 배포 — 내가 만든 서비스를 세상에", status: "available" },
+      { id: "9-4", title: "실전: 노무 상담 접수 폼 만들어 배포하기", status: "available" },
     ],
   },
   {
     phase: 10,
+    phaseTitle: "Worktree — 병렬 AI 코딩",
+    lessons: [
+      { id: "10-1", title: "Worktree란? — 여러 사건을 동시에 펼쳐놓기", status: "available" },
+      { id: "10-2", title: "Worktree 실전 — claude --worktree로 시작하기", status: "available" },
+      { id: "10-3", title: "자주 쓰는 명령어와 문제 해결", status: "available" },
+      { id: "10-4", title: "노무사를 위한 Worktree 활용 시나리오", status: "available" },
+    ],
+  },
+  {
+    phase: 11,
     phaseTitle: "고급 활용과 자동화",
     lessons: [
-      { id: "10-1", title: "리모트 컨트롤 — 폰에서도 Claude Code", status: "available" },
-      { id: "10-2", title: "Claude Code on Web — 클라우드에서 자동화", status: "available" },
-      { id: "10-3", title: "팀 워크플로우 — 사무실 전체가 AI와 협업", status: "available" },
-      { id: "10-4", title: "전체 파이프라인 완성 — 스킬+코워크+MCP 통합", status: "available" },
+      { id: "11-1", title: "리모트 컨트롤 — 폰에서도 Claude Code", status: "available" },
+      { id: "11-2", title: "Claude Code on Web — 클라우드에서 자동화", status: "available" },
+      { id: "11-3", title: "팀 워크플로우 — 사무실 전체가 AI와 협업", status: "available" },
+      { id: "11-4", title: "전체 파이프라인 완성 — 스킬+코워크+MCP 통합", status: "available" },
     ],
   },
 ];
@@ -147,7 +157,7 @@ export default function LessonsPage() {
       </div>
 
       <div className="mt-16 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100 text-center">
-        <h3 className="text-lg font-bold mb-2">전체 10단계, 42개 강의</h3>
+        <h3 className="text-lg font-bold mb-2">전체 11단계, 46개 강의</h3>
         <p className="text-slate-500 text-sm leading-relaxed">
           Phase 1부터 순서대로 따라가시면 됩니다.
           <br />

@@ -205,7 +205,39 @@ const curriculum = [
   },
   {
     phase: "Phase 7",
+    title: "마켓플레이스 — 만능 공구 사러 가기",
+    subtitle: "공식·커뮤니티·MCP 마켓 총정리",
+    emoji: "🧰",
+    duration: "약 4시간",
+    color: "border-yellow-400",
+    bgColor: "bg-yellow-50",
+    lessons: [
+      {
+        title: "공식 마켓플레이스",
+        desc: "Anthropic 직영 공구상. /plugin → Discover로 접근. GitHub, Notion, Vercel 등 검증된 플러그인을 설치합니다.",
+        tags: ["실습", "핵심"],
+      },
+      {
+        title: "커뮤니티 마켓플레이스",
+        desc: "Build with Claude(489+), Awesome Skills 등 동네 철물점에서 보물 찾기. 500개 이상의 커뮤니티 스킬을 탐색합니다.",
+        tags: ["실습", "탐색"],
+      },
+      {
+        title: "MCP 서버 레지스트리",
+        desc: "전문 장비 대여점. Gmail, Calendar, Notion 등 외부 서비스 연동을 위한 MCP 서버를 검색하고 설치합니다.",
+        tags: ["실습", "연동"],
+      },
+      {
+        title: "나만의 공구함 꾸리기",
+        desc: "노무사 필수 공구 세트 큐레이션, 사무실 전용 마켓플레이스 만들기, 보안 체크리스트까지.",
+        tags: ["실습", "프로젝트"],
+      },
+    ],
+  },
+  {
+    phase: "Phase 8",
     title: "MCP 서버로 업무 연동",
+
     subtitle: "Gmail, 캘린더, 노션 한방에",
     emoji: "🔗",
     duration: "약 4시간",
@@ -235,7 +267,7 @@ const curriculum = [
     ],
   },
   {
-    phase: "Phase 8",
+    phase: "Phase 9",
     title: "나만의 도구 만들기",
     subtitle: "코딩 제로에서 웹앱 배포까지",
     emoji: "🛠️",
@@ -266,7 +298,7 @@ const curriculum = [
     ],
   },
   {
-    phase: "Phase 9",
+    phase: "Phase 10",
     title: "Worktree — 병렬 AI 코딩",
     subtitle: "여러 사건을 동시에 처리하는 비법",
     emoji: "🌳",
@@ -297,7 +329,7 @@ const curriculum = [
     ],
   },
   {
-    phase: "Phase 10",
+    phase: "Phase 11",
     title: "고급 활용과 자동화",
     subtitle: "AI 노무사 워크플로우 완성",
     emoji: "🎯",
@@ -335,7 +367,7 @@ export default function CurriculumPage() {
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">전체 커리큘럼</h1>
         <p className="text-slate-500 text-lg leading-relaxed">
-          총 10단계, 약 42시간 분량의 교육 과정입니다.
+          총 11단계, 약 46시간 분량의 교육 과정입니다.
           <br />
           순서대로 따라가면 코딩 경험 없이도 웹앱 배포까지 가능합니다.
         </p>

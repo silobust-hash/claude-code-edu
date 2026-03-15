@@ -83,6 +83,19 @@ const courses = [
   },
   {
     phase: "Phase 7",
+    title: "마켓플레이스 — 만능 공구 사러 가기",
+    subtitle: "공식·커뮤니티·MCP 마켓 총정리",
+    emoji: "🧰",
+    color: "from-yellow-400 to-amber-500",
+    lessons: [
+      "공식 마켓플레이스 — Anthropic 직영 공구상",
+      "커뮤니티 마켓 — 동네 철물점에서 보물 찾기",
+      "MCP 서버 레지스트리 — 전문 장비 대여점",
+      "나만의 공구함 꾸리기 — 실전 활용",
+    ],
+  },
+  {
+    phase: "Phase 8",
     title: "MCP 서버로 업무 연동",
     subtitle: "Gmail, 캘린더, 노션 한방에",
     emoji: "🔗",
@@ -95,7 +108,7 @@ const courses = [
     ],
   },
   {
-    phase: "Phase 8",
+    phase: "Phase 9",
     title: "나만의 도구 만들기",
     subtitle: "코딩 제로에서 웹앱 배포까지",
     emoji: "🛠️",
@@ -108,7 +121,7 @@ const courses = [
     ],
   },
   {
-    phase: "Phase 9",
+    phase: "Phase 10",
     title: "Worktree — 병렬 AI 코딩",
     subtitle: "여러 사건을 동시에 처리하는 비법",
     emoji: "🌳",
@@ -121,7 +134,7 @@ const courses = [
     ],
   },
   {
-    phase: "Phase 10",
+    phase: "Phase 11",
     title: "고급 활용과 자동화",
     subtitle: "AI 노무사 워크플로우 완성",
     emoji: "🎯",
@@ -272,7 +285,7 @@ export default function Home() {
       {/* Curriculum Preview */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">10단계 커리큘럼</h2>
+          <h2 className="text-3xl font-bold mb-4">11단계 커리큘럼</h2>
           <p className="text-slate-500 text-lg">
             터미널을 처음 여는 순간부터, 나만의 웹서비스를 세상에 공개하는 날까지
           </p>
