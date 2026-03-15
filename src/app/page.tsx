@@ -20,6 +20,7 @@ const courses = [
     color: "from-indigo-400 to-purple-500",
     lessons: [
       "맥/윈도우에 터미널 여는 법부터",
+      "터미널 기초 명령어 — 서류함 열고 닫듯이",
       "Node.js 설치 — 복사 붙여넣기면 충분합니다",
       "Claude Code 설치 & 로그인",
       "첫 대화 — '안녕 클로드, 나는 노무사야'",

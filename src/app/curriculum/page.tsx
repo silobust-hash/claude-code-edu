@@ -35,7 +35,7 @@ const curriculum = [
     title: "Claude Code 설치와 첫걸음",
     subtitle: "코딩 경험 제로에서 시작",
     emoji: "🚀",
-    duration: "약 3시간",
+    duration: "약 4시간",
     color: "border-indigo-400",
     bgColor: "bg-indigo-50",
     lessons: [
@@ -43,6 +43,11 @@ const curriculum = [
         title: "터미널 여는 법부터",
         desc: "맥은 Terminal, 윈도우는 PowerShell. 검은 화면이 무섭지 않게, 차근차근 안내합니다.",
         tags: ["실습", "기초"],
+      },
+      {
+        title: "터미널 기초 명령어 — 서류함 열고 닫듯이",
+        desc: "pwd, ls, cd, mkdir 등 필수 명령어를 노무사 사무실의 서류 관리에 비유하며 익힙니다. 사건 폴더 만들고, 이동하고, 파일 확인하는 법.",
+        tags: ["실습", "기초", "핵심"],
       },
       {
         title: "Node.js 설치",
@@ -297,7 +302,7 @@ export default function CurriculumPage() {
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">전체 커리큘럼</h1>
         <p className="text-slate-500 text-lg leading-relaxed">
-          총 9단계, 약 37시간 분량의 교육 과정입니다.
+          총 9단계, 약 38시간 분량의 교육 과정입니다.
           <br />
           순서대로 따라가면 코딩 경험 없이도 웹앱 배포까지 가능합니다.
         </p>

@@ -14,9 +14,10 @@ const allLessons = [
     phaseTitle: "Claude Code 설치와 첫걸음",
     lessons: [
       { id: "2-1", title: "맥/윈도우에 터미널 여는 법부터", status: "available" },
-      { id: "2-2", title: "Node.js 설치 — 복사 붙여넣기면 충분합니다", status: "available" },
-      { id: "2-3", title: "Claude Code 설치 & 로그인", status: "available" },
-      { id: "2-4", title: "첫 대화 — '안녕 클로드, 나는 노무사야'", status: "available" },
+      { id: "2-2", title: "터미널 기초 명령어 — 서류함 열고 닫듯이", status: "available" },
+      { id: "2-3", title: "Node.js 설치 — 복사 붙여넣기면 충분합니다", status: "available" },
+      { id: "2-4", title: "Claude Code 설치 & 로그인", status: "available" },
+      { id: "2-5", title: "첫 대화 — '안녕 클로드, 나는 노무사야'", status: "available" },
     ],
   },
   {
@@ -136,7 +137,7 @@ export default function LessonsPage() {
       </div>
 
       <div className="mt-16 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100 text-center">
-        <h3 className="text-lg font-bold mb-2">전체 9단계, 37개 강의</h3>
+        <h3 className="text-lg font-bold mb-2">전체 9단계, 38개 강의</h3>
         <p className="text-slate-500 text-sm leading-relaxed">
           Phase 1부터 순서대로 따라가시면 됩니다.
           <br />
