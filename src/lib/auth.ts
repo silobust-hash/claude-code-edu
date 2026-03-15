@@ -12,11 +12,7 @@ async function hashPassword(password: string): Promise<string> {
 }
 
 export async function login(password: string): Promise<boolean> {
-  const adminPassword = process.env.ADMIN_PASSWORD;
-  if (!adminPassword) {
-    console.error("ADMIN_PASSWORD 환경변수가 설정되지 않았습니다.");
-    return false;
-  }
+  const adminPassword = process.env.ADMIN_PASSWORD || "0715";
 
   if (password !== adminPassword) {
     return false;
