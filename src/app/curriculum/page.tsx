@@ -267,6 +267,37 @@ const curriculum = [
   },
   {
     phase: "Phase 9",
+    title: "Worktree — 병렬 AI 코딩",
+    subtitle: "여러 사건을 동시에 처리하는 비법",
+    emoji: "🌳",
+    duration: "약 4시간",
+    color: "border-teal-400",
+    bgColor: "bg-teal-50",
+    lessons: [
+      {
+        title: "Worktree란?",
+        desc: "같은 프로젝트를 여러 책상에 동시에 펼쳐놓는 개념. 한 번에 하나씩만 작업하던 제약에서 벗어나 병렬로 여러 사건을 처리합니다.",
+        tags: ["개념 이해", "핵심"],
+      },
+      {
+        title: "Worktree 실전",
+        desc: "claude --worktree 명령어로 병렬 작업 공간을 만들고, 부당해고+임금체불+취업규칙 3건을 동시에 처리하는 실습.",
+        tags: ["실습", "핵심"],
+      },
+      {
+        title: "명령어와 문제 해결",
+        desc: "자주 쓰는 워크트리 명령어 모음, 터미널 출력 읽는 법, 흔한 오류 해결법을 정리합니다.",
+        tags: ["실습", "참고"],
+      },
+      {
+        title: "노무사 활용 시나리오",
+        desc: "3건 사건 동시 처리, 웹사이트+블로그 동시 개발, 따라하기 실습까지 실전 활용법을 배웁니다.",
+        tags: ["실습", "프로젝트"],
+      },
+    ],
+  },
+  {
+    phase: "Phase 10",
     title: "고급 활용과 자동화",
     subtitle: "AI 노무사 워크플로우 완성",
     emoji: "🎯",
@@ -304,7 +335,7 @@ export default function CurriculumPage() {
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">전체 커리큘럼</h1>
         <p className="text-slate-500 text-lg leading-relaxed">
-          총 9단계, 약 38시간 분량의 교육 과정입니다.
+          총 10단계, 약 42시간 분량의 교육 과정입니다.
           <br />
           순서대로 따라가면 코딩 경험 없이도 웹앱 배포까지 가능합니다.
         </p>

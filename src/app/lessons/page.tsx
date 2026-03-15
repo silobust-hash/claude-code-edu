@@ -84,12 +84,22 @@ const allLessons = [
   },
   {
     phase: 9,
+    phaseTitle: "Worktree — 병렬 AI 코딩",
+    lessons: [
+      { id: "9-1", title: "Worktree란? — 여러 사건을 동시에 펼쳐놓기", status: "available" },
+      { id: "9-2", title: "Worktree 실전 — claude --worktree로 시작하기", status: "available" },
+      { id: "9-3", title: "자주 쓰는 명령어와 문제 해결", status: "available" },
+      { id: "9-4", title: "노무사를 위한 Worktree 활용 시나리오", status: "available" },
+    ],
+  },
+  {
+    phase: 10,
     phaseTitle: "고급 활용과 자동화",
     lessons: [
-      { id: "9-1", title: "리모트 컨트롤 — 폰에서도 Claude Code", status: "available" },
-      { id: "9-2", title: "Claude Code on Web — 클라우드에서 자동화", status: "available" },
-      { id: "9-3", title: "팀 워크플로우 — 사무실 전체가 AI와 협업", status: "available" },
-      { id: "9-4", title: "전체 파이프라인 완성 — 스킬+코워크+MCP 통합", status: "available" },
+      { id: "10-1", title: "리모트 컨트롤 — 폰에서도 Claude Code", status: "available" },
+      { id: "10-2", title: "Claude Code on Web — 클라우드에서 자동화", status: "available" },
+      { id: "10-3", title: "팀 워크플로우 — 사무실 전체가 AI와 협업", status: "available" },
+      { id: "10-4", title: "전체 파이프라인 완성 — 스킬+코워크+MCP 통합", status: "available" },
     ],
   },
 ];
@@ -137,7 +147,7 @@ export default function LessonsPage() {
       </div>
 
       <div className="mt-16 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100 text-center">
-        <h3 className="text-lg font-bold mb-2">전체 9단계, 38개 강의</h3>
+        <h3 className="text-lg font-bold mb-2">전체 10단계, 42개 강의</h3>
         <p className="text-slate-500 text-sm leading-relaxed">
           Phase 1부터 순서대로 따라가시면 됩니다.
           <br />

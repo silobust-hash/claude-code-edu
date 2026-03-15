@@ -109,6 +109,19 @@ const courses = [
   },
   {
     phase: "Phase 9",
+    title: "Worktree — 병렬 AI 코딩",
+    subtitle: "여러 사건을 동시에 처리하는 비법",
+    emoji: "🌳",
+    color: "from-teal-400 to-emerald-500",
+    lessons: [
+      "Worktree란? — 여러 사건을 동시에 펼쳐놓기",
+      "Worktree 실전 — claude --worktree로 시작하기",
+      "자주 쓰는 명령어와 문제 해결",
+      "노무사를 위한 Worktree 활용 시나리오",
+    ],
+  },
+  {
+    phase: "Phase 10",
     title: "고급 활용과 자동화",
     subtitle: "AI 노무사 워크플로우 완성",
     emoji: "🎯",
@@ -259,7 +272,7 @@ export default function Home() {
       {/* Curriculum Preview */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">9단계 커리큘럼</h2>
+          <h2 className="text-3xl font-bold mb-4">10단계 커리큘럼</h2>
           <p className="text-slate-500 text-lg">
             터미널을 처음 여는 순간부터, 나만의 웹서비스를 세상에 공개하는 날까지
           </p>
