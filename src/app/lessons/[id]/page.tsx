@@ -1,0 +1,89 @@
+import { lessons } from "@/data/lessons";
+import { notFound } from "next/navigation";
+
+export function generateStaticParams() {
+  return Object.keys(lessons).map((id) => ({ id }));
+}
+
+export function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  return params.then(({ id }) => {
+    const lesson = lessons[id];
+    if (!lesson) return { title: "강의를 찾을 수 없습니다" };
+    return { title: `${lesson.title} | 노무사 x Claude Code` };
+  });
+}
+
+export default async function LessonPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const lesson = lessons[id];
+  if (!lesson) notFound();
+
+  const prevId = lesson.prev ? lesson.prev : null;
+  const nextId = lesson.next ? lesson.next : null;
+
+  return (
+    <div className="max-w-3xl mx-auto px-6 py-16">
+      <div className="mb-8">
+        <a href="/lessons" className="text-sm text-indigo-500 hover:text-indigo-700 transition-colors">
+          ← 강의 목록으로
+        </a>
+      </div>
+
+      <div className="mb-6">
+        <span className="text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full">
+          {lesson.phase}
+        </span>
+        <span className="text-xs text-slate-400 ml-2">{lesson.id}</span>
+      </div>
+
+      <h1 className="text-3xl font-bold mb-4 leading-tight">{lesson.title}</h1>
+      <p className="text-lg text-slate-500 mb-10 leading-relaxed">{lesson.summary}</p>
+
+      <div className="prose prose-slate max-w-none">
+        {lesson.sections.map((section: { heading: string; content: string; code?: string; tip?: string }, i: number) => (
+          <div key={i} className="mb-10">
+            <h2 className="text-xl font-bold mb-3 text-slate-800">{section.heading}</h2>
+            <div className="text-slate-600 leading-relaxed whitespace-pre-line mb-4">{section.content}</div>
+            {section.code && (
+              <pre className="bg-slate-900 text-green-400 rounded-xl p-5 overflow-x-auto text-sm leading-relaxed mb-4">
+                <code>{section.code}</code>
+              </pre>
+            )}
+            {section.tip && (
+              <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
+                <span className="font-bold">💡 TIP: </span>{section.tip}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {lesson.keyTakeaways && (
+        <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 mt-10">
+          <h3 className="font-bold text-indigo-800 mb-3">핵심 정리</h3>
+          <ul className="space-y-2">
+            {lesson.keyTakeaways.map((point: string, i: number) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-indigo-700">
+                <span className="shrink-0 mt-0.5">✓</span>
+                {point}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="flex justify-between mt-12 pt-8 border-t border-slate-200">
+        {prevId ? (
+          <a href={`/lessons/${prevId}`} className="text-sm text-indigo-500 hover:text-indigo-700">
+            ← 이전 강의
+          </a>
+        ) : <div />}
+        {nextId ? (
+          <a href={`/lessons/${nextId}`} className="text-sm text-indigo-500 hover:text-indigo-700">
+            다음 강의 →
+          </a>
+        ) : <div />}
+      </div>
+    </div>
+  );
+}
