@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const curriculum = [
   {
     phase: "Phase 1",
@@ -361,12 +363,12 @@ export default function CurriculumPage() {
         <div className="inline-block bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100">
           <p className="text-lg font-semibold mb-2">준비되셨나요?</p>
           <p className="text-slate-500 mb-6">Phase 1부터 차근차근 시작해봅시다.</p>
-          <a
+          <Link
             href="/lessons"
             className="inline-block px-8 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors"
           >
             강의 시작하기
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const courses = [
   {
     phase: "Phase 1",
@@ -182,18 +184,18 @@ export default function Home() {
             터미널 여는 법부터 웹앱 배포까지, 노무사의 일하는 방식을 바꿔보세요.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a
+            <Link
               href="/curriculum"
               className="px-8 py-3.5 bg-white text-indigo-700 font-semibold rounded-xl hover:bg-indigo-50 transition-colors shadow-lg"
             >
               커리큘럼 보기
-            </a>
-            <a
+            </Link>
+            <Link
               href="/lessons"
               className="px-8 py-3.5 bg-white/15 backdrop-blur text-white font-semibold rounded-xl hover:bg-white/25 transition-colors border border-white/20"
             >
               바로 시작하기
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -291,12 +293,12 @@ export default function Home() {
           ))}
         </div>
         <div className="text-center mt-10">
-          <a
+          <Link
             href="/curriculum"
             className="inline-block px-8 py-3.5 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors"
           >
             전체 커리큘럼 자세히 보기
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -309,12 +311,12 @@ export default function Home() {
             <br />
             이 교육 과정이 처음부터 끝까지 함께합니다.
           </p>
-          <a
+          <Link
             href="/lessons"
             className="inline-block px-10 py-4 bg-white text-indigo-700 font-bold rounded-xl hover:bg-indigo-50 transition-colors shadow-lg text-lg"
           >
             첫 번째 강의 시작
-          </a>
+          </Link>
         </div>
       </section>
     </div>

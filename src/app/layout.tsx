@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,12 +17,12 @@ export default function RootLayout({
       <body className="antialiased">
         <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
           <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-            <a href="/" className="text-xl font-bold text-indigo-600">
+            <Link href="/" className="text-xl font-bold text-indigo-600">
               노무사 x Claude Code
-            </a>
+            </Link>
             <div className="flex gap-6 text-sm font-medium text-slate-600">
-              <a href="/curriculum" className="hover:text-indigo-600 transition-colors">커리큘럼</a>
-              <a href="/lessons" className="hover:text-indigo-600 transition-colors">강의 목록</a>
+              <Link href="/curriculum" className="hover:text-indigo-600 transition-colors">커리큘럼</Link>
+              <Link href="/lessons" className="hover:text-indigo-600 transition-colors">강의 목록</Link>
               <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600 transition-colors">Claude AI</a>
             </div>
           </div>

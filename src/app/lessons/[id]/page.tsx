@@ -1,4 +1,5 @@
 import { lessons } from "@/data/lessons";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
@@ -24,9 +25,9 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
       <div className="mb-8">
-        <a href="/lessons" className="text-sm text-indigo-500 hover:text-indigo-700 transition-colors">
+        <Link href="/lessons" className="text-sm text-indigo-500 hover:text-indigo-700 transition-colors">
           ← 강의 목록으로
-        </a>
+        </Link>
       </div>
 
       <div className="mb-6">
@@ -74,14 +75,14 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
 
       <div className="flex justify-between mt-12 pt-8 border-t border-slate-200">
         {prevId ? (
-          <a href={`/lessons/${prevId}`} className="text-sm text-indigo-500 hover:text-indigo-700">
+          <Link href={`/lessons/${prevId}`} className="text-sm text-indigo-500 hover:text-indigo-700">
             ← 이전 강의
-          </a>
+          </Link>
         ) : <div />}
         {nextId ? (
-          <a href={`/lessons/${nextId}`} className="text-sm text-indigo-500 hover:text-indigo-700">
+          <Link href={`/lessons/${nextId}`} className="text-sm text-indigo-500 hover:text-indigo-700">
             다음 강의 →
-          </a>
+          </Link>
         ) : <div />}
       </div>
     </div>
