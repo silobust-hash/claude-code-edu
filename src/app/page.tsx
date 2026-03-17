@@ -54,6 +54,7 @@ const courses = [
       "Claude in PPT — 프레젠테이션을 AI가 함께 만든다",
       "Claude for Chrome — 브라우저에서 바로 쓰는 AI 비서",
       "실전: 임금대장 분석 + 강의 슬라이드 + 판례 요약 한번에",
+      "Claude 시각화 — 차트와 다이어그램을 대화로 만들기",
     ],
   },
   {

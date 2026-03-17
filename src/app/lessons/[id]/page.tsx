@@ -2,6 +2,7 @@ import { lessons } from "@/data/lessons";
 import { getLessonFromBlob } from "@/lib/storage";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import LessonReactions from "./LessonReactions";
 
 export const revalidate = 60; // Revalidate every 60 seconds for ISR
 
@@ -99,6 +100,8 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
           </ul>
         </div>
       )}
+
+      <LessonReactions lessonId={id} />
 
       <div className="flex justify-between mt-12 pt-8 border-t border-slate-200">
         {prevId ? (
