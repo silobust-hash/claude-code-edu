@@ -40,6 +40,7 @@ const allLessons = [
       { id: "4-2", title: "Claude in PPT — 프레젠테이션을 AI가 함께 만든다", status: "available" },
       { id: "4-3", title: "Claude for Chrome — 브라우저에서 바로 쓰는 AI 비서", status: "available" },
       { id: "4-4", title: "실전: 임금대장 분석 + 강의 슬라이드 + 판례 요약 한번에", status: "available" },
+      { id: "4-5", title: "Claude 시각화 — 차트와 다이어그램을 대화로 만들기", status: "available" },
     ],
   },
   {
@@ -158,7 +159,7 @@ export default function LessonsPage() {
       </div>
 
       <div className="mt-16 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100 text-center">
-        <h3 className="text-lg font-bold mb-2">전체 11단계, 47개 강의</h3>
+        <h3 className="text-lg font-bold mb-2">전체 11단계, 48개 강의</h3>
         <p className="text-slate-500 text-sm leading-relaxed">
           Phase 1부터 순서대로 따라가시면 됩니다.
           <br />
