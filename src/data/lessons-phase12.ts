@@ -2,7 +2,7 @@ export const lessonsPhase12: Record<string, any> = {
   "12-1": {
     id: "12-1",
     phase: "Phase 12 — 최신 기능 활용",
-    title: "Auto Mode — AI에게 전권을 위임하기",
+    title: "Auto Mode — AI에게 자율권 부여하기",
     summary:
       "매번 '허용'을 눌러야 했던 권한 승인을 자동화하는 Auto Mode를 배웁니다. 대량 작업 시 클릭 피로를 없애고, 안전하게 사용하는 방법을 익힙니다.",
     prev: "11-4",
@@ -18,33 +18,41 @@ Auto Mode에는 여러 가지 방법이 있습니다. 상황에 따라 적절한
         tip: "Auto Mode는 편리하지만, 중요한 파일이 있는 폴더에서는 신중하게 사용하세요. 처음에는 테스트 폴더에서 연습하는 것을 권장합니다."
       },
       {
-        heading: "Auto Mode 사용법 — 3가지 방법",
-        content: `Auto Mode를 활성화하는 방법은 크게 세 가지입니다.
+        heading: "Auto Mode 사용법 — 4가지 방법",
+        content: `Auto Mode를 활성화하는 방법은 크게 네 가지입니다.
 
-첫째, 대화 중 Accept All 버튼 사용입니다. Claude Code가 권한을 요청할 때 나타나는 버튼 중 'Accept All'을 선택하면, 해당 세션 동안 같은 유형의 권한 요청을 자동으로 승인합니다. 가장 안전한 방법으로, 처음 사용자에게 권장합니다.
+첫째, Shift+Tab 권한 모드 전환입니다 (가장 권장). Claude Code 대화 중 Shift+Tab을 누르면 권한 모드가 순환합니다: default → acceptEdits → plan → auto. 'auto' 모드를 선택하면 안전 분류기(safety classifier)가 위험한 작업은 자동으로 차단하면서, 안전한 작업은 자동 승인합니다. 전권 위임이 아니라 "안전한 범위 내 자율권"입니다.
 
-둘째, 설정에서 권한 사전 허용입니다. Claude Code 설정(/permissions)에서 특정 도구(파일 읽기, 편집, 특정 명령어)에 대해 자동 허용을 미리 설정할 수 있습니다. 예를 들어 "Bash(npm run build)"처럼 특정 명령만 허용하면 안전합니다.
+둘째, 대화 중 Accept All 버튼 사용입니다. Claude Code가 권한을 요청할 때 'Accept All'을 선택하면 해당 세션 동안 같은 유형의 권한 요청을 자동 승인합니다.
 
-셋째, --dangerously-skip-permissions 플래그입니다. 실행 시 이 플래그를 추가하면 모든 권한 요청을 건너뜁니다. 이름에 'dangerously'가 붙어 있듯이, 모든 파일 접근과 명령 실행이 무제한 허용되므로 주의가 필요합니다. 주로 CI/CD 자동화나 --remote와 함께 야간 대량 작업에 사용합니다.`,
-        code: `# 방법 1: 대화 중 Accept All (가장 안전)
+셋째, 설정에서 권한 사전 허용입니다. /permissions에서 특정 도구(파일 읽기, 편집, 특정 명령어)에 대해 자동 허용을 미리 설정합니다. --allowedTools와 --disallowedTools 플래그로 허용/차단할 도구를 세밀하게 제어할 수도 있습니다.
+
+넷째, --dangerously-skip-permissions 플래그입니다. 모든 권한 요청을 건너뛰며, 안전 분류기도 적용되지 않습니다. 주로 CI/CD 자동화나 --remote와 결합한 야간 대량 작업에 사용합니다.`,
+        code: `# 방법 1: Shift+Tab 권한 모드 전환 (가장 권장!)
+# → 대화 입력 중 Shift+Tab을 누르면 모드 순환:
+#   default → acceptEdits → plan → auto
+# → auto 모드: 안전 분류기가 위험 작업만 차단, 나머지 자동 승인
+
+# 방법 2: 대화 중 Accept All
 # → Claude Code가 권한을 물을 때 "Accept All" 버튼 클릭
 # → 해당 세션에서만 적용, 세션 종료 시 초기화
 
-# 방법 2: 설정에서 특정 도구만 자동 허용
+# 방법 3: 설정에서 특정 도구만 자동 허용
 # Claude Code 실행 후 /permissions 입력
 # → 허용할 도구 선택 (예: Read, Edit, 특정 Bash 명령)
-# → 프로젝트별 또는 전역 설정 가능
+# 또는 CLI 플래그로 세밀하게 제어:
+claude --allowedTools "Edit,Write,Bash(npm run build)" -p "취업규칙 검토해줘"
 
-# 방법 3: 전체 권한 건너뛰기 (주의 필요!)
-claude --dangerously-skip-permissions "5개 사업장 취업규칙 일괄 검토해줘"
+# 방법 4: 전체 권한 건너뛰기 (주의 필요!)
+claude --dangerously-skip-permissions -p "5개 사업장 취업규칙 일괄 검토해줘"
 
 # --remote와 결합하면 야간 대량 작업에 최적
-claude --remote --dangerously-skip-permissions "50인 사업장 5곳 취업규칙 2026년 기준 일괄 검토"
+claude --remote --dangerously-skip-permissions -p "50인 사업장 5곳 취업규칙 2026년 기준 일괄 검토"
 
 # 안전한 사용 팁: 전용 작업 폴더에서만 사용
 # mkdir ~/work/batch-review && cd ~/work/batch-review
 # → 이 폴더 안의 파일만 영향받으므로 안전`,
-        tip: "일상 업무에는 방법 1(Accept All)이면 충분합니다. 방법 3은 테스트가 완료된 반복 작업을 야간에 돌릴 때만 사용하세요."
+        tip: "일상 업무에는 Shift+Tab으로 auto 모드를 사용하세요. 안전 분류기가 위험한 작업은 자동으로 차단해 줍니다. 방법 4는 CI/CD 자동화에만 사용하세요."
       },
       {
         heading: "실전 활용: 대량 작업에 Auto Mode 적용",
@@ -60,9 +68,9 @@ claude --remote --dangerously-skip-permissions "50인 사업장 5곳 취업규�
     ],
     keyTakeaways: [
       "Auto Mode는 반복적인 '허용' 클릭을 없애 대량 작업 효율을 극대화합니다",
-      "Accept All(세션 한정) → 설정 허용(도구별) → --dangerously-skip-permissions(전체) 순으로 범위가 넓어집니다",
-      "일상 업무는 Accept All, 야간 대량 작업은 --remote + 전체 건너뛰기 조합이 효과적입니다",
-      "'dangerously'라는 이름처럼, 전체 건너뛰기는 전용 작업 폴더에서만 사용하세요"
+      "Shift+Tab으로 auto 모드 전환이 가장 권장되며, 안전 분류기가 위험 작업을 자동 차단합니다",
+      "일상 업무는 Shift+Tab auto 모드, 야간 대량 작업은 --remote + --dangerously-skip-permissions 조합이 효과적입니다",
+      "--allowedTools/--disallowedTools 플래그로 허용 도구를 세밀하게 제어할 수 있습니다"
     ]
   },
 
@@ -89,15 +97,17 @@ claude --remote --dangerously-skip-permissions "50인 사업장 5곳 취업규�
       },
       {
         heading: "Dispatch 사용법",
-        content: `Dispatch는 별도 명령어가 아니라, Claude Code에게 병렬 처리가 필요한 작업을 요청하면 자동으로 활성화됩니다. Claude Code가 스스로 판단하여 "이 작업은 나눠서 하는 게 효율적이겠다"고 결정하면 서브에이전트를 생성합니다.
+        content: `Dispatch는 내부적으로 Task 도구를 사용하여 서브에이전트를 생성합니다. Claude Code에게 병렬 처리가 필요한 작업을 요청하면 자동으로 활성화되며, 최대 약 7개의 서브에이전트를 동시에 실행할 수 있습니다.
+
+각 서브에이전트는 독립된 컨텍스트 윈도우를 가지므로, 메인 대화의 컨텍스트를 소비하지 않습니다. 모바일(Claude 앱)에서도 디스패치를 실행할 수 있어, 이동 중에 대량 작업을 맡길 수 있습니다.
 
 활용 팁: 명시적으로 병렬 처리를 요청하면 더 확실하게 Dispatch가 작동합니다. "동시에", "병렬로", "각각 나눠서"라는 표현을 사용하세요.
 
 실제 작동 과정은 이렇습니다:
 1. 사용자가 여러 독립적인 작업을 요청합니다
 2. Claude Code(메인 에이전트)가 작업을 분석하여 독립적으로 처리 가능한 부분을 식별합니다
-3. 각 부분에 대해 서브에이전트를 생성하여 동시에 실행합니다
-4. 서브에이전트들이 각자 작업을 완료하면 결과를 메인 에이전트에게 보고합니다
+3. Task 도구로 각 부분에 대해 서브에이전트를 생성하여 동시에 실행합니다 (최대 ~7개)
+4. 서브에이전트들이 독립된 컨텍스트에서 작업을 완료하면 결과를 메인 에이전트에게 보고합니다
 5. 메인 에이전트가 결과를 취합하여 사용자에게 전달합니다`,
         code: `# Dispatch 자동 활성화 예시
 # Claude Code에게 병렬 처리가 필요한 작업을 요청하면 됩니다
@@ -118,7 +128,7 @@ claude --remote --dangerously-skip-permissions "50인 사업장 5곳 취업규�
 # → 3개 서브에이전트가 각각 독립적으로 조사 후 결과 취합
 
 # 예시 3: Worktree + Dispatch 최강 조합
-claude --worktree case-a "A사건 구제신청서 작성하면서,
+claude --worktree case-a -p "A사건 구제신청서 작성하면서,
  판례 조사와 임금 계산을 동시에 진행해줘"
 # → 독립된 워크트리에서 서브에이전트들이 병렬 작업`,
         tip: "'동시에', '병렬로', '각각' 같은 표현을 프롬프트에 포함하면 Dispatch가 더 잘 작동합니다."
@@ -176,27 +186,34 @@ Worktree가 '물리적 공간의 분리'라면, Dispatch는 '인력의 분배'�
 
 노무사 비유로 설명하면, 사무장에게 "노동위원회 사이트에서 HD-2026-015 사건 진행 상황 확인해줘"라고 하면, 사무장이 직접 브라우저를 열고 → 사이트에 접속하고 → 로그인하고 → 사건번호를 입력하고 → 검색 버튼을 클릭하고 → 결과를 읽어서 알려주는 것과 같습니다.
 
-현재 Claude Code에서는 MCP(Model Context Protocol)를 통해 브라우저 제어를 연결하여 사용할 수 있습니다. Claude in Chrome 확장 프로그램이나 Playwright MCP 등을 활용합니다.`,
-        code: `# Computer Use 활용 예시
+Claude Code에서 브라우저를 제어하려면 --chrome 플래그를 사용합니다. claude --chrome 으로 실행하면 Chrome 브라우저와 연결되어 웹페이지를 직접 조작할 수 있습니다. Chrome에 "Claude in Chrome" 확장 프로그램을 설치하면 더 원활하게 작동합니다.
 
-# 예시 1: 웹사이트 정보 수집
+매번 --chrome을 붙이기 귀찮다면, Claude Code 안에서 /chrome 명령어를 실행하면 기본 설정으로 Chrome 연결이 활성화됩니다.`,
+        code: `# Computer Use 시작하기
+
+# 방법 1: --chrome 플래그로 실행 (권장)
+claude --chrome
+# → Chrome 브라우저와 연결된 상태로 시작
+# → "Claude in Chrome" 확장 프로그램 설치 시 더 원활
+
+# 방법 2: 대화 중 /chrome 명령어로 활성화
+# Claude Code 안에서 /chrome 입력
+# → 이후 해당 세션에서 Chrome 제어 가능
+
+# 실전 예시 1: 웹사이트 정보 수집
 "Chrome에서 고용노동부 최저임금 고시 페이지를 열어서
  2026년 시간급 최저임금과 월환산액을 확인해줘"
-# → AI가 브라우저를 열고 → 사이트 접속 → 해당 정보 확인 → 결과 보고
+# → AI가 Chrome을 열고 → 사이트 접속 → 해당 정보 확인 → 결과 보고
 
-# 예시 2: 웹 기반 시스템 조작
+# 실전 예시 2: 웹 기반 시스템 조작
 "4대보험 정보연계센터에서 사업장 A정형외과의
  고용보험 피보험자격 현황을 조회해줘"
-# → AI가 사이트 접속 → 로그인(사전 설정된 경우) → 조회 → 결과 정리
+# → AI가 Chrome으로 사이트 접속 → 조회 → 결과 정리
 
-# 예시 3: 데스크톱 앱 조작
+# 실전 예시 3: 데스크톱 앱 조작
 "엑셀 파일 '임금대장_2026.xlsx'를 열어서
  3월 급여 시트의 합계를 확인해줘"
-# → AI가 엑셀 실행 → 파일 열기 → 시트 이동 → 합계 확인
-
-# Claude in Chrome 확장 프로그램 활용
-# → Chrome 브라우저에서 직접 AI가 웹페이지를 조작
-# → MCP 연결로 Claude Code와 브라우저가 통합`,
+# → AI가 엑셀 실행 → 파일 열기 → 시트 이동 → 합계 확인`,
         tip: "Computer Use로 로그인이 필요한 사이트를 조작할 때는, 비밀번호를 AI에게 직접 알려주지 마세요. 미리 로그인해 둔 상태에서 사용하거나, 브라우저에 저장된 자동 로그인을 활용하세요."
       },
       {
@@ -218,8 +235,8 @@ Worktree가 '물리적 공간의 분리'라면, Dispatch는 '인력의 분배'�
       }
     ],
     keyTakeaways: [
-      "Computer Use는 AI가 화면을 보고 마우스/키보드를 조작하는 기능으로, 터미널 밖의 모든 작업으로 영역이 확장됩니다",
-      "스크린샷 촬영 → 화면 분석 → 행동 결정 → 실행 → 결과 확인의 순환 구조로 작동합니다",
+      "claude --chrome 플래그로 Chrome 브라우저와 연결하여 웹페이지를 직접 조작할 수 있습니다",
+      "Chrome에 'Claude in Chrome' 확장 프로그램을 설치하면 더 원활하게 작동합니다",
       "웹사이트 정보 수집, 반복적 웹 작업 자동화, 크로스 앱 워크플로우에 유용합니다",
       "금융 거래, 최종 제출 등 돌이킬 수 없는 작업은 반드시 사람이 직접 실행해야 합니다"
     ]
@@ -245,14 +262,16 @@ Worktree가 '물리적 공간의 분리'라면, Dispatch는 '인력의 분배'�
       },
       {
         heading: "Hooks 종류와 설정",
-        content: `Hooks는 Claude Code의 특정 이벤트에 연결되는 쉘 명령입니다. 주요 이벤트는 다음과 같습니다.
+        content: `Hooks는 Claude Code의 특정 이벤트에 연결되는 쉘 명령입니다. 총 6가지 이벤트가 있습니다.
 
-PreToolUse: 도구 사용 전에 실행됩니다. 파일 수정 전 백업, 위험한 명령 차단 등에 사용합니다.
+PreToolUse: 도구 사용 전에 실행됩니다. 파일 수정 전 백업, 위험한 명령 차단 등에 사용합니다. exit 코드 0이면 허용, 비정상 종료(exit 1 등)이면 해당 작업을 차단합니다.
 PostToolUse: 도구 사용 후에 실행됩니다. 파일 수정 후 자동 포맷팅, 로그 기록 등에 사용합니다.
 Notification: 알림 이벤트 시 실행됩니다. 작업 완료 시 슬랙 메시지 전송 등에 사용합니다.
 Stop: Claude Code가 응답을 완료했을 때 실행됩니다. 최종 결과 검증 등에 사용합니다.
+UserPromptSubmit: 사용자가 프롬프트를 제출할 때 실행됩니다. 입력 검증이나 자동 컨텍스트 추가에 사용합니다.
+SessionStart: Claude Code 세션이 시작될 때 실행됩니다. 환경 초기화나 시작 알림에 사용합니다.
 
-각 Hook은 실행할 쉘 명령과, 어떤 도구(tool)에 적용할지를 지정할 수 있습니다. 예를 들어 "Edit 도구 사용 전에(PreToolUse) 백업 명령을 실행"하도록 설정합니다.`,
+각 Hook은 stdin을 통해 JSON 데이터를 받습니다 (도구 이름, 파일 경로 등). 이를 파싱하여 조건부 로직을 구현할 수 있습니다.`,
         code: `# Hooks 설정 예시 (.claude/settings.json)
 
 # 예시 1: 파일 수정 전 자동 백업
@@ -312,7 +331,7 @@ Hooks는 한 번 설정해두면 이후 모든 세션에서 자동으로 적용�
     ],
     keyTakeaways: [
       "Hooks는 Claude Code의 특정 이벤트(파일 수정, 명령 실행 등)에 자동으로 실행되는 규칙입니다",
-      "PreToolUse(사전), PostToolUse(사후), Notification(알림), Stop(완료) 네 가지 시점에 설정합니다",
+      "PreToolUse, PostToolUse, Notification, Stop, UserPromptSubmit, SessionStart 6가지 이벤트에 설정합니다",
       "의뢰인 파일 자동 백업, 법률문서 품질 검사, 야간 작업 완료 알림 등에 활용합니다",
       "한 번 설정하면 매번 말하지 않아도 자동으로 적용되는 '사무실 업무 규칙'입니다"
     ]

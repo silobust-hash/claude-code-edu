@@ -110,7 +110,7 @@ export const lessonsPhase1to3: Record<string, Lesson> = {
       {
         heading: "컨텍스트 윈도우 비교",
         content:
-          "2026년 3월 기준으로, Claude(Opus 4.6)는 100만 토큰의 컨텍스트 윈도우를 제공합니다. ChatGPT(GPT-4o)는 12만 8천 토큰입니다. 단순 비교로도 약 8배 차이가 납니다.\n\n이 차이가 실무에서 의미하는 바는 큽니다. ChatGPT에는 취업규칙 전체를 한 번에 넣기 어려울 수 있지만, Claude에는 취업규칙 여러 개와 관련 법령까지 한꺼번에 넣을 수 있습니다. 앞서 배운 것처럼, 노무사 업무는 여러 문서를 동시에 참조하는 경우가 많기 때문에 이 차이가 결정적입니다.\n\n물론 ChatGPT도 파일 업로드 기능이 있지만, 내부적으로 문서를 분할 처리하기 때문에 전체 맥락 파악에서 차이가 날 수 있습니다.",
+          "2026년 3월 기준으로, Claude(Opus 4.6)는 100만 토큰의 컨텍스트 윈도우를 제공합니다. ChatGPT는 모델에 따라 다른데, GPT-4o는 12만 8천 토큰, o3 등 최신 모델은 20만 토큰까지 지원합니다. 그래도 Claude 대비 5~8배 차이가 납니다.\n\n이 차이가 실무에서 의미하는 바는 큽니다. ChatGPT에는 취업규칙 전체를 한 번에 넣기 어려울 수 있지만, Claude에는 취업규칙 여러 개와 관련 법령까지 한꺼번에 넣을 수 있습니다. 앞서 배운 것처럼, 노무사 업무는 여러 문서를 동시에 참조하는 경우가 많기 때문에 이 차이가 결정적입니다.\n\n물론 ChatGPT도 파일 업로드 기능이 있지만, 내부적으로 문서를 분할 처리하기 때문에 전체 맥락 파악에서 차이가 날 수 있습니다.",
       },
       {
         heading: "한국어 처리 능력과 정확성",
@@ -130,7 +130,7 @@ export const lessonsPhase1to3: Record<string, Lesson> = {
       },
     ],
     keyTakeaways: [
-      "Claude는 100만 토큰, ChatGPT는 12.8만 토큰으로 컨텍스트 윈도우에서 큰 차이가 있습니다.",
+      "Claude는 100만 토큰, ChatGPT는 12.8~20만 토큰(모델별 상이)으로 컨텍스트 윈도우에서 큰 차이가 있습니다.",
       "긴 문서 분석과 여러 법령 동시 비교에는 Claude가 유리합니다.",
       "어떤 AI 도구를 쓰든 판례 번호와 법 조문은 반드시 직접 확인해야 합니다.",
       "Claude Code는 로컬 파일을 직접 다룰 수 있어 노무사 실무 자동화에 최적화되어 있습니다.",
@@ -261,7 +261,7 @@ export const lessonsPhase1to3: Record<string, Lesson> = {
       },
     ],
     keyTakeaways: [
-      "Node.js는 Claude Code를 실행하기 위해 필요한 기반 프로그램입니다. 엑셀 VBA가 실행되려면 엑셀이 있어야 하듯이, Claude Code가 돌아가려면 Node.js가 필요합니다.",
+      "Node.js는 Claude Code를 npm으로 설치할 때 필요한 기반 프로그램입니다. 다만, Native Installer(curl 방식)를 사용하면 Node.js 없이도 Claude Code를 설치할 수 있습니다.",
       "nodejs.org에서 LTS 버전을 다운로드하여 설치하는 것이 가장 간단합니다. 무료입니다.",
       "설치 후 반드시 터미널을 새로 열고 node --version으로 정상 설치를 확인하세요.",
       "npm은 Node.js와 함께 자동 설치되며, 스마트폰의 앱스토어 같은 역할을 합니다.",
@@ -281,9 +281,9 @@ export const lessonsPhase1to3: Record<string, Lesson> = {
       {
         heading: "Claude Code 설치하기",
         content:
-          "Node.js가 설치되어 있다면, Claude Code 설치는 터미널에서 명령어 한 줄이면 됩니다. npm이라는 도구를 사용하는데, 이것은 Node.js를 설치할 때 함께 설치된 '프로그램 설치 도우미'라고 생각하시면 됩니다. 스마트폰의 앱스토어처럼, npm은 프로그램을 검색하고 설치해주는 역할을 합니다.\n\n아래 명령어를 터미널에 입력하세요. -g는 'global'의 약자로, 컴퓨터 어디서든 Claude Code를 실행할 수 있게 해주는 옵션입니다. 설치에 1~2분 정도 걸릴 수 있습니다. 명령어를 외울 필요 없습니다. 아래 코드를 그대로 복사해서 붙여넣기 하시면 됩니다.",
-        code: "# Claude Code 설치\nnpm install -g @anthropic-ai/claude-code\n\n# 설치 확인\nclaude --version\n# 버전 번호가 출력되면 성공입니다!",
-        tip: "Mac에서 권한 오류(EACCES 에러)가 발생하면, 명령어 앞에 sudo를 붙여서 sudo npm install -g @anthropic-ai/claude-code 로 실행해 보세요. 비밀번호를 물으면 Mac 로그인 비밀번호를 입력합니다.",
+          "Claude Code 설치는 터미널에서 명령어 한 줄이면 됩니다. 두 가지 방법이 있는데, 2026년 기준으로 Native Installer가 공식 권장 방법입니다.\n\n방법 1: Native Installer (권장)\nNode.js 설치 없이 바로 Claude Code를 설치할 수 있는 가장 간단한 방법입니다. 아래 명령어를 터미널에 그대로 복사해서 붙여넣기 하시면 됩니다.\n\n방법 2: npm 설치\n이미 Node.js가 설치되어 있다면 npm으로도 설치할 수 있습니다. npm은 Node.js에 포함된 '프로그램 설치 도우미'입니다.\n\n어떤 방법을 쓰든 결과는 동일합니다. Node.js가 없다면 방법 1, 이미 Node.js가 있다면 어느 방법이든 상관없습니다.",
+        code: "# 방법 1: Native Installer (권장 — Node.js 불필요)\ncurl -fsSL https://claude.ai/install.sh | bash\n\n# 방법 2: npm 설치 (Node.js가 이미 있는 경우)\nnpm install -g @anthropic-ai/claude-code\n\n# 설치 확인 (어느 방법이든 동일)\nclaude --version\n# 버전 번호가 출력되면 성공입니다!",
+        tip: "Native Installer를 권장합니다. Node.js를 따로 설치할 필요가 없어 가장 간편합니다. npm 방법에서 Mac 권한 오류(EACCES)가 발생하면 sudo npm install -g @anthropic-ai/claude-code 로 실행해 보세요.",
       },
       {
         heading: "Anthropic 계정과 API 설정",
@@ -304,7 +304,7 @@ export const lessonsPhase1to3: Record<string, Lesson> = {
       },
     ],
     keyTakeaways: [
-      "Claude Code는 npm install -g @anthropic-ai/claude-code 한 줄로 설치됩니다.",
+      "Claude Code는 curl -fsSL https://claude.ai/install.sh | bash (Native Installer) 또는 npm install -g @anthropic-ai/claude-code 한 줄로 설치됩니다.",
       "Anthropic 구독 계정 또는 API 키로 로그인할 수 있으며, 로그인은 최초 1회만 필요합니다.",
       "설치 오류 시 대부분 권한 문제(sudo)이거나 터미널 재시작으로 해결됩니다.",
       "에러 메시지를 AI에게 물어보는 것 자체가 AI 활용의 좋은 시작입니다.",
