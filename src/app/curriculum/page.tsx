@@ -369,6 +369,37 @@ const curriculum = [
       },
     ],
   },
+  {
+    phase: "Phase 12",
+    title: "최신 기능 마스터하기",
+    subtitle: "Auto Mode, Dispatch, Computer Use, Hooks",
+    emoji: "🔮",
+    duration: "약 4시간",
+    color: "border-fuchsia-400",
+    bgColor: "bg-fuchsia-50",
+    lessons: [
+      {
+        title: "Auto Mode — AI에게 전권을 위임하기",
+        desc: "확인 없이 AI가 알아서 코드를 작성하고 실행하는 자율 모드. 신뢰할 수 있는 작업에서 생산성을 극대화합니다.",
+        tags: ["실습", "자동화", "NEW"],
+      },
+      {
+        title: "Dispatch — AI 비서 여러 명 동시 투입",
+        desc: "하나의 작업을 여러 Claude 에이전트가 나눠 처리하는 병렬 실행. 대규모 문서 분석이나 복합 프로젝트에 활용합니다.",
+        tags: ["실습", "병렬처리", "NEW"],
+      },
+      {
+        title: "Computer Use — AI가 화면을 직접 조작하기",
+        desc: "웹 브라우저, 데스크톱 앱을 AI가 직접 클릭하고 입력합니다. 자동화가 어려웠던 GUI 작업도 AI에게 맡깁니다.",
+        tags: ["실습", "GUI 자동화", "NEW"],
+      },
+      {
+        title: "Hooks — 이벤트 기반 자동화",
+        desc: "특정 이벤트(커밋, 파일 저장 등)가 발생하면 자동으로 스크립트를 실행합니다. CI/CD 파이프라인의 시작점.",
+        tags: ["실습", "자동화", "NEW"],
+      },
+    ],
+  },
 ];
 
 export default function CurriculumPage() {
@@ -377,7 +408,7 @@ export default function CurriculumPage() {
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">전체 커리큘럼</h1>
         <p className="text-slate-500 text-lg leading-relaxed">
-          총 11단계, 약 46시간 분량의 교육 과정입니다.
+          총 12단계, 약 50시간 분량의 교육 과정입니다.
           <br />
           순서대로 따라가면 코딩 경험 없이도 웹앱 배포까지 가능합니다.
         </p>

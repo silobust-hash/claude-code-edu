@@ -148,6 +148,19 @@ const courses = [
       "전체 파이프라인 완성 — 스킬+코워크+MCP 통합",
     ],
   },
+  {
+    phase: "Phase 12",
+    title: "최신 기능 마스터하기",
+    subtitle: "Auto Mode, Dispatch, Computer Use, Hooks",
+    emoji: "🔮",
+    color: "from-fuchsia-400 to-pink-600",
+    lessons: [
+      "Auto Mode — AI에게 전권을 위임하기",
+      "Dispatch — AI 비서 여러 명 동시 투입",
+      "Computer Use — AI가 화면을 직접 조작하기",
+      "Hooks — 이벤트 기반 자동화",
+    ],
+  },
 ];
 
 const features = [
@@ -287,7 +300,7 @@ export default function Home() {
       {/* Curriculum Preview */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">11단계 커리큘럼</h2>
+          <h2 className="text-3xl font-bold mb-4">12단계 커리큘럼</h2>
           <p className="text-slate-500 text-lg">
             터미널을 처음 여는 순간부터, 나만의 웹서비스를 세상에 공개하는 날까지
           </p>

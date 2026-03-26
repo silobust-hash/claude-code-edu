@@ -114,6 +114,16 @@ const allLessons = [
       { id: "11-4", title: "전체 파이프라인 완성 — 스킬+코워크+MCP 통합", status: "available" },
     ],
   },
+  {
+    phase: 12,
+    phaseTitle: "최신 기능 마스터하기",
+    lessons: [
+      { id: "12-1", title: "Auto Mode — AI에게 전권을 위임하기", status: "available" },
+      { id: "12-2", title: "Dispatch — AI 비서 여러 명 동시 투입", status: "available" },
+      { id: "12-3", title: "Computer Use — AI가 화면을 직접 조작하기", status: "available" },
+      { id: "12-4", title: "Hooks — 이벤트 기반 자동화", status: "available" },
+    ],
+  },
 ];
 
 export default function LessonsPage() {
@@ -159,7 +169,7 @@ export default function LessonsPage() {
       </div>
 
       <div className="mt-16 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100 text-center">
-        <h3 className="text-lg font-bold mb-2">전체 11단계, 48개 강의</h3>
+        <h3 className="text-lg font-bold mb-2">전체 12단계, 52개 강의</h3>
         <p className="text-slate-500 text-sm leading-relaxed">
           Phase 1부터 순서대로 따라가시면 됩니다.
           <br />
