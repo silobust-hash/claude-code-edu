@@ -14,36 +14,74 @@ export const lessonsPhase12: Record<string, any> = {
 
 [AI 활용 후] Auto Mode를 켜면 Claude Code가 파일 읽기, 수정, 명령 실행 등을 묻지 않고 자동으로 진행합니다. "취업규칙 50개 조항 검토해줘"라고 한 마디 하면, 중간에 끊기지 않고 전체 검토 보고서가 완성됩니다. 사무장에게 "이 사건 서류 전부 복사해서 정리해 놔"라고 전권을 위임하는 것과 같습니다.
 
+⚠️ Auto Mode 사용 조건 (2026년 3월 기준):
+• 플랜: Team 플랜 이상 필수 (Pro, Max 플랜에서는 사용 불가)
+• 모델: Claude Sonnet 4.6 또는 Opus 4.6만 지원 (Haiku, 3.x 모델 불가)
+• 관리자 설정: Team 관리자가 Claude Code admin settings에서 먼저 활성화해야 함
+• Pro/Max 플랜 사용자는 아래 '방법 3, 4'로 비슷한 효과를 낼 수 있습니다
+
 Auto Mode에는 여러 가지 방법이 있습니다. 상황에 따라 적절한 수준을 선택하면 됩니다.`,
-        tip: "Auto Mode는 편리하지만, 중요한 파일이 있는 폴더에서는 신중하게 사용하세요. 처음에는 테스트 폴더에서 연습하는 것을 권장합니다."
+        tip: "Auto Mode는 편리하지만, 중요한 파일이 있는 폴더에서는 신중하게 사용하세요. 처음에는 테스트 폴더에서 연습하는 것을 권장합니다. Team 플랜이 아닌 경우, /permissions와 settings.json으로 유사한 자동화가 가능합니다."
       },
       {
-        heading: "Auto Mode 사용법 — 4가지 방법",
-        content: `Auto Mode를 활성화하는 방법은 크게 네 가지입니다.
+        heading: "Auto Mode 사용법 — 5가지 방법 (플랜별 안내)",
+        content: `Auto Mode를 활성화하는 방법은 크게 다섯 가지입니다.
 
-첫째, Shift+Tab 권한 모드 전환입니다 (가장 권장). Claude Code 대화 중 Shift+Tab을 누르면 권한 모드가 순환합니다: default → acceptEdits → plan → auto. 'auto' 모드를 선택하면 안전 분류기(safety classifier)가 위험한 작업은 자동으로 차단하면서, 안전한 작업은 자동 승인합니다. 전권 위임이 아니라 "안전한 범위 내 자율권"입니다.
+첫째, claude --enable-auto-mode 플래그입니다 (Team 플랜 전용). 터미널에서 이 플래그로 실행하면 Auto Mode가 활성화됩니다. 이후 세션 중 Shift+Tab으로 모드를 전환할 수도 있습니다.
 
-둘째, 대화 중 Accept All 버튼 사용입니다. Claude Code가 권한을 요청할 때 'Accept All'을 선택하면 해당 세션 동안 같은 유형의 권한 요청을 자동 승인합니다.
+둘째, Shift+Tab 권한 모드 전환입니다 (Team 플랜, 가장 권장). Claude Code 대화 중 Shift+Tab을 누르면 권한 모드가 순환합니다: default → acceptEdits → plan → auto. 'auto' 모드를 선택하면 백그라운드 안전 분류기(Sonnet 4.6 기반)가 각 액션을 자동 검토합니다. 위험한 작업은 차단하고, 안전한 작업은 자동 승인합니다.
 
-셋째, 설정에서 권한 사전 허용입니다. /permissions에서 특정 도구(파일 읽기, 편집, 특정 명령어)에 대해 자동 허용을 미리 설정합니다. --allowedTools와 --disallowedTools 플래그로 허용/차단할 도구를 세밀하게 제어할 수도 있습니다.
+안전 분류기가 자동 허용하는 것: 작업 디렉토리 내 파일 읽기/편집, 선언된 의존성 설치, 현재 브랜치 push
+안전 분류기가 자동 차단하는 것: curl | bash 외부 코드 실행, force push/main push, 프로덕션 배포, 대량 삭제, IAM 권한 변경
 
-넷째, --dangerously-skip-permissions 플래그입니다. 모든 권한 요청을 건너뛰며, 안전 분류기도 적용되지 않습니다. 주로 CI/CD 자동화나 --remote와 결합한 야간 대량 작업에 사용합니다.`,
-        code: `# 방법 1: Shift+Tab 권한 모드 전환 (가장 권장!)
+셋째, 대화 중 Accept All 버튼 사용입니다 (모든 플랜). Claude Code가 권한을 요청할 때 'Accept All'을 선택하면 해당 세션 동안 같은 유형의 권한 요청을 자동 승인합니다.
+
+넷째, 설정에서 권한 사전 허용입니다 (모든 플랜). /permissions에서 특정 도구에 대해 자동 허용을 미리 설정합니다. 또는 .claude/settings.json 파일을 직접 편집하여 허용 규칙을 설정할 수 있습니다. --allowedTools와 --disallowedTools 플래그로도 세밀하게 제어 가능합니다.
+
+다섯째, --dangerously-skip-permissions 플래그입니다 (모든 플랜). 모든 권한 요청을 건너뛰며, 안전 분류기도 적용되지 않습니다. 주로 CI/CD 자동화나 --remote와 결합한 야간 대량 작업에 사용합니다.`,
+        code: `# 방법 1: --enable-auto-mode 플래그 (Team 플랜 전용)
+claude --enable-auto-mode
+# → Auto Mode가 활성화된 상태로 세션 시작
+# → Team 관리자가 admin settings에서 먼저 활성화해야 함
+
+# 방법 2: Shift+Tab 권한 모드 전환 (Team 플랜, 가장 권장!)
 # → 대화 입력 중 Shift+Tab을 누르면 모드 순환:
 #   default → acceptEdits → plan → auto
-# → auto 모드: 안전 분류기가 위험 작업만 차단, 나머지 자동 승인
+# → auto 모드: 백그라운드 안전 분류기(Sonnet 4.6)가 각 액션 자동 검토
 
-# 방법 2: 대화 중 Accept All
+# 기본 모드를 auto로 설정하기 (Team 플랜 전용)
+# .claude/settings.json 에 추가:
+# {
+#   "permissions": {
+#     "defaultMode": "auto"
+#   }
+# }
+
+# 방법 3: 대화 중 Accept All (모든 플랜 가능)
 # → Claude Code가 권한을 물을 때 "Accept All" 버튼 클릭
 # → 해당 세션에서만 적용, 세션 종료 시 초기화
 
-# 방법 3: 설정에서 특정 도구만 자동 허용
+# 방법 4: 설정에서 특정 도구만 자동 허용 (모든 플랜 가능, Pro/Max 추천!)
 # Claude Code 실행 후 /permissions 입력
 # → 허용할 도구 선택 (예: Read, Edit, 특정 Bash 명령)
-# 또는 CLI 플래그로 세밀하게 제어:
+
+# .claude/settings.json 직접 편집으로도 설정 가능:
+# {
+#   "permissions": {
+#     "allow": [
+#       "Bash(npm run *)",
+#       "Bash(git *)",
+#       "Read",
+#       "Write",
+#       "Edit"
+#     ]
+#   }
+# }
+
+# CLI 플래그로 세밀하게 제어:
 claude --allowedTools "Edit,Write,Bash(npm run build)" -p "취업규칙 검토해줘"
 
-# 방법 4: 전체 권한 건너뛰기 (주의 필요!)
+# 방법 5: 전체 권한 건너뛰기 (주의 필요! 모든 플랜 가능)
 claude --dangerously-skip-permissions -p "5개 사업장 취업규칙 일괄 검토해줘"
 
 # --remote와 결합하면 야간 대량 작업에 최적
@@ -54,7 +92,7 @@ claude --remote --dangerously-skip-permissions -p "50인 사업장 5곳 취업�
 # 안전한 사용 팁: 전용 작업 폴더에서만 사용
 # mkdir ~/work/batch-review && cd ~/work/batch-review
 # → 이 폴더 안의 파일만 영향받으므로 안전`,
-        tip: "일상 업무에는 Shift+Tab으로 auto 모드를 사용하세요. 안전 분류기가 위험한 작업은 자동으로 차단해 줍니다. 방법 4는 CI/CD 자동화에만 사용하세요."
+        tip: "Team 플랜 사용자는 Shift+Tab → auto 모드가 가장 권장됩니다. Pro/Max 플랜 사용자는 방법 4(.claude/settings.json 권한 설정)로 비슷한 자동화가 가능합니다. 방법 5는 CI/CD 자동화에만 사용하세요."
       },
       {
         heading: "실전 활용: 대량 작업에 Auto Mode 적용",
@@ -70,9 +108,10 @@ claude --remote --dangerously-skip-permissions -p "50인 사업장 5곳 취업�
     ],
     keyTakeaways: [
       "Auto Mode는 반복적인 '허용' 클릭을 없애 대량 작업 효율을 극대화합니다",
-      "Shift+Tab으로 auto 모드 전환이 가장 권장되며, 안전 분류기가 위험 작업을 자동 차단합니다",
-      "일상 업무는 Shift+Tab auto 모드, 야간 대량 작업은 --remote + --dangerously-skip-permissions 조합이 효과적입니다",
-      "--allowedTools/--disallowedTools 플래그로 허용 도구를 세밀하게 제어할 수 있습니다"
+      "Auto Mode(claude --enable-auto-mode, Shift+Tab → auto)는 Team 플랜 이상에서만 사용 가능합니다",
+      "Pro/Max 플랜 사용자는 .claude/settings.json의 permissions.allow 설정으로 유사한 자동화가 가능합니다",
+      "안전 분류기(Sonnet 4.6 기반)가 백그라운드에서 각 액션을 검토하여 위험 작업만 차단합니다",
+      "야간 대량 작업은 --remote + --dangerously-skip-permissions 조합이 효과적입니다 (모든 플랜)"
     ]
   },
 
