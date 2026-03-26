@@ -16,8 +16,8 @@ export const lessonsMarketplace: Record<string, any> = {
       {
         heading: "공식 마켓플레이스에 접근하는 방법",
         content:
-          "Claude Code 안에서 공식 마켓플레이스에 접근하는 방법은 매우 간단합니다. /plugin 명령어를 입력한 뒤 Discover 탭을 선택하면 됩니다.\n\n[Before — 공식 마켓 없이 도구 사용]\n필요한 기능이 있으면 인터넷을 검색하고, 신뢰할 수 있는지 직접 확인하고, 설치 방법을 찾아 따라하고, 호환성 문제가 생기면 스스로 해결해야 합니다. 마치 공구를 사려고 여기저기 발품을 파는 것과 같습니다.\n\n[After — 공식 마켓에서 원클릭 설치]\nDiscover 탭에서 원하는 도구를 찾고, 설명을 읽어본 뒤, 설치 버튼 하나로 바로 사용할 수 있습니다. 직영 매장에서 필요한 공구를 골라 바로 들고 나오는 것과 같습니다.\n\n공식 저장소는 github.com/anthropics/claude-plugins-official 에서 전체 목록을 확인할 수 있습니다.",
-        code: '// Claude Code에서 공식 마켓 접근하기\n/plugin\n\n// Discover 탭에서 검색\n/plugin search "github"\n\n// 원하는 플러그인 설치\n/plugin install github-integration',
+          "Claude Code에서 공식 플러그인을 설치하는 방법은 매우 간단합니다. 터미널에서 claude plugin install 명령어로 원하는 플러그인을 바로 설치할 수 있습니다.\n\n[Before — 공식 마켓 없이 도구 사용]\n필요한 기능이 있으면 인터넷을 검색하고, 신뢰할 수 있는지 직접 확인하고, 설치 방법을 찾아 따라하고, 호환성 문제가 생기면 스스로 해결해야 합니다. 마치 공구를 사려고 여기저기 발품을 파는 것과 같습니다.\n\n[After — 공식 마켓에서 원클릭 설치]\nDiscover 탭에서 원하는 도구를 찾고, 설명을 읽어본 뒤, 설치 버튼 하나로 바로 사용할 수 있습니다. 직영 매장에서 필요한 공구를 골라 바로 들고 나오는 것과 같습니다.\n\nAnthropic 공식 플러그인은 claude plugin install 명령어로 설치하며, claude plugin list로 사용 가능한 플러그인 목록을 확인할 수 있습니다.",
+        code: '# Claude Code에서 공식 플러그인 설치하기 (터미널에서 입력)\n\n# 텔레그램 플러그인 설치\nclaude plugin install telegram@claude-plugins-official\n\n# GitHub 플러그인 설치\nclaude plugin install github@claude-plugins-official\n\n# Notion 플러그인 설치\nclaude plugin install notion@claude-plugins-official\n\n# 현재 설치된 플러그인 목록 확인\nclaude plugin list',
         tip: "처음에는 Discover 탭을 천천히 둘러보면서 어떤 도구가 있는지 파악하세요. 당장 필요하지 않더라도 '이런 것도 되는구나' 하고 알아두면, 나중에 업무에서 활용할 아이디어가 떠오릅니다.",
       },
       {
@@ -28,14 +28,14 @@ export const lessonsMarketplace: Record<string, any> = {
       {
         heading: "실습 — 공식 플러그인 설치하고 사용하기",
         content:
-          "직접 해봅시다. 공식 마켓에서 플러그인을 설치하고 사용하는 전체 과정을 따라해 보겠습니다.\n\n[1단계: 마켓 열기]\nClaude Code를 실행한 상태에서 /plugin 명령어를 입력합니다. Discover 탭이 열리면 사용 가능한 공식 플러그인 목록이 표시됩니다.\n\n[2단계: 플러그인 선택]\n목록에서 관심 있는 플러그인을 선택합니다. 예를 들어, 노무사 업무에 가장 먼저 도움이 될 Notion 연동 플러그인을 선택해 봅시다.\n\n[3단계: 설치]\n설치 버튼을 누르면 자동으로 설치가 진행됩니다. 특별한 설정 없이 바로 사용할 수 있는 플러그인도 있고, API 키 등 인증 정보가 필요한 플러그인도 있습니다.\n\n[4단계: 확인]\n설치가 완료되면 /plugin list 명령어로 현재 설치된 플러그인 목록을 확인합니다.\n\n노무사 업무 비유로 정리하면, '고용노동부 전자민원 시스템에 로그인해서 서식을 다운받는 것'처럼 간단한 과정입니다. 처음 한 번만 설정하면 그 다음부터는 AI가 해당 서비스를 자유롭게 사용할 수 있습니다.",
-        code: '// 1. 공식 마켓 열기\n/plugin\n\n// 2. 설치된 플러그인 목록 확인\n/plugin list\n\n// 3. 특정 플러그인 검색\n/plugin search "notion"\n\n// 4. 플러그인 상세 정보 보기\n/plugin info notion-integration\n\n// 5. 설치\n/plugin install notion-integration',
+          "직접 해봅시다. 공식 마켓에서 플러그인을 설치하고 사용하는 전체 과정을 따라해 보겠습니다.\n\n[1단계: 마켓 열기]\n터미널에서 claude plugin install 이름@claude-plugins-official 형식으로 입력하면 바로 설치됩니다.\n\n[2단계: 플러그인 선택]\n목록에서 관심 있는 플러그인을 선택합니다. 예를 들어, 노무사 업무에 가장 먼저 도움이 될 Notion 연동 플러그인을 선택해 봅시다.\n\n[3단계: 설치]\n설치 버튼을 누르면 자동으로 설치가 진행됩니다. 특별한 설정 없이 바로 사용할 수 있는 플러그인도 있고, API 키 등 인증 정보가 필요한 플러그인도 있습니다.\n\n[4단계: 확인]\n설치가 완료되면 /plugin list 명령어로 현재 설치된 플러그인 목록을 확인합니다.\n\n노무사 업무 비유로 정리하면, '고용노동부 전자민원 시스템에 로그인해서 서식을 다운받는 것'처럼 간단한 과정입니다. 처음 한 번만 설정하면 그 다음부터는 AI가 해당 서비스를 자유롭게 사용할 수 있습니다.",
+        code: '# === 공식 플러그인 설치 실습 ===\n\n# 1. Notion 플러그인 설치 (터미널에서 입력)\nclaude plugin install notion@claude-plugins-official\n\n# 2. GitHub 플러그인 설치\nclaude plugin install github@claude-plugins-official\n\n# 3. Slack 플러그인 설치\nclaude plugin install slack@claude-plugins-official\n\n# 4. 설치된 플러그인 확인\nclaude plugin list\n\n# 5. MCP 서버도 함께 추가 (외부 서비스 직접 접근용)\n# npx = 도구를 자동으로 다운받아 실행하는 명령어, -y = 설치 확인 자동 승인\n# API 키는 https://www.notion.so/my-integrations 에서 발급받습니다\nclaude mcp add notion -e NOTION_API_KEY=여기에_키_입력 -- npx -y @anthropic/mcp-notion\nclaude mcp list',
         tip: "공식 플러그인은 Anthropic이 지속적으로 관리하므로, 업데이트 알림이 오면 가급적 빠르게 적용하세요. 마치 법령 개정에 맞춰 서식을 갱신하는 것과 같습니다.",
       },
     ],
     keyTakeaways: [
       "공식 마켓플레이스는 Anthropic이 직접 검증한 '직영 매장'으로, 품질 보증과 자동 업데이트가 제공됩니다.",
-      "/plugin → Discover 탭에서 공식 플러그인을 검색하고 원클릭으로 설치할 수 있습니다.",
+      "claude plugin install 이름@claude-plugins-official 명령어로 공식 플러그인을 바로 설치할 수 있습니다.",
       "GitHub, Notion, Vercel, Slack 등 외부 서비스 연동과 commit-commands 같은 워크플로우 도구가 제공됩니다.",
       "노무사 업무에 비유하면 고용노동부 직영 서식 매장에서 안심하고 공식 서식을 구입하는 것과 같습니다.",
     ],
@@ -58,26 +58,26 @@ export const lessonsMarketplace: Record<string, any> = {
       {
         heading: "Build with Claude — 가장 큰 커뮤니티 마켓",
         content:
-          "가장 큰 서드파티 마켓플레이스는 Build with Claude(buildwithclaude.com)입니다. 마치 건설자재 도매상가 같은 곳이라고 생각하시면 됩니다. 규모가 크고, 종류가 다양하고, 원하는 것을 거의 다 찾을 수 있습니다.\n\n현재 489개 이상의 확장 도구가 등록되어 있으며, 종류별로 나누면 이렇습니다.\n• 플러그인 53개: Claude Code의 기능을 확장하는 부가 기능\n• 스킬 116개: 특정 업무를 수행하는 전문 능력 (예: 문서 검토, 리서치)\n• 서브에이전트 117개: 독립적으로 작업을 수행하는 보조 AI\n• 명령어 175개: 자주 쓰는 작업을 단축키처럼 실행하는 커스텀 명령\n• 훅 28개: 특정 이벤트가 발생하면 자동으로 실행되는 자동화 규칙\n\n[Before — 커뮤니티 도구 없이]\n모든 작업을 AI에게 처음부터 설명하고, 매번 같은 지시를 반복합니다. '취업규칙 검토해 줘. 근데 이런 형식으로 해줘. 이런 점을 확인해 줘...' 매번 긴 프롬프트를 작성해야 합니다.\n\n[After — 커뮤니티 스킬 활용]\n검증된 스킬을 설치하면 '취업규칙 검토해 줘' 한마디로 전문적인 분석이 가능합니다. 스킬 안에 최적의 프롬프트와 워크플로우가 이미 담겨 있기 때문입니다.",
-        code: '// Build with Claude 마켓플레이스 등록\n/plugin marketplace add davepoon/buildwithclaude\n\n// 마켓에서 스킬 검색\n/plugin marketplace search "document review"\n\n// 마음에 드는 스킬 설치\n/plugin marketplace install davepoon/buildwithclaude/doc-reviewer',
+          "가장 큰 서드파티 마켓플레이스는 Build with Claude(buildwithclaude.com)입니다. 마치 건설자재 도매상가 같은 곳이라고 생각하시면 됩니다. 규모가 크고, 종류가 다양하고, 원하는 것을 거의 다 찾을 수 있습니다.\n\n현재 수백 개 이상의 확장 도구가 등록되어 있으며, 종류별로 나누면 이렇습니다.\n• 플러그인: Claude Code의 기능을 확장하는 부가 기능\n• 스킬: 특정 업무를 수행하는 전문 능력 (예: 문서 검토, 리서치)\n• 서브에이전트: 독립적으로 작업을 수행하는 보조 AI\n• 명령어: 자주 쓰는 작업을 단축키처럼 실행하는 커스텀 명령\n• 훅: 특정 이벤트가 발생하면 자동으로 실행되는 자동화 규칙\n\n[Before — 커뮤니티 도구 없이]\n모든 작업을 AI에게 처음부터 설명하고, 매번 같은 지시를 반복합니다. '취업규칙 검토해 줘. 근데 이런 형식으로 해줘. 이런 점을 확인해 줘...' 매번 긴 프롬프트를 작성해야 합니다.\n\n[After — 커뮤니티 스킬 활용]\n검증된 스킬을 설치하면 '취업규칙 검토해 줘' 한마디로 전문적인 분석이 가능합니다. 스킬 안에 최적의 프롬프트와 워크플로우가 이미 담겨 있기 때문입니다.",
+        code: '# 커뮤니티 스킬 설치하기 (터미널에서 입력)\n\n# 1. 스킬 저장소를 .claude 폴더에 클론\n# git clone = 인터넷의 파일 묶음을 내 컴퓨터로 다운로드하는 명령어\ngit clone https://github.com/davepoon/buildwithclaude ~/.claude/skills/buildwithclaude\n\n# 2. 특정 스킬만 개별 설치 (파일 복사 방식)\nmkdir -p ~/.claude/commands\n# curl = 인터넷에서 파일을 다운로드하는 명령어\ncurl -o ~/.claude/commands/doc-reviewer.md https://raw.githubusercontent.com/davepoon/buildwithclaude/main/skills/doc-reviewer.md\n\n# 3. Claude Code 실행 후 스킬 사용\nclaude\n> /doc-reviewer 취업규칙_A병원.txt 검토해줘',
         tip: "Build with Claude는 규모가 크므로, 처음에는 평점이 높고 다운로드 수가 많은 도구부터 시도해 보세요. 동네 철물점에서도 단골이 많은 제품이 대체로 믿을 만한 것과 같은 이치입니다.",
       },
       {
         heading: "Awesome 컬렉션들 — 전문가가 엄선한 큐레이션 목록",
         content:
-          "동네 철물점마다 특색이 있듯이, GitHub에는 전문가들이 직접 엄선한 큐레이션 목록이 여러 개 있습니다. 마치 '이 동네에서 드라이버 사려면 A 철물점, 전동 공구는 B 철물점'이라는 현장 기술자들의 입소문 같은 것입니다.\n\n[travisvn/awesome-claude-skills]\n이름 그대로 Awesome(훌륭한) 스킬만 모아 놓은 큐레이션 목록입니다. 양보다 질을 중시하여, 하나하나 검토를 거쳐 선별된 도구들이 등록되어 있습니다. 처음 시작하는 분에게 특히 추천합니다.\n\n[VoltAgent/awesome-agent-skills]\n500개 이상의 대규모 컬렉션으로, Anthropic 공식 팀 구성원이 기여한 도구도 포함되어 있습니다. 다양한 분야의 전문 스킬을 폭넓게 탐색할 수 있습니다.\n\n[alirezarezvani/claude-skills]\n180개 이상의 실무용 스킬이 등록되어 있습니다. 실제 업무에 바로 활용할 수 있는 실용적인 도구 위주로 구성되어 있어, '당장 써먹을 수 있는 공구'를 찾는 분에게 적합합니다.\n\n노무사에게 비유하면, 선배 노무사들이 '이 서식 진짜 좋더라', '이 체크리스트 꼭 써봐' 하면서 추천해 주는 실무 노하우 모음집과 같습니다.",
+          "동네 철물점마다 특색이 있듯이, GitHub에는 전문가들이 직접 엄선한 큐레이션 목록이 여러 개 있습니다. 마치 '이 동네에서 드라이버 사려면 A 철물점, 전동 공구는 B 철물점'이라는 현장 기술자들의 입소문 같은 것입니다.\n\n[travisvn/awesome-claude-skills]\n이름 그대로 Awesome(훌륭한) 스킬만 모아 놓은 큐레이션 목록입니다. 양보다 질을 중시하여, 하나하나 검토를 거쳐 선별된 도구들이 등록되어 있습니다. 처음 시작하는 분에게 특히 추천합니다.\n\n[VoltAgent/awesome-agent-skills]\n수백 개 이상의 대규모 컬렉션으로, Anthropic 공식 팀 구성원이 기여한 도구도 포함되어 있습니다. 다양한 분야의 전문 스킬을 폭넓게 탐색할 수 있습니다.\n\n[alirezarezvani/claude-skills]\n다수의 실무용 스킬이 등록되어 있습니다. 실제 업무에 바로 활용할 수 있는 실용적인 도구 위주로 구성되어 있어, '당장 써먹을 수 있는 공구'를 찾는 분에게 적합합니다.\n\n노무사에게 비유하면, 선배 노무사들이 '이 서식 진짜 좋더라', '이 체크리스트 꼭 써봐' 하면서 추천해 주는 실무 노하우 모음집과 같습니다.",
       },
       {
         heading: "커뮤니티 도구 설치와 주의사항",
         content:
-          "커뮤니티 마켓플레이스에서 도구를 설치하는 방법과 주의해야 할 점을 알아보겠습니다.\n\n[설치 방법]\n커뮤니티 도구는 /plugin marketplace add 명령어로 마켓플레이스를 등록한 뒤, 거기서 원하는 도구를 설치하는 두 단계로 진행됩니다.\n\n[주의사항 — 동네 철물점 이용 수칙]\n동네 철물점에서 물건을 살 때도 '이거 정품 맞지?', '불량이면 교환 되나요?' 확인하듯이, 커뮤니티 도구도 몇 가지를 반드시 확인해야 합니다.\n\n첫째, 자동 업데이트가 기본으로 꺼져 있습니다. 공식 마켓과 달리 새 버전이 나와도 자동으로 반영되지 않으므로, 수동으로 업데이트해야 합니다.\n\n둘째, 보안을 직접 확인해야 합니다. 도구가 어떤 권한을 요청하는지, 개인정보에 접근하는지 반드시 살펴보세요. 의뢰인 정보를 다루는 노무사에게 이 점은 특히 중요합니다.\n\n셋째, 별점과 리뷰를 확인하세요. 많은 사람이 사용하고 좋은 평가를 받은 도구일수록 안심하고 쓸 수 있습니다.\n\n넷째, 소스 코드가 공개되어 있는지 확인하세요. 코드를 직접 읽을 수 없더라도, 공개 여부 자체가 신뢰도의 지표가 됩니다.",
-        code: '// 커뮤니티 마켓플레이스 등록\n/plugin marketplace add davepoon/buildwithclaude\n\n// Awesome 컬렉션 등록\n/plugin marketplace add travisvn/awesome-claude-skills\n/plugin marketplace add VoltAgent/awesome-agent-skills\n\n// 등록된 마켓 목록 확인\n/plugin marketplace list\n\n// 도구 업데이트 확인 (수동)\n/plugin update --check',
+          "커뮤니티 마켓플레이스에서 도구를 설치하는 방법과 주의해야 할 점을 알아보겠습니다.\n\n[설치 방법]\n커뮤니티 도구는 GitHub에서 git clone으로 스킬 저장소를 다운로드한 뒤, 원하는 스킬 파일을 ~/.claude/commands/ 폴더에 복사하는 방식으로 설치합니다.\n\n[주의사항 — 동네 철물점 이용 수칙]\n동네 철물점에서 물건을 살 때도 '이거 정품 맞지?', '불량이면 교환 되나요?' 확인하듯이, 커뮤니티 도구도 몇 가지를 반드시 확인해야 합니다.\n\n첫째, 자동 업데이트가 기본으로 꺼져 있습니다. 공식 마켓과 달리 새 버전이 나와도 자동으로 반영되지 않으므로, 수동으로 업데이트해야 합니다.\n\n둘째, 보안을 직접 확인해야 합니다. 도구가 어떤 권한을 요청하는지, 개인정보에 접근하는지 반드시 살펴보세요. 의뢰인 정보를 다루는 노무사에게 이 점은 특히 중요합니다.\n\n셋째, 별점과 리뷰를 확인하세요. 많은 사람이 사용하고 좋은 평가를 받은 도구일수록 안심하고 쓸 수 있습니다.\n\n넷째, 소스 코드가 공개되어 있는지 확인하세요. 코드를 직접 읽을 수 없더라도, 공개 여부 자체가 신뢰도의 지표가 됩니다.",
+        code: '# 커뮤니티 스킬/플러그인 설치 방법 (터미널에서 입력)\n\n# Awesome 스킬 컬렉션 클론 (원하는 것만 골라 쓰기)\n# git clone = 인터넷의 파일 묶음을 내 컴퓨터로 다운로드하는 명령어\ngit clone https://github.com/travisvn/awesome-claude-skills ~/awesome-skills\n\n# 원하는 스킬을 .claude 폴더에 복사\ncp ~/awesome-skills/skills/문서검토.md ~/.claude/commands/\ncp ~/awesome-skills/skills/리서치.md ~/.claude/commands/\n\n# VoltAgent 컬렉션도 동일한 방식\n# git clone = 인터넷의 파일 묶음을 내 컴퓨터로 다운로드하는 명령어\ngit clone https://github.com/VoltAgent/awesome-agent-skills ~/voltskills\n\n# 설치된 커스텀 명령어 확인\nls ~/.claude/commands/\n\n# 업데이트 (수동 — git pull 사용)\ncd ~/awesome-skills && git pull',
         tip: "의뢰인의 개인정보를 다루는 노무사 업무 특성상, 출처가 불분명한 커뮤니티 도구는 반드시 테스트용 환경에서 먼저 사용해 보세요. 실제 사건 데이터로 바로 테스트하는 것은 위험합니다.",
       },
     ],
     keyTakeaways: [
       "커뮤니티 마켓플레이스는 동네 철물점처럼 독특하고 전문적인 도구를 발견할 수 있는 보물창고입니다.",
-      "Build with Claude(489+ 확장)가 가장 큰 서드파티 마켓이며, /plugin marketplace add로 등록합니다.",
+      "Build with Claude(수백 개 이상의 확장)가 가장 큰 서드파티 마켓이며, git clone으로 스킬을 설치합니다.",
       "Awesome 컬렉션(travisvn, VoltAgent, alirezarezvani)은 전문가가 검증한 큐레이션 목록입니다.",
       "서드파티 도구는 자동 업데이트가 꺼져 있고, 보안을 직접 확인해야 합니다.",
     ],
@@ -106,7 +106,7 @@ export const lessonsMarketplace: Record<string, any> = {
         heading: "노무사에게 유용한 MCP 서버",
         content:
           "전문 장비 대여점에서 '노무사 사무실 개업 패키지'를 빌린다고 생각해 보세요. 어떤 장비가 포함되어야 할까요?\n\n[Gmail MCP 서버 — 사서함]\n의뢰인 이메일을 자동 분류하고, 회신 초안을 작성하고, 노동위원회 통지를 감지합니다. 매일 아침 쏟아지는 우편물을 사무장이 알아서 정리해 주는 것과 같습니다.\n\n[Google Calendar MCP 서버 — 접수대 기일 달력]\n사건 기일, 심문회의, 상담 일정을 자동 관리합니다. 벽에 걸린 기일 달력을 AI가 직접 관리해 주는 것입니다.\n\n[Notion MCP 서버 — 서류함과 사건대장]\n사건 데이터베이스를 구축하고, 진행 상황을 기록하고, 의뢰인 정보를 관리합니다. 사무실 서류함이 디지털화되어 AI가 직접 정리해 주는 것입니다.\n\n[파일시스템 MCP 서버 — 작업대]\nAI가 컴퓨터의 파일을 직접 읽고, 쓰고, 정리할 수 있습니다. 준비서면이나 의견서 파일을 자동으로 폴더별로 정리해 줍니다.\n\n[Git MCP 서버 — 문서 버전 관리 시스템]\n문서의 변경 이력을 추적하고 관리합니다. '이 취업규칙이 언제, 어떻게 수정됐는지'를 정확히 추적할 수 있습니다.\n\n[웹 검색 MCP 서버 — 자료 조사 도구]\nAI가 직접 인터넷을 검색하여 최신 판례, 행정해석, 법령 개정사항을 찾아옵니다.",
-        code: '# Claude Code에서 MCP 서버 추가하기 (CLI 명령어)\n\n# Gmail MCP 서버 추가\nclaude mcp add gmail -- npx -y @anthropic/mcp-gmail\n\n# Google Calendar MCP 서버 추가\nclaude mcp add google-calendar -- npx -y @anthropic/mcp-google-calendar\n\n# Notion MCP 서버 추가 (환경변수 포함)\nclaude mcp add notion -e NOTION_API_KEY=여기에_발급받은_키_입력 -- npx -y @anthropic/mcp-notion\n\n# 파일시스템 MCP 서버 추가 (접근 범위 제한)\nclaude mcp add filesystem -- npx -y @anthropic/mcp-filesystem --allow-dir /Users/사용자/노무사사무실\n\n# 추가된 MCP 서버 확인\nclaude mcp list',
+        code: '# Claude Code에서 MCP 서버 추가하기 (CLI 명령어)\n\n# Gmail MCP 서버 추가\n# npx = 도구를 자동으로 다운받아 실행하는 명령어, -y = 설치 확인 자동 승인\nclaude mcp add gmail -- npx -y @anthropic/mcp-gmail\n\n# Google Calendar MCP 서버 추가\nclaude mcp add google-calendar -- npx -y @anthropic/mcp-google-calendar\n\n# Notion MCP 서버 추가 (환경변수 포함)\n# API 키는 https://www.notion.so/my-integrations 에서 발급받습니다\nclaude mcp add notion -e NOTION_API_KEY=여기에_발급받은_키_입력 -- npx -y @anthropic/mcp-notion\n\n# 파일시스템 MCP 서버 추가 (접근 범위 제한)\nclaude mcp add filesystem -- npx -y @anthropic/mcp-filesystem --allow-dir /Users/사용자/노무사사무실\n\n# 추가된 MCP 서버 확인\nclaude mcp list',
         tip: "MCP 서버를 설정할 때 파일시스템 접근 범위는 반드시 업무용 폴더로 제한하세요. 전체 컴퓨터에 접근 권한을 주면 개인 파일이나 시스템 파일까지 AI가 접근할 수 있습니다.",
       },
       {
@@ -140,15 +140,15 @@ export const lessonsMarketplace: Record<string, any> = {
       {
         heading: "사무실 전용 마켓플레이스 만들기",
         content:
-          "여기서 한 발 더 나아가, 우리 사무실만의 전용 마켓플레이스를 만들 수 있습니다. 마치 건설회사가 자체 공구 창고를 운영하면서, 현장에 최적화된 맞춤 공구를 보관하는 것과 같습니다.\n\n[Before — 도구를 개별 관리]\n사무실에서 사용하는 플러그인과 스킬을 각자 따로 설치합니다. 새로운 직원이 입사하면, '이것도 설치하고, 저것도 설치하고...' 하나하나 알려줘야 합니다. 누가 어떤 도구를 쓰는지 파악하기도 어렵습니다.\n\n[After — 사무실 전용 마켓]\n사무실에서 검증한 도구를 로컬 디렉토리에 모아두고 마켓플레이스로 등록합니다. 새로운 직원은 이 마켓 하나만 등록하면 필요한 도구를 모두 설치할 수 있습니다. '한동노무법인 추천 공구 세트'가 만들어지는 것입니다.\n\n사무실 폴더에 our-office-plugins라는 디렉토리를 만들고, 검증된 스킬과 플러그인 설정을 넣어두면 됩니다. 그리고 /plugin marketplace add 명령어로 이 로컬 디렉토리를 마켓플레이스로 등록하면 완성입니다.",
-        code: '// 사무실 전용 마켓플레이스 만들기\n\n// 1. 폴더 구조 만들기\n// our-office-plugins/\n//   ├── skills/          ← 검증된 스킬 모음\n//   ├── plugins/         ← 검증된 플러그인 모음\n//   ├── commands/        ← 자주 쓰는 명령어 모음\n//   └── marketplace.json ← 마켓 설정 파일\n\n// 2. 로컬 마켓플레이스 등록\n/plugin marketplace add ./our-office-plugins\n\n// 3. 사무실 마켓에서 도구 설치 (신입 직원용)\n/plugin marketplace list our-office-plugins\n/plugin marketplace install our-office-plugins/전체-셋업',
+          "여기서 한 발 더 나아가, 우리 사무실만의 전용 마켓플레이스를 만들 수 있습니다. 마치 건설회사가 자체 공구 창고를 운영하면서, 현장에 최적화된 맞춤 공구를 보관하는 것과 같습니다.\n\n[Before — 도구를 개별 관리]\n사무실에서 사용하는 플러그인과 스킬을 각자 따로 설치합니다. 새로운 직원이 입사하면, '이것도 설치하고, 저것도 설치하고...' 하나하나 알려줘야 합니다. 누가 어떤 도구를 쓰는지 파악하기도 어렵습니다.\n\n[After — 사무실 전용 마켓]\n사무실에서 검증한 도구를 로컬 디렉토리에 모아두고 마켓플레이스로 등록합니다. 새로운 직원은 이 마켓 하나만 등록하면 필요한 도구를 모두 설치할 수 있습니다. '한동노무법인 추천 공구 세트'가 만들어지는 것입니다.\n\n사무실 폴더에 our-office-plugins라는 디렉토리를 만들고, 검증된 스킬과 플러그인 설정을 넣어두면 됩니다. 그리고 Git 저장소로 관리하면서 팀원들이 clone하여 사용하면 완성입니다.",
+        code: '# 사무실 전용 도구 모음 만들기 (터미널에서 입력)\n\n# 1. 사무실 공유 저장소에 폴더 구조 만들기\nmkdir -p ~/한동노무법인-tools/.claude/commands\nmkdir -p ~/한동노무법인-tools/.claude/settings\n\n# 폴더 구조:\n# 한동노무법인-tools/\n#   ├── .claude/\n#   │   ├── commands/       ← 커스텀 명령어 (취업규칙검토.md, 퇴직금계산.md 등)\n#   │   └── settings/       ← 공유 설정\n#   ├── CLAUDE.md           ← 사무실 공통 규칙\n#   └── setup.sh            ← 신입 직원 초기 설정 스크립트\n\n# 2. 신입 직원 초기 설정 (setup.sh 실행)\nbash ~/한동노무법인-tools/setup.sh\n# → .claude/commands/ 파일 복사\n# → MCP 서버 자동 등록\n# → CLAUDE.md 복사\n\n# 3. 또는 Git으로 관리 (권장)\n# git clone = 인터넷의 파일 묶음을 내 컴퓨터로 다운로드하는 명령어\ngit clone https://github.com/한동노무법인/claude-tools ~/한동노무법인-tools\ncp -r ~/한동노무법인-tools/.claude/commands/* ~/.claude/commands/',
         tip: "사무실 전용 마켓플레이스에는 검증이 완료된 도구만 등록하세요. 새로운 도구를 발견하면, 먼저 개인 환경에서 충분히 테스트한 뒤 사무실 마켓에 추가하는 절차를 만들어 두면 좋습니다.",
       },
       {
         heading: "따라하기 실습 — 통합 설정 완성하기",
         content:
-          "지금까지 배운 세 가지 마켓플레이스를 모두 활용하여, 노무사 업무에 최적화된 통합 환경을 구성하는 실습을 해보겠습니다. 건설기술자가 새 현장에 투입되기 전에 공구함을 점검하듯이, 우리도 AI 공구함을 완성해 봅시다.\n\n[1단계: 공식 마켓에서 기본 도구 설치]\n/plugin 명령어로 Discover 탭에 들어가서 GitHub, Notion 플러그인을 설치합니다.\n\n[2단계: 커뮤니티 마켓에서 전문 스킬 추가]\nBuild with Claude 마켓을 등록하고, 문서 검토 스킬이나 리서치 스킬을 설치합니다.\n\n[3단계: MCP 서버 연결]\nclaude_desktop_config.json에 Gmail, Calendar, Notion MCP 서버를 추가합니다. API 키를 설정하고, 각 서비스별로 연결을 확인합니다.\n\n[4단계: 통합 테스트]\n모든 도구가 제대로 작동하는지 간단한 테스트를 합니다. '오늘 온 이메일 요약해 줘', '이번 주 일정 보여줘', '사건대장에서 진행 중인 사건 목록 보여줘' 같은 요청으로 각 연결 상태를 확인합니다.",
-        code: '// === 통합 설정 따라하기 ===\n\n// 1단계: 공식 플러그인 설치\n/plugin install github-integration\n/plugin install notion-integration\n/plugin install commit-commands\n\n// 2단계: 커뮤니티 마켓 등록 및 스킬 설치\n/plugin marketplace add davepoon/buildwithclaude\n/plugin marketplace add travisvn/awesome-claude-skills\n\n// 3단계: 설치 상태 확인\n/plugin list\n\n// 4단계: 통합 테스트\n// "오늘 이메일 요약해 줘"\n// "이번 주 일정 보여줘"\n// "사건대장 현황 보여줘"',
+          "지금까지 배운 세 가지 마켓플레이스를 모두 활용하여, 노무사 업무에 최적화된 통합 환경을 구성하는 실습을 해보겠습니다. 건설기술자가 새 현장에 투입되기 전에 공구함을 점검하듯이, 우리도 AI 공구함을 완성해 봅시다.\n\n[1단계: 공식 마켓에서 기본 도구 설치]\n터미널에서 claude plugin install 명령어로 GitHub, Notion 플러그인을 설치합니다.\n\n[2단계: 커뮤니티 마켓에서 전문 스킬 추가]\nBuild with Claude 마켓을 등록하고, 문서 검토 스킬이나 리서치 스킬을 설치합니다.\n\n[3단계: MCP 서버 연결]\nclaude mcp add 명령어로 Gmail, Calendar, Notion MCP 서버를 추가합니다. API 키를 설정하고, 각 서비스별로 연결을 확인합니다.\n\n[4단계: 통합 테스트]\n모든 도구가 제대로 작동하는지 간단한 테스트를 합니다. '오늘 온 이메일 요약해 줘', '이번 주 일정 보여줘', '사건대장에서 진행 중인 사건 목록 보여줘' 같은 요청으로 각 연결 상태를 확인합니다.",
+        code: '# === 노무사 통합 환경 설정 따라하기 (터미널에서 순서대로 입력) ===\n\n# 1단계: 공식 플러그인 설치\nclaude plugin install github@claude-plugins-official\nclaude plugin install notion@claude-plugins-official\nclaude plugin install slack@claude-plugins-official\n\n# 2단계: MCP 서버 추가 (외부 서비스 직접 접근)\n# npx = 도구를 자동으로 다운받아 실행하는 명령어, -y = 설치 확인 자동 승인\nclaude mcp add gmail -- npx -y @anthropic/mcp-gmail\nclaude mcp add google-calendar -- npx -y @anthropic/mcp-google-calendar\n# API 키는 https://www.notion.so/my-integrations 에서 발급받습니다\nclaude mcp add notion -e NOTION_API_KEY=여기에_키 -- npx -y @anthropic/mcp-notion\n\n# 3단계: 커뮤니티 스킬 설치\n# git clone = 인터넷의 파일 묶음을 내 컴퓨터로 다운로드하는 명령어\ngit clone https://github.com/travisvn/awesome-claude-skills ~/awesome-skills\ncp ~/awesome-skills/skills/문서검토.md ~/.claude/commands/\n\n# 4단계: 설치 상태 확인\nclaude mcp list\nls ~/.claude/commands/\n\n# 5단계: Claude Code 실행 후 통합 테스트\nclaude\n> 오늘 이메일 요약해 줘\n> 이번 주 일정 보여줘\n> 사건대장 현황 보여줘',
       },
       {
         heading: "보안 체크리스트 — 공구 안전 점검",

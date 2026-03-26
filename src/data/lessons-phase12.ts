@@ -48,6 +48,8 @@ claude --dangerously-skip-permissions -p "5개 사업장 취업규칙 일괄 검
 
 # --remote와 결합하면 야간 대량 작업에 최적
 claude --remote --dangerously-skip-permissions -p "50인 사업장 5곳 취업규칙 2026년 기준 일괄 검토"
+# 참고: --remote 옵션은 Claude Code 최신 버전에서 제공됩니다.
+# claude --help로 사용 가능 여부를 확인하세요.
 
 # 안전한 사용 팁: 전용 작업 폴더에서만 사용
 # mkdir ~/work/batch-review && cd ~/work/batch-review
@@ -109,28 +111,36 @@ claude --remote --dangerously-skip-permissions -p "50인 사업장 5곳 취업�
 3. Task 도구로 각 부분에 대해 서브에이전트를 생성하여 동시에 실행합니다 (최대 ~7개)
 4. 서브에이전트들이 독립된 컨텍스트에서 작업을 완료하면 결과를 메인 에이전트에게 보고합니다
 5. 메인 에이전트가 결과를 취합하여 사용자에게 전달합니다`,
-        code: `# Dispatch 자동 활성화 예시
-# Claude Code에게 병렬 처리가 필요한 작업을 요청하면 됩니다
+        code: `# Dispatch(병렬 에이전트) 사용하기 (터미널에서 입력)
 
-# 예시 1: 여러 파일 동시 분석
-"다음 3개 취업규칙 파일을 동시에 검토해줘:
- - A병원_취업규칙.docx
- - B건설_취업규칙.docx
- - C요양원_취업규칙.docx
- 각각 2026년 노동법 위반 사항을 찾아줘"
-# → Claude Code가 3개의 서브에이전트를 생성하여 동시 검토
+# 방법 1: Claude Code 실행 후 병렬 작업 요청
+claude
+> 다음 3개 작업을 동시에 처리해줘:
+> 1. 취업규칙_A.txt 검토
+> 2. 취업규칙_B.txt 검토
+> 3. 취업규칙_C.txt 검토
 
-# 예시 2: 병렬 조사 요청
-"다음 3가지를 동시에 조사해줘:
+# 방법 2: 비대화형 모드에서 Dispatch
+claude -p "5개 사업장 취업규칙을 동시에 검토하고 각각 보고서를 만들어줘"
+
+# 방법 3: --remote와 결합하여 백그라운드 병렬 처리
+claude --remote -p "판례 50건을 병렬로 분석해서 요약표 만들어줘"
+# 참고: --remote 옵션은 Claude Code 최신 버전에서 제공됩니다.
+# claude --help로 사용 가능 여부를 확인하세요.
+
+# 방법 4: Worktree + Dispatch 최강 조합
+claude --worktree case-a -p "A사건 구제신청서 작성하면서,
+ 판례 조사와 임금 계산을 동시에 진행해줘"
+# → 독립된 워크트리에서 서브에이전트들이 병렬 작업
+# 참고: --worktree와 -p 옵션을 함께 사용하면,
+#       별도의 작업 공간에서 비대화형으로 작업을 실행합니다.
+
+# 실전 예시: 복합 사건 병렬 조사
+claude -p "다음 3가지를 동시에 조사해줘:
  1. 경영상 해고의 긴박한 경영상 필요성 관련 2025년 판례
  2. 해고회피 노력의무 위반 사례
  3. 근로자대표와의 성실한 협의 의무 관련 행정해석"
-# → 3개 서브에이전트가 각각 독립적으로 조사 후 결과 취합
-
-# 예시 3: Worktree + Dispatch 최강 조합
-claude --worktree case-a -p "A사건 구제신청서 작성하면서,
- 판례 조사와 임금 계산을 동시에 진행해줘"
-# → 독립된 워크트리에서 서브에이전트들이 병렬 작업`,
+# → 3개 서브에이전트가 각각 독립적으로 조사 후 결과 취합`,
         tip: "'동시에', '병렬로', '각각' 같은 표현을 프롬프트에 포함하면 Dispatch가 더 잘 작동합니다."
       },
       {
@@ -188,8 +198,8 @@ Worktree가 '물리적 공간의 분리'라면, Dispatch는 '인력의 분배'�
 
 Claude Code에서 브라우저를 제어하려면 --chrome 플래그를 사용합니다. claude --chrome 으로 실행하면 Chrome 브라우저와 연결되어 웹페이지를 직접 조작할 수 있습니다. Chrome에 "Claude in Chrome" 확장 프로그램을 설치하면 더 원활하게 작동합니다.
 
-매번 --chrome을 붙이기 귀찮다면, Claude Code 안에서 /chrome 명령어를 실행하면 기본 설정으로 Chrome 연결이 활성화됩니다.`,
-        code: `# Computer Use 시작하기
+매번 --chrome을 붙이기 귀찮다면, claude --chrome 명령어로 Claude Code를 시작하면 해당 세션 전체에서 Chrome 연결이 활성화됩니다.`,
+        code: `# Computer Use 시작하기 (터미널에서 입력)
 
 # 방법 1: --chrome 플래그로 실행 (권장)
 claude --chrome
@@ -200,20 +210,26 @@ claude --chrome
 # Claude Code 안에서 /chrome 입력
 # → 이후 해당 세션에서 Chrome 제어 가능
 
+# 방법 3: computer 도구를 직접 허용하여 실행
+claude --allowedTools "computer" -p "화면을 보고 고용노동부 사이트에서 서식을 다운받아줘"
+
 # 실전 예시 1: 웹사이트 정보 수집
-"Chrome에서 고용노동부 최저임금 고시 페이지를 열어서
- 2026년 시간급 최저임금과 월환산액을 확인해줘"
+claude --chrome
+> Chrome에서 고용노동부 최저임금 고시 페이지를 열어서
+> 2026년 시간급 최저임금과 월환산액을 확인해줘
 # → AI가 Chrome을 열고 → 사이트 접속 → 해당 정보 확인 → 결과 보고
 
-# 실전 예시 2: 웹 기반 시스템 조작
-"4대보험 정보연계센터에서 사업장 A정형외과의
+# 실전 예시 2: 비대화형 모드에서 웹 조작
+claude --chrome -p "4대보험 정보연계센터에서 사업장 A정형외과의
  고용보험 피보험자격 현황을 조회해줘"
 # → AI가 Chrome으로 사이트 접속 → 조회 → 결과 정리
+# ⚠️ 주의: 4대보험정보연계센터는 공동인증서 등 보안 절차가 필요하여
+#    Computer Use만으로 자동화가 어렵습니다 (아래 팁 참고)
 
-# 실전 예시 3: 데스크톱 앱 조작
-"엑셀 파일 '임금대장_2026.xlsx'를 열어서
- 3월 급여 시트의 합계를 확인해줘"
-# → AI가 엑셀 실행 → 파일 열기 → 시트 이동 → 합계 확인`,
+# 실전 예시 3: 화면을 보면서 데스크톱 앱 조작
+claude
+> 컴퓨터 화면을 보면서 엑셀 파일을 열고 4대보험 요율을 수정해줘
+# → AI가 엑셀 실행 → 파일 열기 → 요율 수정`,
         tip: "Computer Use로 로그인이 필요한 사이트를 조작할 때는, 비밀번호를 AI에게 직접 알려주지 마세요. 미리 로그인해 둔 상태에서 사용하거나, 브라우저에 저장된 자동 로그인을 활용하세요."
       },
       {
@@ -223,6 +239,8 @@ claude --chrome
 시나리오 1 — 정보 수집 자동화: 고용노동부, 대법원 종합법률정보, 국가법령정보센터 등에서 필요한 정보를 자동으로 수집합니다. "2025~2026년 부당해고 관련 대법원 판결을 검색해서 목록을 정리해줘"라고 하면, AI가 대법원 사이트에 직접 접속하여 검색하고 결과를 정리합니다.
 
 시나리오 2 — 반복적 웹 작업: 매월 처리해야 하는 4대보험 신고, EDI 전자신고서 조회 등 정형화된 웹 작업을 자동화합니다. 단, 금전 거래나 최종 제출은 반드시 사람이 직접 확인하고 실행해야 합니다.
+
+주의: 4대보험정보연계센터, 고용노동부 등 공공기관 사이트는 공동인증서(구 공인인증서), 보안 프로그램 설치 등이 필요하여 Computer Use만으로는 자동화가 어려울 수 있습니다. 이 시나리오는 개념적 예시이며, 실제 공공기관 사이트는 수동 로그인 후 AI를 보조적으로 활용하는 방식을 권장합니다.
 
 시나리오 3 — 크로스 앱 워크플로우: "엑셀에서 임금대장을 열고 → 계산 결과를 확인하고 → 그 결과를 구제신청서(한글 파일)에 반영해줘"처럼 여러 프로그램을 넘나드는 작업이 가능해집니다.
 
@@ -272,45 +290,50 @@ UserPromptSubmit: 사용자가 프롬프트를 제출할 때 실행됩니다. �
 SessionStart: Claude Code 세션이 시작될 때 실행됩니다. 환경 초기화나 시작 알림에 사용합니다.
 
 각 Hook은 stdin을 통해 JSON 데이터를 받습니다 (도구 이름, 파일 경로 등). 이를 파싱하여 조건부 로직을 구현할 수 있습니다.`,
-        code: `# Hooks 설정 예시 (.claude/settings.json)
-
-# 예시 1: 파일 수정 전 자동 백업
-# PreToolUse 훅으로 Edit/Write 전에 원본 복사
+        code: `# Hooks 설정 파일 만들기 (터미널에서 입력)
+mkdir -p .claude
+cat > .claude/settings.json << 'EOF'
 {
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Edit|Write",
-        "command": "cp \"$CLAUDE_FILE_PATH\" \"$CLAUDE_FILE_PATH.backup\" 2>/dev/null || true"
+        "matcher": "Write",
+        "command": "echo '파일 생성 감지: 검토 필요'"
       }
-    ]
-  }
-}
-
-# 예시 2: 작업 완료 시 알림
-# Notification 훅으로 완료 알림 전송
-{
-  "hooks": {
-    "Notification": [
-      {
-        "command": "osascript -e 'display notification \"Claude Code 작업이 완료되었습니다\" with title \"작업 완료\"'"
-      }
-    ]
-  }
-}
-
-# 예시 3: 위험한 명령 차단
-# PreToolUse 훅으로 rm -rf 등 위험 명령 방지
-{
-  "hooks": {
-    "PreToolUse": [
+    ],
+    "PostToolUse": [
       {
         "matcher": "Bash",
-        "command": "echo $CLAUDE_COMMAND | grep -q 'rm -rf' && echo 'BLOCKED: 위험한 명령입니다' && exit 1 || exit 0"
+        "command": "echo '명령어 실행 완료'"
       }
     ]
   }
-}`,
+}
+EOF
+
+# 설정 파일이 잘 만들어졌는지 확인
+cat .claude/settings.json
+
+# ─────────────────────────────────────
+# 실전 예시 1: 파일 수정 전 자동 백업 + 완료 알림
+# 위 settings.json의 hooks 섹션을 아래처럼 확장할 수 있습니다.
+# "PreToolUse" matcher를 "Edit|Write"로 바꾸면 수정·생성 모두 감지
+# "Notification" 훅을 추가하면 macOS 알림도 자동 표시:
+#   "Notification": [{ "command": "osascript -e 'display notification
+#     \"Claude Code 작업이 완료되었습니다\" with title \"작업 완료\"'" }]
+
+# ─────────────────────────────────────
+# 실전 예시 2: 위험한 명령 차단 (별도 설정 예시)
+# PreToolUse에서 exit 1을 반환하면 해당 작업이 차단됩니다
+# 아래 내용을 별도의 .claude/settings.json으로 저장하세요:
+#   {
+#     "hooks": {
+#       "PreToolUse": [{
+#         "matcher": "Bash",
+#         "command": "cat /dev/stdin | grep -q 'rm -rf' && echo 'BLOCKED: 위험한 명령입니다' && exit 1 || exit 0"
+#       }]
+#     }
+#   }`,
         tip: "Hooks가 에러를 반환(exit 1)하면 해당 작업이 중단됩니다. 이를 이용해 위험한 작업을 사전에 차단할 수 있습니다."
       },
       {
