@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     title: "클로드 코드 강의 | 노무사가 가르치는 Claude Code",
     description: "코딩 경험 없는 비개발자를 위한 클로드 코드 실전 강의. 12단계 52개 강의로 AI 업무 자동화.",
   },
+  verification: {
+    google: "bRgnvlb-svjtVk7G_TzQ4Upk4pjpA6VtOX4Mg1sTy9w",
+  },
   robots: {
     index: true,
     follow: true,
