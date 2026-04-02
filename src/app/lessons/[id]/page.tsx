@@ -13,7 +13,6 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
-  // Try blob first for metadata
   let lesson: Record<string, unknown> | null = null;
   try {
     lesson = await getLessonFromBlob(id);
@@ -24,10 +23,18 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   if (!lesson) {
     const staticLesson = lessons[id];
     if (!staticLesson) return { title: "강의를 찾을 수 없습니다" };
-    return { title: `${staticLesson.title} | 노무사 x Claude Code` };
+    return {
+      title: `${staticLesson.title} | 클로드 코드 강의`,
+      description: staticLesson.summary,
+      alternates: { canonical: `/lessons/${id}` },
+    };
   }
 
-  return { title: `${lesson.title} | 노무사 x Claude Code` };
+  return {
+    title: `${lesson.title} | 클로드 코드 강의`,
+    description: (lesson.summary as string) || undefined,
+    alternates: { canonical: `/lessons/${id}` },
+  };
 }
 
 export default async function LessonPage({ params }: { params: Promise<{ id: string }> }) {
@@ -50,8 +57,27 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
   const prevId = lesson.prev ? lesson.prev : null;
   const nextId = lesson.next ? lesson.next : null;
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: lesson.title,
+    description: lesson.summary,
+    author: { "@type": "Person", name: "박실로", jobTitle: "공인노무사" },
+    publisher: { "@type": "Organization", name: "한동노무법인" },
+    isPartOf: {
+      "@type": "Course",
+      name: "클로드 코드(Claude Code) 실전 강의",
+    },
+    educationalLevel: "Beginner",
+    inLanguage: "ko",
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <div className="mb-8">
         <Link href="/lessons" className="text-sm text-indigo-500 hover:text-indigo-700 transition-colors">
           ← 강의 목록으로

@@ -1,4 +1,96 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "클로드 코드 강의 | 19년차 노무사가 가르치는 Claude Code 실무 교육",
+  description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 강의. 19년차 공인노무사 박실로가 터미널 여는 법부터 웹앱 배포까지, 12단계 52개 강의로 AI 업무 자동화를 가르칩니다.",
+  alternates: { canonical: "/" },
+};
+
+const courseJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  name: "클로드 코드(Claude Code) 실전 강의",
+  description: "19년차 노무사가 가르치는 비개발자를 위한 클로드 코드 실무 교육. 터미널 여는 법부터 웹앱 배포까지 12단계 52개 강의.",
+  provider: {
+    "@type": "Organization",
+    name: "한동노무법인",
+    url: "https://silronomu.com",
+  },
+  instructor: {
+    "@type": "Person",
+    name: "박실로",
+    jobTitle: "공인노무사",
+    description: "19년차 공인노무사이자 클로드 코드 교육자",
+  },
+  educationalLevel: "Beginner",
+  inLanguage: "ko",
+  numberOfCredits: 12,
+  hasCourseInstance: {
+    "@type": "CourseInstance",
+    courseMode: "online",
+    courseWorkload: "PT50H",
+  },
+  teaches: [
+    "Claude Code 설치 및 기본 사용법",
+    "AI를 활용한 임금계산 및 문서작성 자동화",
+    "MCP 서버 연동 (Gmail, 캘린더, 노션)",
+    "커스텀 스킬 및 플러그인 개발",
+    "Next.js 웹앱 개발 및 Vercel 배포",
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "클로드 코드 강의는 비개발자도 들을 수 있나요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "네, 이 강의는 코딩 경험이 전혀 없는 비개발자를 위해 설계되었습니다. 터미널 여는 법부터 시작하며, 19년차 노무사가 비개발자 관점에서 쉽게 설명합니다. 엑셀 함수 정도 쓸 줄 안다면 충분합니다.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "클로드 코드와 ChatGPT의 차이점은 무엇인가요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "ChatGPT는 웹 채팅 기반이지만, 클로드 코드(Claude Code)는 터미널에서 동작하며 파일을 직접 읽고, 코드를 작성하고, 명령을 실행할 수 있는 AI 파트너입니다. 1M 컨텍스트로 근로기준법 전문(약 8만자)을 통째로 읽고 분석할 수 있어, 법률 업무에 특히 강력합니다.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "강의를 완료하면 무엇을 할 수 있나요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "12단계 과정을 완료하면 퇴직금·임금 자동 계산, 취업규칙 검토 자동화, 진정서·의견서 초안 작성, MCP로 Gmail·캘린더·노션 연동, 커스텀 스킬과 플러그인 개발, 그리고 나만의 웹앱을 만들어 배포하는 것까지 가능합니다.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "클로드 코드 강의는 얼마나 걸리나요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "총 12단계, 52개 강의로 약 50시간 분량입니다. 자기 페이스에 맞춰 진행할 수 있으며, Phase 1~3(기초)만 마쳐도 실무에 바로 적용할 수 있습니다.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "노무사가 아니어도 이 강의가 도움이 되나요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "네, 노무사 실무 예시를 사용하지만 클로드 코드 활용법 자체는 모든 비개발자 전문직(변호사, 회계사, 세무사 등)에게 적용됩니다. AI를 업무에 연결하는 방법을 배우는 것이 핵심입니다.",
+      },
+    },
+  ],
+};
+
+const faqs = faqJsonLd.mainEntity.map((q) => ({
+  question: q.name,
+  answer: q.acceptedAnswer.text,
+}));
 
 const courses = [
   {
@@ -204,6 +296,14 @@ const features = [
 export default function Home() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800 text-white">
         <div className="absolute inset-0 opacity-10">
@@ -340,6 +440,29 @@ export default function Home() {
           >
             전체 커리큘럼 자세히 보기
           </Link>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="max-w-3xl mx-auto px-6 py-20">
+        <h2 className="text-3xl font-bold text-center mb-12">
+          자주 묻는 질문
+        </h2>
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <details
+              key={i}
+              className="group bg-white rounded-2xl border border-slate-100 shadow-sm"
+            >
+              <summary className="flex items-center justify-between cursor-pointer p-6 text-lg font-semibold text-slate-800 [&::-webkit-details-marker]:hidden list-none">
+                {faq.question}
+                <span className="text-indigo-400 transition-transform group-open:rotate-45 shrink-0 ml-4 text-xl">+</span>
+              </summary>
+              <div className="px-6 pb-6 text-slate-600 leading-relaxed">
+                {faq.answer}
+              </div>
+            </details>
+          ))}
         </div>
       </section>
 

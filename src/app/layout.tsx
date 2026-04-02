@@ -3,9 +3,79 @@ import Link from "next/link";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
+
 export const metadata: Metadata = {
-  title: "노무사를 위한 Claude Code 실무 교육",
-  description: "코딩 경험 없는 노무사도 Claude Code로 업무를 혁신할 수 있습니다. 1M 컨텍스트 시대, AI와 함께 일하는 법을 배워보세요.",
+  title: {
+    default: "클로드 코드 강의 | 19년차 노무사가 가르치는 Claude Code 실무 교육",
+    template: "%s | 노무사 x Claude Code",
+  },
+  description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 강의. 19년차 공인노무사 박실로가 터미널 여는 법부터 웹앱 배포까지, 12단계 52개 강의로 AI 업무 자동화를 가르칩니다.",
+  keywords: ["클로드 코드 강의", "Claude Code 교육", "클로드 코드 교육", "AI 노무사", "비개발자 코딩", "바이브코딩", "클로드 코드 설치", "Claude Code 강의", "AI 업무 자동화", "노무사 AI"],
+  authors: [{ name: "박실로", url: "https://silronomu.com" }],
+  creator: "박실로 (공인노무사)",
+  publisher: "한동노무법인",
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    url: SITE_URL,
+    siteName: "노무사 x Claude Code",
+    title: "클로드 코드 강의 | 19년차 노무사가 가르치는 Claude Code 실무 교육",
+    description: "코딩 경험 없는 비개발자를 위한 클로드 코드 실전 강의. 터미널 여는 법부터 웹앱 배포까지 12단계 52개 강의.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "클로드 코드 강의 | 노무사가 가르치는 Claude Code",
+    description: "코딩 경험 없는 비개발자를 위한 클로드 코드 실전 강의. 12단계 52개 강의로 AI 업무 자동화.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "박실로",
+  alternateName: ["Park Silro", "실로노무사"],
+  jobTitle: "공인노무사",
+  worksFor: {
+    "@type": "Organization",
+    name: "한동노무법인",
+  },
+  knowsAbout: [
+    "노동법", "근로기준법", "산업안전보건법",
+    "Claude Code", "AI 업무 자동화", "바이브코딩",
+    "클로드 코드 교육", "비개발자 AI 활용",
+  ],
+  description: "19년차 공인노무사이자 클로드 코드(Claude Code) 교육자. 비개발자 전문직을 위한 AI 활용 교육을 진행합니다.",
+  url: "https://silronomu.com",
+  sameAs: [
+    "https://blog.silronomu.com",
+    "https://www.threads.com/@silrobag",
+  ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "노무사 x Claude Code",
+  url: SITE_URL,
+  description: "19년차 노무사가 가르치는 비개발자를 위한 클로드 코드(Claude Code) 실무 교육",
+  author: { "@type": "Person", name: "박실로" },
+  publisher: { "@type": "Organization", name: "한동노무법인" },
 };
 
 export default function RootLayout({
@@ -15,6 +85,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+      </head>
       <body className="antialiased">
         <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
           <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">

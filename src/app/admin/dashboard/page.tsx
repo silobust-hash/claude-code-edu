@@ -19,6 +19,7 @@ const phaseGroups = [
   { phase: 9, phaseTitle: "나만의 도구 만들기", prefix: "9-" },
   { phase: 10, phaseTitle: "Worktree — 병렬 AI 코딩", prefix: "10-" },
   { phase: 11, phaseTitle: "고급 활용과 자동화", prefix: "11-" },
+  { phase: 12, phaseTitle: "최신 기능 마스터하기", prefix: "12-" },
 ];
 
 export default async function DashboardPage() {
