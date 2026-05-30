@@ -21,15 +21,15 @@ export const lessonsPhase7to8: Record<string, any> = {
       {
         heading: "MCP 서버 설정 방법",
         content:
-          "Claude Code에서 MCP 서버를 연결하는 방법은 간단합니다. 터미널에서 claude mcp add 명령어를 사용하면 됩니다.\n\n주의: Claude Desktop 앱에서는 claude_desktop_config.json 파일을 편집하지만, Claude Code(터미널)에서는 CLI 명령어로 설정합니다. 이 두 가지를 혼동하지 마세요.\n\nMCP 서버를 추가할 때 범위(scope)를 지정할 수 있습니다. local(기본값, 내 컴퓨터에서만), project(.mcp.json에 저장, 팀 공유 가능), user(~/.claude.json에 저장, 모든 프로젝트에서 사용) 세 가지가 있습니다.",
-        code: '# Claude Code에서 MCP 서버 추가하기 (CLI 방식)\n\n# Gmail MCP 서버 추가 (실제 패키지명은 제공자마다 다름)\nclaude mcp add gmail -- npx -y @anthropic/mcp-gmail\n\n# Google Calendar MCP 서버 추가\nclaude mcp add google-calendar -- npx -y @anthropic/mcp-google-calendar\n\n# Notion MCP 서버 추가 (환경변수 포함)\nclaude mcp add notion -e NOTION_API_KEY=여기에_키_입력 -- npx -y @anthropic/mcp-notion\n\n# 범위(scope) 지정\nclaude mcp add gmail --scope user -- npx -y @anthropic/mcp-gmail  # 모든 프로젝트에서 사용\nclaude mcp add notion --scope project -- npx -y @anthropic/mcp-notion  # 팀 공유용\n\n# 설정된 MCP 서버 목록 확인\nclaude mcp list\n\n# MCP 서버 제거\nclaude mcp remove gmail',
-        tip: "MCP 서버를 처음 설정할 때는 하나씩 추가하면서 테스트하세요. 한꺼번에 여러 개를 설정하면 문제 발생 시 원인을 찾기 어렵습니다.",
+          "Claude Code에서 MCP 서버를 연결하는 방법은 두 가지입니다.\n\n첫째, 원격 서비스(권장)는 제공자가 운영하는 서버 주소를 등록합니다. 터미널에서 claude mcp add --transport http 명령어에 이름과 URL을 적으면 됩니다. Notion처럼 공식 MCP 주소를 제공하는 서비스는 이 방식이 가장 간단합니다.\n\n둘째, Gmail·Google Calendar·Notion 같은 서비스는 Anthropic 디렉터리(claude.ai/directory)나 claude.ai/customize/connectors에서 '커넥터'로 추가한 뒤, Claude Code에서 /mcp 명령으로 로그인 인증을 합니다. 별도의 npm 패키지를 설치하는 것이 아니라 화면 안내에 따라 계정 연결(OAuth)만 하면 됩니다.\n\n주의: Claude Desktop 앱에서는 claude_desktop_config.json 파일을 편집하지만, Claude Code(터미널)에서는 위와 같이 CLI 명령어나 /mcp로 설정합니다. 이 두 가지를 혼동하지 마세요.\n\nMCP 서버를 추가할 때 범위(scope)를 지정할 수 있습니다. local(기본값, 내 컴퓨터에서만), project(.mcp.json에 저장, 팀 공유 가능), user(~/.claude.json에 저장, 모든 프로젝트에서 사용) 세 가지가 있습니다.",
+        code: '# Claude Code에서 MCP 서버 추가하기\n\n# 1) 원격 HTTP 서버 추가 (권장) — claude mcp add --transport http <이름> <URL>\n# Notion (공식 MCP 주소)\nclaude mcp add --transport http notion https://mcp.notion.com/mcp\n\n# 2) Gmail·Google Calendar 등은 Anthropic 디렉터리에서 커넥터로 추가\n#    → claude.ai/directory 또는 claude.ai/customize/connectors 에서 추가\n#    → Claude Code에서 /mcp 명령으로 로그인(OAuth) 인증\n#    (별도 npm 패키지 설치 없음)\n\n# 범위(scope) 지정 — 이름 앞에 옵션을 둔다\nclaude mcp add --scope user --transport http notion https://mcp.notion.com/mcp  # 모든 프로젝트\nclaude mcp add --scope project --transport http notion https://mcp.notion.com/mcp  # 팀 공유용\n\n# 설정된 MCP 서버 목록 / 상세 확인\nclaude mcp list\nclaude mcp get notion\n\n# 연결 상태와 인증은 Claude Code 안에서 /mcp 로 관리\n\n# MCP 서버 제거\nclaude mcp remove notion',
+        tip: "Gmail·캘린더처럼 OAuth가 필요한 서비스는 \'@anthropic/mcp-gmail\' 같은 npm 패키지가 따로 있는 것이 아닙니다. claude.ai/directory에서 커넥터를 추가하고 /mcp로 인증하는 방식이 정식 경로입니다. MCP 서버는 하나씩 추가하면서 테스트하세요. 한꺼번에 여러 개를 설정하면 문제 발생 시 원인을 찾기 어렵습니다.",
       },
     ],
     keyTakeaways: [
       "MCP는 AI가 외부 서비스(Gmail, Calendar, Notion 등)를 직접 조작할 수 있게 해주는 프로토콜입니다.",
       "노무사의 반복적인 이메일·일정·기록 업무를 AI가 직접 처리할 수 있어 업무 효율이 크게 향상됩니다.",
-      "Claude Code에서는 claude mcp add 명령어로 MCP 서버를 추가합니다 (Claude Desktop과 다름).",
+      "Claude Code에서는 claude mcp add --transport http로 원격 서버를 등록하거나, Anthropic 디렉터리에서 커넥터를 추가하고 /mcp로 인증합니다 (Claude Desktop과 다름).",
     ],
   },
 

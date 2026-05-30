@@ -1,7 +1,7 @@
 export const lessonsWorktree: Record<string, any> = {
   "10-1": {
     id: "10-1",
-    phase: "Worktree — 병렬 AI 코딩",
+    phase: "Phase 10 · Worktree — 병렬 AI 코딩",
     title: "Worktree란? — 여러 사건을 동시에 펼쳐놓기",
     summary:
       "Git Worktree의 개념을 이해하고, 한 번에 하나의 작업만 하던 방식에서 여러 작업을 동시에 병렬 처리하는 방법의 원리를 배웁니다.",
@@ -87,7 +87,7 @@ Kevin Z.라는 개발자는 "Worktree 덕분에 생산성이 3~5배 향상되었
 
   "10-2": {
     id: "10-2",
-    phase: "Worktree — 병렬 AI 코딩",
+    phase: "Phase 10 · Worktree — 병렬 AI 코딩",
     title: "Worktree 실전 — claude --worktree로 시작하기",
     summary:
       "Claude Code의 내장 Worktree 기능을 사용하여 실제로 여러 작업을 동시에 실행하는 방법을 단계별로 배웁니다.",
@@ -200,7 +200,7 @@ claude -w work-rules-review
 
   "10-3": {
     id: "10-3",
-    phase: "Worktree — 병렬 AI 코딩",
+    phase: "Phase 10 · Worktree — 병렬 AI 코딩",
     title: "자주 쓰는 명령어와 문제 해결",
     summary:
       "Worktree 관련 필수 명령어를 정리하고, 자주 발생하는 오류와 해결 방법을 배웁니다. 터미널 출력 읽는 법도 함께 익힙니다.",
@@ -303,7 +303,7 @@ git worktree list`
 2개가 편해지면 3~4개로 늘려봅니다. 이 정도면 오전에 밀린 사건 3~4건을 동시에 AI에게 맡기고, 완료되는 순서대로 검토할 수 있습니다.
 
 숙련 단계 (1개월 이후): 5개 이상.
-Claude Code의 --remote 기능(이전 레슨 참조)과 결합하면 5개 이상도 가능합니다. 다만 로컬 컴퓨터에서는 메모리 한계가 있으므로, 클라우드 실행과 병행하는 것이 좋습니다.
+다음 Phase 11에서 배울 --remote(클라우드 실행)와 결합하면 5개 이상도 가능합니다. 다만 로컬 컴퓨터에서는 메모리 한계가 있으므로, 클라우드 실행과 병행하는 것이 좋습니다.
 
 핵심은 "내가 관리할 수 있는 만큼만" 열어두는 것입니다. 10개를 열어놓고 3개만 확인하면 나머지 7개는 낭비입니다. 사무실에서 책상을 10개 펼쳐놓고 3개만 쓰면 나머지 7개는 공간만 차지하는 것과 같습니다.`,
         tip: "처음에는 2개부터 시작하세요. '아, 이제 2개는 편하다' 싶을 때 3개로 늘리면 됩니다. 절대 서두르지 마세요."
@@ -319,7 +319,7 @@ Claude Code의 --remote 기능(이전 레슨 참조)과 결합하면 5개 이상
 
   "10-4": {
     id: "10-4",
-    phase: "Worktree — 병렬 AI 코딩",
+    phase: "Phase 10 · Worktree — 병렬 AI 코딩",
     title: "노무사를 위한 Worktree 활용 시나리오",
     summary:
       "실무에서 바로 쓸 수 있는 Worktree 활용 시나리오를 배우고, 연습용 프로젝트로 직접 실습합니다.",
