@@ -6,6 +6,7 @@ import { lessonsPhase7to8 } from "./lessons-phase7-8";
 import { lessonsWorktree } from "./lessons-worktree";
 import { lessonsPhase9 as lessonsPhase11 } from "./lessons-phase9";
 import { lessonsPhase12 } from "./lessons-phase12";
+import { lessonsPhase13 } from "./lessons-phase13";
 import { lessonGlossary } from "./lessons-glossary";
 import { lessonsVisualization } from "./lessons-visualization";
 
@@ -20,4 +21,5 @@ export const lessons: Record<string, any> = {
   ...lessonsWorktree,
   ...lessonsPhase11,
   ...lessonsPhase12,
+  ...lessonsPhase13,
 };

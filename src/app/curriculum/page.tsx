@@ -400,6 +400,62 @@ const curriculum = [
       },
     ],
   },
+  {
+    phase: "Phase 13",
+    title: "영역 확장",
+    subtitle: "최신 모델·생태계·카드뉴스·마켓플레이스로 클로드코드 활용 영역 확장",
+    emoji: "🚀",
+    duration: "약 9시간",
+    color: "border-cyan-400",
+    bgColor: "bg-cyan-50",
+    lessons: [
+      {
+        title: "클로드 디자인 × 힉스필드 — 카드뉴스·썸네일 자동 제작",
+        desc: "클로드 디자인과 힉스필드를 연동하여 노무 콘텐츠용 카드뉴스와 썸네일을 자동으로 제작합니다.",
+        tags: ["실습", "디자인", "NEW"],
+      },
+      {
+        title: "클로드 디자인: 노무 문서·카드뉴스 비주얼 만들기",
+        desc: "Claude Code로 노무 관련 문서와 카드뉴스에 쓸 비주얼 콘텐츠를 직접 디자인합니다.",
+        tags: ["실습", "디자인"],
+      },
+      {
+        title: "제2의 두뇌: 옵시디언 볼트 + Claude Code CLI 지식관리",
+        desc: "옵시디언 볼트와 Claude Code CLI를 연동하여 노무사의 지식과 판례를 체계적으로 관리합니다.",
+        tags: ["실습", "지식관리", "핵심"],
+      },
+      {
+        title: "코덱스 모바일 vs Claude Code: 이동 중 AI 활용",
+        desc: "스마트폰에서 코덱스 모바일과 Claude Code를 비교하며, 이동 중에도 AI 업무를 이어가는 방법을 배웁니다.",
+        tags: ["실습", "모바일"],
+      },
+      {
+        title: "오픈소스 오케스트레이션 생태계 — 한동노무법인 AI팀 만들기",
+        desc: "오픈소스 도구로 여러 AI 에이전트를 조율하는 오케스트레이션 시스템을 구축합니다.",
+        tags: ["실습", "오케스트레이션", "고급"],
+      },
+      {
+        title: "마켓플레이스로 내 스킬·플러그인·에이전트 관리하기 (clone·pull·push)",
+        desc: "마켓플레이스를 통해 스킬과 플러그인을 clone·pull·push하며 나만의 AI 도구함을 관리합니다.",
+        tags: ["실습", "마켓플레이스"],
+      },
+      {
+        title: "Opus 4.8, 노무사에게 무엇이 달라졌나",
+        desc: "Claude Opus 4.8의 핵심 변화를 노무사 실무 관점에서 살펴봅니다. 코드 신뢰성·정직성 강화가 임금 계산·문서 작성에 미치는 영향을 확인합니다.",
+        tags: ["개념 이해", "최신모델", "NEW"],
+      },
+      {
+        title: "다이나믹 워크플로우로 사건처리 자동화",
+        desc: "조건분기·반복·에러핸들링이 포함된 다이나믹 워크플로우로 복잡한 사건처리 파이프라인을 자동화합니다.",
+        tags: ["실습", "자동화", "고급"],
+      },
+      {
+        title: "울트라코드와 effort control: 깊게 vs 빠르게",
+        desc: "Ultracode 모드와 effort control 설정으로 작업 깊이와 속도를 상황에 맞게 조절하는 방법을 배웁니다.",
+        tags: ["실습", "고급", "핵심"],
+      },
+    ],
+  },
 ];
 
 export default function CurriculumPage() {
@@ -408,7 +464,7 @@ export default function CurriculumPage() {
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">전체 커리큘럼</h1>
         <p className="text-slate-500 text-lg leading-relaxed">
-          총 12단계, 약 50시간 분량의 교육 과정입니다.
+          총 13단계, 약 59시간 분량의 교육 과정입니다.
           <br />
           순서대로 따라가면 코딩 경험 없이도 웹앱 배포까지 가능합니다.
         </p>

@@ -306,7 +306,7 @@ claude
     summary:
       "Claude Code가 특정 행동을 할 때 자동으로 실행되는 Hooks(훅)를 배웁니다. 파일 저장 시 자동 백업, 명령 실행 전 안전 검사 등 업무 규칙을 자동으로 적용합니다.",
     prev: "12-3",
-    next: null,
+    next: "13-1",
     sections: [
       {
         heading: "Hooks란?",
