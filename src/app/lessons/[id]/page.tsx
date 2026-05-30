@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import LessonReactions from "./LessonReactions";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
+
 export const revalidate = 60; // Revalidate every 60 seconds for ISR
 
 export function generateStaticParams() {
@@ -27,6 +29,12 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       title: `${staticLesson.title} | 클로드 코드 강의`,
       description: staticLesson.summary,
       alternates: { canonical: `/lessons/${id}` },
+      openGraph: {
+        title: `${staticLesson.title}`,
+        description: staticLesson.summary,
+        url: `${SITE_URL}/lessons/${id}`,
+        type: "article",
+      },
     };
   }
 
@@ -34,6 +42,12 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     title: `${lesson.title} | 클로드 코드 강의`,
     description: (lesson.summary as string) || undefined,
     alternates: { canonical: `/lessons/${id}` },
+    openGraph: {
+      title: `${lesson.title}`,
+      description: (lesson.summary as string) || undefined,
+      url: `${SITE_URL}/lessons/${id}`,
+      type: "article",
+    },
   };
 }
 
@@ -59,17 +73,32 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
 
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "LearningResource"],
     headline: lesson.title,
     description: lesson.summary,
-    author: { "@type": "Person", name: "박실로", jobTitle: "공인노무사" },
+    url: `${SITE_URL}/lessons/${id}`,
+    author: { "@type": "Person", name: "박실로", jobTitle: "공인노무사", "@id": `${SITE_URL}/#person` },
     publisher: { "@type": "Organization", name: "한동노무법인" },
     isPartOf: {
       "@type": "Course",
       name: "클로드 코드(Claude Code) 실전 강의",
+      "@id": `${SITE_URL}/#course`,
+      url: SITE_URL,
     },
+    learningResourceType: "lesson",
     educationalLevel: "Beginner",
     inLanguage: "ko",
+    isAccessibleForFree: true,
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "홈", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "강의 목록", item: `${SITE_URL}/lessons` },
+      { "@type": "ListItem", position: 3, name: lesson.title, item: `${SITE_URL}/lessons/${id}` },
+    ],
   };
 
   return (
@@ -77,6 +106,10 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <div className="mb-8">
         <Link href="/lessons" className="text-sm text-indigo-500 hover:text-indigo-700 transition-colors">

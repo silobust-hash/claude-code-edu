@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     default: "클로드 코드 강의 | 19년차 노무사가 가르치는 Claude Code 실무 교육",
     template: "%s | 노무사 x Claude Code",
   },
-  description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 강의. 19년차 공인노무사 박실로가 터미널 여는 법부터 웹앱 배포까지, 12단계 52개 강의로 AI 업무 자동화를 가르칩니다.",
+  description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 강의. 19년차 공인노무사 박실로가 터미널 여는 법부터 웹앱 배포까지, 13단계 62개 강의로 AI 업무 자동화를 가르칩니다.",
   keywords: ["클로드 코드 강의", "Claude Code 교육", "클로드 코드 교육", "AI 노무사", "비개발자 코딩", "바이브코딩", "클로드 코드 설치", "Claude Code 강의", "AI 업무 자동화", "노무사 AI"],
   authors: [{ name: "박실로", url: "https://silronomu.com" }],
   creator: "박실로 (공인노무사)",
@@ -25,12 +25,12 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: "노무사 x Claude Code",
     title: "클로드 코드 강의 | 19년차 노무사가 가르치는 Claude Code 실무 교육",
-    description: "코딩 경험 없는 비개발자를 위한 클로드 코드 실전 강의. 터미널 여는 법부터 웹앱 배포까지 12단계 52개 강의.",
+    description: "코딩 경험 없는 비개발자를 위한 클로드 코드 실전 강의. 터미널 여는 법부터 웹앱 배포까지 13단계 62개 강의.",
   },
   twitter: {
     card: "summary_large_image",
     title: "클로드 코드 강의 | 노무사가 가르치는 Claude Code",
-    description: "코딩 경험 없는 비개발자를 위한 클로드 코드 실전 강의. 12단계 52개 강의로 AI 업무 자동화.",
+    description: "코딩 경험 없는 비개발자를 위한 클로드 코드 실전 강의. 13단계 62개 강의로 AI 업무 자동화.",
   },
   verification: {
     google: [
@@ -54,9 +54,29 @@ export const metadata: Metadata = {
   },
 };
 
+const SAME_AS = [
+  "https://silronomu.com/",
+  "https://blog.silronomu.com/",
+  "https://sanjae.silronomu.com/",
+  "https://edu.silronomu.com/",
+  "https://ai-school.silronomu.com/",
+  "https://xn--hc0b21e4rq52a9zgfzlxub.com/",
+  "https://xn--hc0b21et01ao2a.com/",
+  "https://xn--hc0bn7fv7j9tf6rl.net/",
+  "https://blog.naver.com/5215678",
+  "https://silronomusa.blogspot.com/",
+  "https://www.facebook.com/share/17SYegaFj5/",
+  "https://www.instagram.com/silrobag/",
+  "https://www.threads.net/@silrobag",
+  "https://x.com/silrobag",
+  "https://youtube.com/channel/UCAkNJ16PNf2cNfhXsVbh-gg",
+  "https://www.linkedin.com/in/실로-박-385a1a104/",
+];
+
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${SITE_URL}/#person`,
   name: "박실로",
   alternateName: ["Park Silro", "실로노무사"],
   jobTitle: "공인노무사",
@@ -71,11 +91,17 @@ const personJsonLd = {
   ],
   description: "19년차 공인노무사이자 클로드 코드(Claude Code) 교육자. 비개발자 전문직을 위한 AI 활용 교육을 진행합니다.",
   url: "https://silronomu.com",
-  sameAs: [
-    "https://blog.silronomu.com",
-    "https://ai-school.silronomu.com",
-    "https://www.threads.com/@silrobag",
-  ],
+  sameAs: SAME_AS,
+};
+
+const educationalOrgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "@id": `${SITE_URL}/#org`,
+  name: "한동노무법인 AI업무학교(노무사 x Claude Code)",
+  url: SITE_URL,
+  sameAs: SAME_AS,
+  founder: { "@id": `${SITE_URL}/#person` },
 };
 
 const websiteJsonLd = {
@@ -84,8 +110,8 @@ const websiteJsonLd = {
   name: "노무사 x Claude Code",
   url: SITE_URL,
   description: "19년차 노무사가 가르치는 비개발자를 위한 클로드 코드(Claude Code) 실무 교육",
-  author: { "@type": "Person", name: "박실로" },
-  publisher: { "@type": "Organization", name: "한동노무법인" },
+  author: { "@id": `${SITE_URL}/#person` },
+  publisher: { "@id": `${SITE_URL}/#org` },
 };
 
 export default function RootLayout({
@@ -99,6 +125,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(educationalOrgJsonLd) }}
         />
         <script
           type="application/ld+json"

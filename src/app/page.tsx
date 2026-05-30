@@ -1,22 +1,21 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
+
 export const metadata: Metadata = {
   title: "클로드 코드 강의 | 19년차 노무사가 가르치는 Claude Code 실무 교육",
-  description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 강의. 19년차 공인노무사 박실로가 터미널 여는 법부터 웹앱 배포까지, 12단계 52개 강의로 AI 업무 자동화를 가르칩니다.",
+  description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 강의. 19년차 공인노무사 박실로가 터미널 여는 법부터 웹앱 배포까지, 13단계 62개 강의로 AI 업무 자동화를 가르칩니다.",
   alternates: { canonical: "/" },
 };
 
 const courseJsonLd = {
   "@context": "https://schema.org",
   "@type": "Course",
+  "@id": `${SITE_URL}/#course`,
   name: "클로드 코드(Claude Code) 실전 강의",
-  description: "19년차 노무사가 가르치는 비개발자를 위한 클로드 코드 실무 교육. 터미널 여는 법부터 웹앱 배포까지 12단계 52개 강의.",
-  provider: {
-    "@type": "Organization",
-    name: "한동노무법인",
-    url: "https://silronomu.com",
-  },
+  description: "19년차 노무사가 가르치는 비개발자를 위한 클로드 코드 실무 교육. 터미널 여는 법부터 웹앱 배포까지 13단계 62개 강의.",
+  provider: { "@id": `${SITE_URL}/#org` },
   instructor: {
     "@type": "Person",
     name: "박실로",
@@ -25,11 +24,12 @@ const courseJsonLd = {
   },
   educationalLevel: "Beginner",
   inLanguage: "ko",
-  numberOfCredits: 12,
+  isAccessibleForFree: true,
+  about: ["Claude Code", "AI 업무 자동화", "노무 자동화"],
   hasCourseInstance: {
     "@type": "CourseInstance",
     courseMode: "online",
-    courseWorkload: "PT50H",
+    courseWorkload: "PT59H",
   },
   teaches: [
     "Claude Code 설치 및 기본 사용법",
@@ -65,7 +65,7 @@ const faqJsonLd = {
       name: "강의를 완료하면 무엇을 할 수 있나요?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "12단계 과정을 완료하면 퇴직금·임금 자동 계산, 취업규칙 검토 자동화, 진정서·의견서 초안 작성, MCP로 Gmail·캘린더·노션 연동, 커스텀 스킬과 플러그인 개발, 그리고 나만의 웹앱을 만들어 배포하는 것까지 가능합니다.",
+        text: "13단계 과정을 완료하면 퇴직금·임금 자동 계산, 취업규칙 검토 자동화, 진정서·의견서 초안 작성, MCP로 Gmail·캘린더·노션 연동, 커스텀 스킬과 플러그인 개발, 그리고 나만의 웹앱을 만들어 배포하는 것까지 가능합니다.",
       },
     },
     {
@@ -73,7 +73,7 @@ const faqJsonLd = {
       name: "클로드 코드 강의는 얼마나 걸리나요?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "총 12단계, 52개 강의로 약 50시간 분량입니다. 자기 페이스에 맞춰 진행할 수 있으며, Phase 1~3(기초)만 마쳐도 실무에 바로 적용할 수 있습니다.",
+        text: "총 13단계, 62개 강의로 약 59시간 분량입니다. 자기 페이스에 맞춰 진행할 수 있으며, Phase 1~3(기초)만 마쳐도 실무에 바로 적용할 수 있습니다.",
       },
     },
     {
@@ -400,7 +400,7 @@ export default function Home() {
       {/* Curriculum Preview */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">12단계 커리큘럼</h2>
+          <h2 className="text-3xl font-bold mb-4">13단계 커리큘럼</h2>
           <p className="text-slate-500 text-lg">
             터미널을 처음 여는 순간부터, 나만의 웹서비스를 세상에 공개하는 날까지
           </p>

@@ -1,4 +1,48 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import { lessons } from "@/data/lessons";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
+
+export const metadata: Metadata = {
+  title: "전체 커리큘럼",
+  description: "클로드 코드 13단계 62강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
+  alternates: { canonical: "/curriculum" },
+  openGraph: {
+    title: "전체 커리큘럼 | 노무사 x Claude Code",
+    description: "클로드 코드 13단계 62강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
+    url: `${SITE_URL}/curriculum`,
+  },
+};
+
+const sortedLessons = Object.values(lessons).sort((a, b) => {
+  const [ap, al] = String(a.id).split("-").map(Number);
+  const [bp, bl] = String(b.id).split("-").map(Number);
+  return ap - bp || al - bl;
+});
+
+const itemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "클로드 코드 강의 커리큘럼",
+  itemListOrder: "https://schema.org/ItemListOrderAscending",
+  numberOfItems: sortedLessons.length,
+  itemListElement: sortedLessons.map((l, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${SITE_URL}/lessons/${l.id}`,
+    name: l.title,
+  })),
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "홈", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "전체 커리큘럼", item: `${SITE_URL}/curriculum` },
+  ],
+};
 
 const curriculum = [
   {
@@ -461,6 +505,14 @@ const curriculum = [
 export default function CurriculumPage() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">전체 커리큘럼</h1>
         <p className="text-slate-500 text-lg leading-relaxed">

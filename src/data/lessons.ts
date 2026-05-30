@@ -23,3 +23,6 @@ export const lessons: Record<string, any> = {
   ...lessonsPhase12,
   ...lessonsPhase13,
 };
+
+export const TOTAL_PHASES = 13;
+export const TOTAL_LESSONS = Object.keys(lessons).length;

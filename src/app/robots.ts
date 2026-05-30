@@ -2,6 +2,17 @@ import type { MetadataRoute } from "next";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
 
+const AI_BOTS = [
+  "GPTBot",
+  "OAI-SearchBot",
+  "ClaudeBot",
+  "anthropic-ai",
+  "PerplexityBot",
+  "Google-Extended",
+  "Applebot-Extended",
+  "CCBot",
+];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
@@ -10,6 +21,11 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: ["/admin/", "/api/admin/"],
       },
+      ...AI_BOTS.map((userAgent) => ({
+        userAgent,
+        allow: "/",
+        disallow: ["/admin/", "/api/admin/"],
+      })),
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
   };
