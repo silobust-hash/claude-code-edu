@@ -41,6 +41,7 @@ export default async function LessonOpengraphImage({
             fontWeight: 600,
             opacity: 0.85,
             marginBottom: 24,
+            display: "flex",
           }}
         >
           {phase} · 클로드 코드 강의
