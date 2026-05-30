@@ -1,39 +1,342 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────────────────────
+   클로드 코드 강의 — Design System "Deep Studio"
+   Brand: 깊은 인디고/바이올렛 + 정제된 잉크 뉴트럴
+   Type:  Pretendard (한글 가독성 최우선) + 강한 타입 스케일
+   ───────────────────────────────────────────────────────────── */
+
 :root {
-  --color-primary: #6366f1;
-  --color-primary-dark: #4f46e5;
-  --color-accent: #f59e0b;
-  --color-bg: #fafafa;
+  /* Brand — indigo → violet, deliberate & deep (no candy) */
+  --brand-50: #eef1ff;
+  --brand-100: #e0e4ff;
+  --brand-200: #c6ccff;
+  --brand-300: #a3a9ff;
+  --brand-400: #7c7dff;
+  --brand-500: #6257f5;
+  --brand-600: #5138e6;
+  --brand-700: #452cc7;
+  --brand-800: #3826a0;
+  --brand-900: #2f237e;
+  --brand-950: #1d1550;
+
+  --violet-400: #a779ff;
+  --violet-500: #8b4dff;
+  --violet-600: #7733f0;
+
+  /* Accent — warm signal for sharp highlights against deep brand */
+  --accent: #ffb43d;
+  --accent-soft: #ffd089;
+
+  /* Neutrals — refined ink, slightly cool */
+  --ink-950: #0a0a1a;
+  --ink-900: #11111f;
+  --ink-800: #1a1a2e;
+  --ink-700: #2b2b40;
+  --ink-600: #44445c;
+  --ink-500: #6a6a82;
+  --ink-400: #9494a8;
+  --ink-300: #c4c4d2;
+  --ink-200: #e3e3ec;
+  --ink-100: #f1f1f6;
+  --ink-50: #f8f8fb;
+
+  /* Semantic surface tokens (light) */
+  --color-primary: var(--brand-600);
+  --color-primary-dark: var(--brand-700);
+  --color-accent: var(--accent);
+  --color-bg: #fbfbfe;
   --color-card: #ffffff;
-  --color-text: #1e293b;
-  --color-text-light: #64748b;
-  --color-border: #e2e8f0;
+  --color-text: var(--ink-900);
+  --color-text-light: var(--ink-500);
+  --color-border: var(--ink-200);
+
+}
+
+@theme inline {
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+  --color-brand-950: var(--brand-950);
+  --color-violet-400: var(--violet-400);
+  --color-violet-500: var(--violet-500);
+  --color-violet-600: var(--violet-600);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-ink-50: var(--ink-50);
+  --color-ink-100: var(--ink-100);
+  --color-ink-200: var(--ink-200);
+  --color-ink-300: var(--ink-300);
+  --color-ink-400: var(--ink-400);
+  --color-ink-500: var(--ink-500);
+  --color-ink-600: var(--ink-600);
+  --color-ink-700: var(--ink-700);
+  --color-ink-800: var(--ink-800);
+  --color-ink-900: var(--ink-900);
+  --color-ink-950: var(--ink-950);
+
+  --font-sans: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+
+  /* Layered shadow system — soft, multi-stop depth.
+     Defined here so Tailwind generates shadow-* utilities. */
+  --shadow-xs: 0 1px 2px rgba(17, 17, 31, 0.04);
+  --shadow-sm: 0 1px 2px rgba(17, 17, 31, 0.05), 0 2px 6px rgba(17, 17, 31, 0.04);
+  --shadow-md: 0 2px 4px rgba(17, 17, 31, 0.04), 0 8px 20px rgba(17, 17, 31, 0.07);
+  --shadow-lg: 0 4px 8px rgba(17, 17, 31, 0.05), 0 18px 40px rgba(29, 21, 80, 0.12);
+  --shadow-glow: 0 12px 36px rgba(81, 56, 230, 0.28);
 }
 
 body {
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
   color: var(--color-text);
   background: var(--color-bg);
+  font-feature-settings: 'ss01', 'cv01';
+  text-rendering: optimizeLegibility;
 }
 
+/* Pretendard — variable axis gives full weight range for the type scale */
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2')
+    format('woff2-variations');
+}
+
+/* Static fallbacks (kept from original CDN) */
 @font-face {
   font-family: 'Pretendard';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-}
-
 @font-face {
   font-family: 'Pretendard';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
   font-weight: 600;
   font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Display typography: tight tracking, balanced leading ── */
+.display {
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+  font-weight: 800;
+  word-break: keep-all;
+}
+.display-sm {
+  letter-spacing: -0.028em;
+  line-height: 1.12;
+  font-weight: 800;
+  word-break: keep-all;
+}
+.balance {
+  text-wrap: balance;
+  word-break: keep-all;
+}
+.eyebrow {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.72rem;
+}
+
+/* ── Backgrounds: grid pattern, radial mesh, grain ── */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(81, 56, 230, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(81, 56, 230, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.bg-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.bg-dots-dark {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.mask-fade-b {
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
+.mask-radial {
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 40%, transparent 100%);
+}
+
+/* Grain / noise overlay — subtle film texture */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Gradient mesh blobs (replaces flat blurred circles) */
+.mesh-aurora {
+  background:
+    radial-gradient(40% 50% at 18% 22%, rgba(124, 125, 255, 0.55), transparent 60%),
+    radial-gradient(45% 55% at 82% 18%, rgba(139, 77, 255, 0.45), transparent 62%),
+    radial-gradient(50% 60% at 70% 90%, rgba(81, 56, 230, 0.5), transparent 60%),
+    radial-gradient(45% 50% at 12% 88%, rgba(255, 180, 61, 0.18), transparent 60%);
+}
+
+/* ── Gradient text & borders ── */
+.text-gradient {
+  background: linear-gradient(100deg, var(--brand-300) 0%, var(--violet-400) 45%, var(--accent-soft) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.text-gradient-ink {
+  background: linear-gradient(100deg, var(--brand-700) 0%, var(--violet-600) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Gradient-border card: padding-box + border-box trick */
+.border-gradient {
+  position: relative;
+  background: var(--color-card);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+.border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--brand-300), transparent 40%, transparent 60%, var(--violet-400));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.group:hover > .border-gradient::before,
+.border-gradient:hover::before {
+  opacity: 1;
+}
+
+/* Glass surface (restrained) */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+}
+.glass-dark {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+}
+
+/* CTA glow button */
+.btn-glow {
+  position: relative;
+  background: linear-gradient(135deg, var(--brand-500), var(--violet-600));
+  box-shadow: var(--shadow-glow);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+}
+.btn-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 48px rgba(81, 56, 230, 0.42);
+}
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28), transparent 45%);
+  pointer-events: none;
+}
+
+/* Lift on hover for cards */
+.lift {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── Scroll reveal (IntersectionObserver toggles [data-reveal] -> .is-visible) ── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Ambient float for hero accents */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-14px) scale(1.03); }
+}
+.animate-floaty { animation: floaty 9s ease-in-out infinite; }
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(18px, -10px); }
+}
+.animate-drift { animation: drift 14s ease-in-out infinite; }
+
+/* Marquee for the logo/stat ribbon */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .animate-floaty, .animate-drift, .animate-marquee { animation: none; }
+  .lift:hover, .btn-glow:hover { transform: none; }
+}
+
+/* Focus-visible accessibility ring */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+  border-radius: 6px;
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
 
@@ -255,47 +256,64 @@ const courses = [
   },
 ];
 
-const features = [
+const features: {
+  icon: string;
+  title: string;
+  desc: string;
+  /** bento layout span + visual variant */
+  span: string;
+  variant?: "default" | "feature" | "dark";
+}[] = [
   {
     icon: "📚",
     title: "법령 통째로 이해",
     desc: "1M 컨텍스트로 근로기준법, 산안법, 중처법 전문을 한번에 읽고 분석합니다.",
+    span: "md:col-span-2 lg:col-span-2 lg:row-span-2",
+    variant: "feature",
   },
   {
     icon: "🧮",
     title: "계산은 코드로 검증",
     desc: "퇴직금, 연차수당, 평균임금 — 엑셀 대신 코드로 정확하게.",
+    span: "lg:col-span-2",
   },
   {
     icon: "🎪",
     title: "스킬로 원클릭 자동화",
     desc: "/임금계산 한 번이면 끝. 복잡한 작업을 슬래시 명령어 하나로 실행합니다.",
+    span: "lg:col-span-2",
   },
   {
     icon: "🤝",
     title: "코워크 & 플러그인",
     desc: "사건접수→분석→문서작성→검증까지, 플러그인으로 전문 파이프라인을 구축합니다.",
+    span: "md:col-span-2 lg:col-span-2",
+    variant: "dark",
   },
   {
     icon: "💼",
     title: "엑셀·PPT·크롬에서도",
     desc: "터미널 없이도 OK. 익숙한 엑셀, PPT, 크롬 브라우저에서 바로 Claude를 씁니다.",
+    span: "lg:col-span-2",
   },
   {
     icon: "📝",
     title: "문서 자동 생성",
     desc: "진정서, 의견서, 취업규칙 검토서를 AI와 함께 작성합니다.",
+    span: "lg:col-span-3",
   },
   {
     icon: "🌐",
     title: "배포까지 한번에",
     desc: "코딩 경험 없이도 웹앱을 만들어 Vercel에 배포할 수 있습니다.",
+    span: "lg:col-span-3",
   },
 ];
 
 export default function Home() {
   return (
-    <div>
+    <div className="overflow-x-clip">
+      <ScrollReveal />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
@@ -304,52 +322,133 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800 text-white">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-20 w-96 h-96 bg-amber-300 rounded-full blur-3xl" />
-        </div>
-        <div className="relative max-w-6xl mx-auto px-6 py-24 md:py-32">
-          <div className="inline-block px-4 py-1.5 bg-white/15 backdrop-blur rounded-full text-sm font-medium mb-6">
-            1M 컨텍스트 시대의 AI 활용
+
+      {/* ───────────── Hero ───────────── */}
+      <section className="relative overflow-hidden bg-ink-950 text-white">
+        {/* layered background: mesh aurora + grid + grain */}
+        <div className="absolute inset-0 mesh-aurora opacity-70" aria-hidden="true" />
+        <div className="absolute inset-0 bg-grid-dark mask-radial opacity-60" aria-hidden="true" />
+        <div
+          className="absolute top-24 -left-20 h-72 w-72 rounded-full bg-violet-500/30 blur-[120px] animate-floaty"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute -bottom-10 right-0 h-80 w-80 rounded-full bg-brand-500/30 blur-[120px] animate-drift"
+          aria-hidden="true"
+        />
+        <div className="grain absolute inset-0" aria-hidden="true" />
+
+        <div className="relative max-w-6xl mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-28">
+          <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+            {/* Copy column */}
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-sm font-medium text-white/85 backdrop-blur">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-300 opacity-75" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand-300" />
+                </span>
+                1M 컨텍스트 시대의 AI 활용
+              </div>
+
+              <h1 className="display mt-7 text-[2.7rem] leading-[1.05] sm:text-6xl md:text-[4.2rem]">
+                코딩 몰라도 괜찮아요.
+                <br />
+                <span className="text-gradient">Claude Code</span>
+                <span className="text-white">가 있으니까.</span>
+              </h1>
+
+              <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/65 md:text-xl balance">
+                19년차 노무사가 직접 만든 실무 교육 과정.
+                <br className="hidden sm:block" />
+                터미널 여는 법부터 웹앱 배포까지, 노무사의 일하는 방식을 바꿔보세요.
+              </p>
+
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <Link
+                  href="/curriculum"
+                  className="btn-glow inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-semibold text-white"
+                >
+                  커리큘럼 보기
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </Link>
+                <Link
+                  href="/lessons"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur transition-colors hover:bg-white/10"
+                >
+                  바로 시작하기
+                </Link>
+              </div>
+
+              {/* stat ribbon */}
+              <dl className="mt-12 flex flex-wrap gap-x-10 gap-y-4">
+                {[
+                  { k: "13단계", v: "체계적 커리큘럼" },
+                  { k: "62개 강의", v: "단계별 실습" },
+                  { k: "59시간", v: "현업 노무사 설계" },
+                ].map((s) => (
+                  <div key={s.k}>
+                    <dt className="text-2xl font-extrabold tracking-tight text-white">{s.k}</dt>
+                    <dd className="mt-0.5 text-sm text-white/45">{s.v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
+            {/* Visual column — terminal mock (decorative) */}
+            <div className="relative" aria-hidden="true">
+              <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-brand-500/20 to-violet-600/10 blur-2xl" />
+              <div className="border-gradient relative rounded-2xl bg-ink-900/80 p-1.5 shadow-2xl backdrop-blur">
+                <div className="rounded-xl bg-ink-950/90 ring-1 ring-white/5">
+                  <div className="flex items-center gap-2 border-b border-white/5 px-4 py-3">
+                    <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+                    <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+                    <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+                    <span className="ml-3 text-xs font-medium text-white/35">claude — 노무사 작업실</span>
+                  </div>
+                  <div className="space-y-3 p-5 font-mono text-[13px] leading-relaxed">
+                    <p className="text-white/45">
+                      <span className="text-brand-300">›</span> 퇴직금 계산기 만들어줘
+                    </p>
+                    <div className="rounded-lg border border-white/5 bg-white/[0.03] p-3 text-white/70">
+                      <p className="text-violet-300">● 평균임금 산정 코드를 작성합니다…</p>
+                      <p className="mt-1.5 text-white/40">
+                        ✓ 3개월 임금총액 / 총일수
+                      </p>
+                      <p className="text-white/40">✓ 통상임금 비교 검증</p>
+                      <p className="text-white/40">✓ xlsx 산식표 출력</p>
+                    </div>
+                    <p className="text-white/45">
+                      <span className="text-brand-300">›</span> 취업규칙 위반 잡아줘
+                    </p>
+                    <div className="flex items-center gap-2 text-emerald-300/90">
+                      <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                      근로기준법 전문 분석 중…
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-            코딩 몰라도 괜찮아요.
-            <br />
-            <span className="text-amber-300">Claude Code</span>가 있으니까.
-          </h1>
-          <p className="text-lg md:text-xl text-indigo-100 max-w-2xl mb-10 leading-relaxed">
-            19년차 노무사가 직접 만든 실무 교육 과정.
-            <br />
-            터미널 여는 법부터 웹앱 배포까지, 노무사의 일하는 방식을 바꿔보세요.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Link
-              href="/curriculum"
-              className="px-8 py-3.5 bg-white text-indigo-700 font-semibold rounded-xl hover:bg-indigo-50 transition-colors shadow-lg"
-            >
-              커리큘럼 보기
-            </Link>
-            <Link
-              href="/lessons"
-              className="px-8 py-3.5 bg-white/15 backdrop-blur text-white font-semibold rounded-xl hover:bg-white/25 transition-colors border border-white/20"
-            >
-              바로 시작하기
-            </Link>
-          </div>
         </div>
+
+        {/* seam fade into light page */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#fbfbfe]" aria-hidden="true" />
       </section>
 
-      {/* Who is this for */}
-      <section className="max-w-6xl mx-auto px-6 py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">이런 노무사를 위해 만들었습니다</h2>
-          <p className="text-slate-500 text-lg">
+      {/* ───────────── Who is this for ───────────── */}
+      <section className="relative mx-auto max-w-6xl px-6 py-24">
+        <div className="max-w-2xl" data-reveal>
+          <p className="eyebrow text-brand-600">FOR YOU</p>
+          <h2 className="display-sm mt-3 text-3xl md:text-4xl text-ink-900">
+            이런 노무사를 위해 만들었습니다
+          </h2>
+          <p className="mt-4 text-lg text-ink-500 balance">
             &ldquo;AI 써보고 싶은데, 어디서부터 시작해야 할지 모르겠어요&rdquo;
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
           {[
             {
               emoji: "🤔",
@@ -369,62 +468,148 @@ export default function Home() {
           ].map((item, i) => (
             <div
               key={i}
-              className="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
+              data-reveal
+              style={{ ["--reveal-delay" as string]: `${i * 90}ms` }}
+              className="border-gradient lift group rounded-2xl bg-white p-7 shadow-sm"
             >
-              <div className="text-4xl mb-4">{item.emoji}</div>
-              <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-              <p className="text-slate-500 leading-relaxed">{item.desc}</p>
+              <div className="flex items-center justify-between">
+                <span className="grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-2xl ring-1 ring-brand-100">
+                  {item.emoji}
+                </span>
+                <span className="font-mono text-sm font-bold text-ink-300 transition-colors group-hover:text-brand-400">
+                  0{i + 1}
+                </span>
+              </div>
+              <h3 className="mt-5 text-lg font-bold text-ink-900">{item.title}</h3>
+              <p className="mt-2 leading-relaxed text-ink-500">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Features */}
-      <section className="bg-slate-50 border-y border-slate-100">
-        <div className="max-w-6xl mx-auto px-6 py-20">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            1M 컨텍스트로 달라지는 노무사 업무
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f, i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
-                <div className="text-3xl mb-3">{f.icon}</div>
-                <h3 className="font-semibold mb-2">{f.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{f.desc}</p>
-              </div>
-            ))}
+      {/* ───────────── Features (Bento) ───────────── */}
+      <section className="relative overflow-hidden border-y border-ink-200/70 bg-ink-50">
+        <div className="absolute inset-0 bg-grid opacity-50 mask-fade-b" aria-hidden="true" />
+        <div className="relative mx-auto max-w-6xl px-6 py-24">
+          <div className="max-w-2xl" data-reveal>
+            <p className="eyebrow text-brand-600">WHAT CHANGES</p>
+            <h2 className="display-sm mt-3 text-3xl md:text-4xl text-ink-900">
+              1M 컨텍스트로 달라지는 노무사 업무
+            </h2>
+          </div>
+
+          <div className="mt-12 grid auto-rows-[minmax(150px,auto)] grid-cols-1 gap-4 md:grid-cols-4 lg:grid-cols-6">
+            {features.map((f, i) => {
+              if (f.variant === "feature") {
+                return (
+                  <article
+                    key={i}
+                    data-reveal
+                    className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-ink-950 p-8 text-white ${f.span}`}
+                  >
+                    <div className="absolute inset-0 mesh-aurora opacity-50" aria-hidden="true" />
+                    <div className="absolute inset-0 bg-dots-dark opacity-50" aria-hidden="true" />
+                    <div className="relative">
+                      <span className="grid h-14 w-14 place-items-center rounded-2xl bg-white/10 text-3xl backdrop-blur ring-1 ring-white/15">
+                        {f.icon}
+                      </span>
+                      <h3 className="mt-6 text-2xl font-extrabold tracking-tight">{f.title}</h3>
+                      <p className="mt-3 max-w-sm text-[15px] leading-relaxed text-white/65">
+                        {f.desc}
+                      </p>
+                    </div>
+                    <div className="relative mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-brand-200 ring-1 ring-white/10">
+                      8만자 법령도 한 번에
+                    </div>
+                  </article>
+                );
+              }
+              if (f.variant === "dark") {
+                return (
+                  <article
+                    key={i}
+                    data-reveal
+                    className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-violet-700 p-7 text-white shadow-glow ${f.span}`}
+                  >
+                    <div className="absolute -right-6 -top-6 h-28 w-28 rounded-full bg-white/15 blur-2xl" aria-hidden="true" />
+                    <span className="relative grid h-12 w-12 place-items-center rounded-xl bg-white/15 text-2xl backdrop-blur">
+                      {f.icon}
+                    </span>
+                    <div className="relative mt-5">
+                      <h3 className="text-lg font-bold">{f.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-white/80">{f.desc}</p>
+                    </div>
+                  </article>
+                );
+              }
+              return (
+                <article
+                  key={i}
+                  data-reveal
+                  className={`border-gradient lift group flex flex-col rounded-3xl bg-white p-7 shadow-sm ${f.span}`}
+                >
+                  <span className="grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-2xl ring-1 ring-brand-100 transition-transform duration-300 group-hover:-translate-y-0.5">
+                    {f.icon}
+                  </span>
+                  <h3 className="mt-5 text-lg font-bold text-ink-900">{f.title}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-ink-500">{f.desc}</p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Curriculum Preview */}
-      <section className="max-w-6xl mx-auto px-6 py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">13단계 커리큘럼</h2>
-          <p className="text-slate-500 text-lg">
-            터미널을 처음 여는 순간부터, 나만의 웹서비스를 세상에 공개하는 날까지
-          </p>
+      {/* ───────────── Curriculum Preview ───────────── */}
+      <section className="mx-auto max-w-6xl px-6 py-24">
+        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end" data-reveal>
+          <div className="max-w-xl">
+            <p className="eyebrow text-brand-600">CURRICULUM</p>
+            <h2 className="display-sm mt-3 text-3xl md:text-4xl text-ink-900">13단계 커리큘럼</h2>
+            <p className="mt-4 text-lg text-ink-500 balance">
+              터미널을 처음 여는 순간부터, 나만의 웹서비스를 세상에 공개하는 날까지
+            </p>
+          </div>
+          <Link
+            href="/curriculum"
+            className="group hidden shrink-0 items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700 md:inline-flex"
+          >
+            전체 보기
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-0.5" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </Link>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {courses.map((course, i) => (
             <div
               key={i}
-              className="group bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all overflow-hidden"
+              data-reveal
+              style={{ ["--reveal-delay" as string]: `${(i % 4) * 70}ms` }}
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-ink-200/80 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg"
             >
-              <div className={`h-2 bg-gradient-to-r ${course.color}`} />
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl">{course.emoji}</span>
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+              {/* gradient accent rail */}
+              <div className={`h-1 w-full bg-gradient-to-r ${course.color}`} />
+              <div className="flex flex-1 flex-col p-6">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-ink-400">
                     {course.phase}
                   </span>
+                  <span
+                    className={`grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br ${course.color} text-sm font-extrabold text-white shadow-sm`}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                 </div>
-                <h3 className="text-lg font-bold mb-1">{course.title}</h3>
-                <p className="text-sm text-slate-400 mb-4">{course.subtitle}</p>
-                <ul className="space-y-2">
+                <h3 className="mt-4 text-[17px] font-bold leading-snug text-ink-900">
+                  {course.title}
+                </h3>
+                <p className="mt-1 text-sm text-ink-400">{course.subtitle}</p>
+                <ul className="mt-5 space-y-2 border-t border-dashed border-ink-200 pt-4">
                   {course.lessons.map((lesson, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-slate-600">
-                      <span className="text-indigo-400 mt-0.5 shrink-0">▸</span>
+                    <li key={j} className="flex items-start gap-2 text-[13px] leading-relaxed text-ink-600">
+                      <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-brand-400" />
                       {lesson}
                     </li>
                   ))}
@@ -433,54 +618,78 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <div className="text-center mt-10">
+
+        <div className="mt-12 text-center" data-reveal>
           <Link
             href="/curriculum"
-            className="inline-block px-8 py-3.5 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors"
+            className="btn-glow inline-flex items-center gap-2 rounded-full px-8 py-3.5 font-semibold text-white"
           >
             전체 커리큘럼 자세히 보기
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
           </Link>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="max-w-3xl mx-auto px-6 py-20">
-        <h2 className="text-3xl font-bold text-center mb-12">
-          자주 묻는 질문
-        </h2>
-        <div className="space-y-4">
-          {faqs.map((faq, i) => (
-            <details
-              key={i}
-              className="group bg-white rounded-2xl border border-slate-100 shadow-sm"
+      {/* ───────────── FAQ ───────────── */}
+      <section className="border-y border-ink-200/70 bg-ink-50">
+        <div className="mx-auto max-w-3xl px-6 py-24">
+          <div className="text-center" data-reveal>
+            <p className="eyebrow text-brand-600">FAQ</p>
+            <h2 className="display-sm mt-3 text-3xl md:text-4xl text-ink-900">자주 묻는 질문</h2>
+          </div>
+          <div className="mt-12 space-y-3">
+            {faqs.map((faq, i) => (
+              <details
+                key={i}
+                data-reveal
+                style={{ ["--reveal-delay" as string]: `${i * 50}ms` }}
+                className="group rounded-2xl border border-ink-200/80 bg-white shadow-sm transition-colors open:border-brand-200 open:shadow-md"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-6 text-[17px] font-semibold text-ink-900 [&::-webkit-details-marker]:hidden">
+                  <span className="flex items-start gap-3">
+                    <span className="mt-0.5 font-mono text-sm font-bold text-brand-400">
+                      Q{i + 1}
+                    </span>
+                    {faq.question}
+                  </span>
+                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-brand-50 text-lg text-brand-600 transition-transform duration-300 group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <div className="px-6 pb-6 pl-[3.4rem] leading-relaxed text-ink-600">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ───────────── CTA ───────────── */}
+      <section className="mx-auto max-w-6xl px-6 py-24">
+        <div className="relative overflow-hidden rounded-[2rem] bg-ink-950 px-8 py-16 text-center text-white md:px-16 md:py-20" data-reveal>
+          <div className="absolute inset-0 mesh-aurora opacity-60" aria-hidden="true" />
+          <div className="absolute inset-0 bg-grid-dark opacity-40 mask-radial" aria-hidden="true" />
+          <div className="grain absolute inset-0" aria-hidden="true" />
+          <div className="relative mx-auto max-w-2xl">
+            <h2 className="display-sm text-3xl md:text-5xl">지금 시작해보세요</h2>
+            <p className="mt-5 text-lg leading-relaxed text-white/65 balance">
+              코딩을 몰라도 됩니다. 터미널이 뭔지 몰라도 됩니다.
+              <br className="hidden sm:block" />
+              이 교육 과정이 처음부터 끝까지 함께합니다.
+            </p>
+            <Link
+              href="/lessons"
+              className="btn-glow mt-9 inline-flex items-center gap-2 rounded-full px-9 py-4 text-lg font-bold text-white"
             >
-              <summary className="flex items-center justify-between cursor-pointer p-6 text-lg font-semibold text-slate-800 [&::-webkit-details-marker]:hidden list-none">
-                {faq.question}
-                <span className="text-indigo-400 transition-transform group-open:rotate-45 shrink-0 ml-4 text-xl">+</span>
-              </summary>
-              <div className="px-6 pb-6 text-slate-600 leading-relaxed">
-                {faq.answer}
-              </div>
-            </details>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
-        <div className="max-w-4xl mx-auto px-6 py-16 text-center">
-          <h2 className="text-3xl font-bold mb-4">지금 시작해보세요</h2>
-          <p className="text-indigo-100 text-lg mb-8 leading-relaxed">
-            코딩을 몰라도 됩니다. 터미널이 뭔지 몰라도 됩니다.
-            <br />
-            이 교육 과정이 처음부터 끝까지 함께합니다.
-          </p>
-          <Link
-            href="/lessons"
-            className="inline-block px-10 py-4 bg-white text-indigo-700 font-bold rounded-xl hover:bg-indigo-50 transition-colors shadow-lg text-lg"
-          >
-            첫 번째 강의 시작
-          </Link>
+              첫 번째 강의 시작
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

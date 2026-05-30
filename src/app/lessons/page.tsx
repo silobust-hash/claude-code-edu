@@ -158,53 +158,66 @@ const allLessons = [
 
 export default function LessonsPage() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-16">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">강의 목록</h1>
-        <p className="text-slate-500 text-lg">
-          순서대로 따라가세요. 각 강의는 독립적이지만, 앞 단계를 먼저 보시면 더 잘 이해됩니다.
-        </p>
-      </div>
+    <div>
+      {/* Page header on ink band */}
+      <section className="relative overflow-hidden bg-ink-950 text-white">
+        <div className="absolute inset-0 mesh-aurora opacity-50" aria-hidden="true" />
+        <div className="absolute inset-0 bg-grid-dark mask-radial opacity-55" aria-hidden="true" />
+        <div className="grain absolute inset-0" aria-hidden="true" />
+        <div className="relative mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
+          <p className="eyebrow text-brand-300">LESSONS · 62 강의</p>
+          <h1 className="display mt-4 text-4xl md:text-5xl">강의 목록</h1>
+          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/65 balance">
+            순서대로 따라가세요. 각 강의는 독립적이지만, 앞 단계를 먼저 보시면 더 잘 이해됩니다.
+          </p>
+        </div>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-[#fbfbfe]" aria-hidden="true" />
+      </section>
 
-      <div className="space-y-10">
-        {allLessons.map((group) => (
-          <div key={group.phase}>
-            <h2 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-              <span className="text-xs font-bold text-indigo-500 bg-indigo-50 px-2.5 py-1 rounded-full">
-                Phase {group.phase}
-              </span>
-              {group.phaseTitle}
-            </h2>
-            <div className="space-y-2">
-              {group.lessons.map((lesson) => (
-                <a
-                  key={lesson.id}
-                  href={`/lessons/${lesson.id}`}
-                  className="flex items-center gap-4 p-4 rounded-xl border transition-all bg-white border-slate-200 hover:border-indigo-300 hover:shadow-sm"
-                >
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0 bg-indigo-100 text-indigo-600">
-                    {lesson.id}
-                  </div>
-                  <div className="flex-1">
-                    <span className="font-medium text-slate-700">{lesson.title}</span>
-                  </div>
-                  <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">
-                    수강 가능
-                  </span>
-                </a>
-              ))}
+      <div className="mx-auto max-w-4xl px-6 py-16">
+        <div className="space-y-12">
+          {allLessons.map((group) => (
+            <div key={group.phase}>
+              <h2 className="mb-4 flex items-center gap-2.5 text-lg font-bold text-ink-900">
+                <span className="rounded-full bg-brand-600 px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-white">
+                  Phase {group.phase}
+                </span>
+                {group.phaseTitle}
+              </h2>
+              <div className="space-y-2">
+                {group.lessons.map((lesson) => (
+                  <a
+                    key={lesson.id}
+                    href={`/lessons/${lesson.id}`}
+                    className="group flex items-center gap-4 rounded-2xl border border-ink-200/80 bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md"
+                  >
+                    <div className="grid h-9 min-w-[2.6rem] shrink-0 place-items-center rounded-lg bg-brand-50 px-2 font-mono text-xs font-bold text-brand-600 ring-1 ring-brand-100 transition-colors group-hover:bg-brand-600 group-hover:text-white">
+                      {lesson.id}
+                    </div>
+                    <div className="flex-1">
+                      <span className="font-semibold text-ink-800 transition-colors group-hover:text-brand-700">
+                        {lesson.title}
+                      </span>
+                    </div>
+                    <span className="hidden shrink-0 items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-600 sm:inline-flex">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      수강 가능
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <div className="mt-16 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100 text-center">
-        <h3 className="text-lg font-bold mb-2">전체 13단계, 62개 강의</h3>
-        <p className="text-slate-500 text-sm leading-relaxed">
-          Phase 1부터 순서대로 따라가시면 됩니다.
-          <br />
-          코딩 경험이 전혀 없어도 괜찮습니다. 함께 가봅시다!
-        </p>
+        <div className="border-gradient relative mt-16 rounded-2xl bg-white p-8 text-center shadow-sm">
+          <h3 className="text-lg font-bold text-ink-900">전체 13단계, 62개 강의</h3>
+          <p className="mt-2 text-sm leading-relaxed text-ink-500">
+            Phase 1부터 순서대로 따라가시면 됩니다.
+            <br />
+            코딩 경험이 전혀 없어도 괜찮습니다. 함께 가봅시다!
+          </p>
+        </div>
       </div>
     </div>
   );

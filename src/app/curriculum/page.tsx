@@ -502,9 +502,27 @@ const curriculum = [
   },
 ];
 
+// Static gradient literals (Tailwind v4 scans these at build time).
+// Order matches the `curriculum` phases above.
+const phaseRail = [
+  "from-amber-400",
+  "from-indigo-400",
+  "from-emerald-400",
+  "from-lime-400",
+  "from-sky-400",
+  "from-orange-400",
+  "from-yellow-400",
+  "from-blue-400",
+  "from-rose-400",
+  "from-teal-400",
+  "from-violet-400",
+  "from-fuchsia-400",
+  "from-cyan-400",
+];
+
 export default function CurriculumPage() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-16">
+    <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
@@ -513,74 +531,94 @@ export default function CurriculumPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold mb-4">전체 커리큘럼</h1>
-        <p className="text-slate-500 text-lg leading-relaxed">
-          총 13단계, 약 59시간 분량의 교육 과정입니다.
-          <br />
-          순서대로 따라가면 코딩 경험 없이도 웹앱 배포까지 가능합니다.
-        </p>
-      </div>
 
-      <div className="space-y-12">
-        {curriculum.map((phase, i) => (
-          <div key={i} className={`border-l-4 ${phase.color} pl-6`}>
-            <div className="flex items-center gap-3 mb-1">
-              <span className="text-3xl">{phase.emoji}</span>
-              <div>
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                  {phase.phase}
+      {/* Page header on ink band (sits under the dark nav) */}
+      <section className="relative overflow-hidden bg-ink-950 text-white">
+        <div className="absolute inset-0 mesh-aurora opacity-50" aria-hidden="true" />
+        <div className="absolute inset-0 bg-grid-dark mask-radial opacity-55" aria-hidden="true" />
+        <div className="grain absolute inset-0" aria-hidden="true" />
+        <div className="relative mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
+          <p className="eyebrow text-brand-300">CURRICULUM · 13 PHASES</p>
+          <h1 className="display mt-4 text-4xl md:text-5xl">전체 커리큘럼</h1>
+          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/65 balance">
+            총 13단계, 약 59시간 분량의 교육 과정입니다.
+            <br className="hidden sm:block" />
+            순서대로 따라가면 코딩 경험 없이도 웹앱 배포까지 가능합니다.
+          </p>
+        </div>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-[#fbfbfe]" aria-hidden="true" />
+      </section>
+
+      <div className="mx-auto max-w-4xl px-6 py-16">
+        <div className="space-y-14">
+          {curriculum.map((phase, i) => (
+            <div key={i} className="relative pl-7">
+              {/* gradient phase rail */}
+              <div className={`absolute left-0 top-1.5 bottom-1 w-1 rounded-full bg-gradient-to-b ${phaseRail[i % phaseRail.length]} to-transparent`} />
+              <div className="flex items-center gap-3">
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-white text-2xl shadow-sm ring-1 ring-ink-200">
+                  {phase.emoji}
                 </span>
-                <span className="text-xs text-slate-400 ml-3">{phase.duration}</span>
-              </div>
-            </div>
-            <h2 className="text-2xl font-bold mb-1">{phase.title}</h2>
-            <p className="text-slate-400 mb-6">{phase.subtitle}</p>
-
-            <div className="space-y-4">
-              {phase.lessons.map((lesson, j) => (
-                <div
-                  key={j}
-                  className={`${phase.bgColor} rounded-xl p-5 hover:shadow-sm transition-shadow`}
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <h3 className="font-semibold mb-1">
-                        <span className="text-slate-400 mr-2 text-sm">
-                          {i + 1}.{j + 1}
-                        </span>
-                        {lesson.title}
-                      </h3>
-                      <p className="text-sm text-slate-500 leading-relaxed">{lesson.desc}</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 mt-3">
-                    {lesson.tags.map((tag, k) => (
-                      <span
-                        key={k}
-                        className="text-xs px-2.5 py-1 bg-white/80 rounded-full text-slate-500 font-medium"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                <div>
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-ink-400">
+                      {phase.phase}
+                    </span>
+                    <span className="rounded-full bg-ink-100 px-2 py-0.5 text-[11px] font-medium text-ink-500">
+                      {phase.duration}
+                    </span>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+              </div>
+              <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-ink-900">{phase.title}</h2>
+              <p className="mt-1 text-ink-400">{phase.subtitle}</p>
 
-      <div className="mt-16 text-center">
-        <div className="inline-block bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100">
-          <p className="text-lg font-semibold mb-2">준비되셨나요?</p>
-          <p className="text-slate-500 mb-6">Phase 1부터 차근차근 시작해봅시다.</p>
-          <Link
-            href="/lessons"
-            className="inline-block px-8 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors"
-          >
-            강의 시작하기
-          </Link>
+              <div className="mt-6 space-y-3">
+                {phase.lessons.map((lesson, j) => (
+                  <div
+                    key={j}
+                    className="group rounded-2xl border border-ink-200/80 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="mt-0.5 grid h-7 min-w-[2.6rem] place-items-center rounded-lg bg-brand-50 px-2 font-mono text-xs font-bold text-brand-600 ring-1 ring-brand-100">
+                        {i + 1}.{j + 1}
+                      </span>
+                      <div className="flex-1">
+                        <h3 className="font-bold text-ink-900">{lesson.title}</h3>
+                        <p className="mt-1 text-sm leading-relaxed text-ink-500">{lesson.desc}</p>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {lesson.tags.map((tag, k) => (
+                            <span
+                              key={k}
+                              className="rounded-full bg-ink-100 px-2.5 py-1 text-xs font-medium text-ink-500"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16 text-center">
+          <div className="border-gradient relative inline-block rounded-2xl bg-white p-8 shadow-sm">
+            <p className="text-lg font-bold text-ink-900">준비되셨나요?</p>
+            <p className="mt-1.5 text-ink-500">Phase 1부터 차근차근 시작해봅시다.</p>
+            <Link
+              href="/lessons"
+              className="btn-glow mt-6 inline-flex items-center gap-2 rounded-full px-8 py-3 font-semibold text-white"
+            >
+              강의 시작하기
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
