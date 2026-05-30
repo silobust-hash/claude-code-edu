@@ -67,6 +67,7 @@ const personJsonLd = {
   url: "https://silronomu.com",
   sameAs: [
     "https://blog.silronomu.com",
+    "https://ai-school.silronomu.com",
     "https://www.threads.com/@silrobag",
   ],
 };
@@ -123,6 +124,8 @@ export default function RootLayout({
             <p className="mt-1">1M 컨텍스트 시대, 노무사의 새로운 무기</p>
             <div className="flex justify-center gap-4 mt-3">
               <a href="https://silronomu.com/" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600 transition-colors">홈페이지</a>
+              <span className="text-slate-300">|</span>
+              <a href="https://ai-school.silronomu.com" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600 transition-colors">AI업무학교</a>
               <span className="text-slate-300">|</span>
               <a href="https://www.threads.com/@silrobag?hl=ko" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600 transition-colors">Threads</a>
             </div>
