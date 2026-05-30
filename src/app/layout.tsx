@@ -109,6 +109,23 @@ const educationalOrgJsonLd = {
   url: SITE_URL,
   sameAs: SAME_AS,
   founder: { "@id": `${SITE_URL}/#person` },
+  telephone: "+82-62-521-5678",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "금재로 27, 3층",
+    addressLocality: "북구",
+    addressRegion: "광주광역시",
+    postalCode: "61239",
+    addressCountry: "KR",
+  },
+  geo: { "@type": "GeoCoordinates", latitude: 35.1741, longitude: 126.9123 },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "18:00",
+  },
+  areaServed: { "@type": "Country", name: "대한민국" },
 };
 
 const websiteJsonLd = {
