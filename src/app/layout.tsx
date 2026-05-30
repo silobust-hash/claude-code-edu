@@ -33,7 +33,10 @@ export const metadata: Metadata = {
     description: "코딩 경험 없는 비개발자를 위한 클로드 코드 실전 강의. 12단계 52개 강의로 AI 업무 자동화.",
   },
   verification: {
-    google: "bRgnvlb-svjtVk7G_TzQ4Upk4pjpA6VtOX4Mg1sTy9w",
+    google: [
+      "bRgnvlb-svjtVk7G_TzQ4Upk4pjpA6VtOX4Mg1sTy9w",
+      "jDjQK62YKg_1xwI2u6s_g0vlKnPswsoAdYUf_jnPQk8",
+    ],
     other: {
       "naver-site-verification": "b14dc4d237c8ed03a4d32fed0bc1af1d6ee68b99",
     },
