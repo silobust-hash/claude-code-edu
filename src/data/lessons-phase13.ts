@@ -1283,7 +1283,7 @@ export const lessonsPhase13: Record<string, any> = {
       summary:
         "Ultracode(울트라코드) 설정과 Claude.ai·Cowork의 effort control(노력 제어)로 작업 깊이를 조절하는 방법을 배웁니다. 노무 업무에서 '깊게 vs 빠르게'를 언제 선택할지 실전 기준을 세웁니다.",
       prev: "13-8",
-      next: null,
+      next: "14-1",
       sections: [
         {
           heading: "effort control이란?",

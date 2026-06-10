@@ -7,6 +7,7 @@ import { lessonsWorktree } from "./lessons-worktree";
 import { lessonsPhase9 as lessonsPhase11 } from "./lessons-phase9";
 import { lessonsPhase12 } from "./lessons-phase12";
 import { lessonsPhase13 } from "./lessons-phase13";
+import { lessonsPhase14 } from "./lessons-phase14";
 import { lessonGlossary } from "./lessons-glossary";
 import { lessonsVisualization } from "./lessons-visualization";
 
@@ -22,7 +23,8 @@ export const lessons: Record<string, any> = {
   ...lessonsPhase11,
   ...lessonsPhase12,
   ...lessonsPhase13,
+  ...lessonsPhase14,
 };
 
-export const TOTAL_PHASES = 13;
+export const TOTAL_PHASES = 14;
 export const TOTAL_LESSONS = Object.keys(lessons).length;

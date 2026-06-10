@@ -6,11 +6,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com"
 
 export const metadata: Metadata = {
   title: "전체 커리큘럼",
-  description: "클로드 코드 13단계 62강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
+  description: "클로드 코드 14단계 64강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
   alternates: { canonical: "/curriculum" },
   openGraph: {
     title: "전체 커리큘럼 | 노무사 x Claude Code",
-    description: "클로드 코드 13단계 62강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
+    description: "클로드 코드 14단계 64강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
     url: `${SITE_URL}/curriculum`,
   },
 };
@@ -500,6 +500,27 @@ const curriculum = [
       },
     ],
   },
+  {
+    phase: "Phase 14",
+    title: "2026 최전선",
+    subtitle: "Mythos급 모델 Fable 5와 루프엔지니어링 — AI 활용의 최신 지형",
+    emoji: "🌌",
+    duration: "약 2시간",
+    color: "border-purple-400",
+    bgColor: "bg-purple-50",
+    lessons: [
+      {
+        title: "Claude Fable 5 — Mythos급 최신 모델, 노무사에게 무엇이 달라졌나",
+        desc: "2026년 6월 공개된 Anthropic 최강 공개 모델 Fable 5의 성능·안전장치·가격을 노무사 실무 관점에서 정리하고, Opus 4.8과의 사용 구분 기준을 세웁니다.",
+        tags: ["개념 이해", "최신모델", "NEW"],
+      },
+      {
+        title: "루프엔지니어링 — 프롬프트 치는 사람에서 루프 설계하는 사람으로",
+        desc: "AI가 스스로 일감을 찾고 실행하고 검증하는 루프를 설계하는 2026년의 새 패러다임. 5대 구성요소와 노무사무소 아침 루프 실전 설계를 다룹니다.",
+        tags: ["개념 이해", "자동화", "NEW"],
+      },
+    ],
+  },
 ];
 
 // Static gradient literals (Tailwind v4 scans these at build time).
@@ -518,6 +539,7 @@ const phaseRail = [
   "from-violet-400",
   "from-fuchsia-400",
   "from-cyan-400",
+  "from-purple-400",
 ];
 
 export default function CurriculumPage() {
@@ -538,10 +560,10 @@ export default function CurriculumPage() {
         <div className="absolute inset-0 bg-grid-dark mask-radial opacity-55" aria-hidden="true" />
         <div className="grain absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
-          <p className="eyebrow text-brand-300">CURRICULUM · 13 PHASES</p>
+          <p className="eyebrow text-brand-300">CURRICULUM · 14 PHASES</p>
           <h1 className="display mt-4 text-4xl md:text-5xl">전체 커리큘럼</h1>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/65 balance">
-            총 13단계, 약 59시간 분량의 교육 과정입니다.
+            총 14단계, 약 61시간 분량의 교육 과정입니다.
             <br className="hidden sm:block" />
             순서대로 따라가면 코딩 경험 없이도 웹앱 배포까지 가능합니다.
           </p>

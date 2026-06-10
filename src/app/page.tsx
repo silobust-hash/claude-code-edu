@@ -3,10 +3,11 @@ import type { Metadata } from "next";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
+const PERSON_ID = "https://silronomu.com/#person";
 
 export const metadata: Metadata = {
   title: "클로드 코드 강의 | 19년차 노무사가 가르치는 Claude Code 실무 교육",
-  description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 강의. 19년차 공인노무사 박실로가 터미널 여는 법부터 웹앱 배포까지, 13단계 62개 강의로 AI 업무 자동화를 가르칩니다.",
+  description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 강의. 19년차 공인노무사 박실로가 터미널 여는 법부터 웹앱 배포까지, 14단계 64개 강의로 AI 업무 자동화를 가르칩니다.",
   alternates: { canonical: "/" },
 };
 
@@ -15,10 +16,11 @@ const courseJsonLd = {
   "@type": "Course",
   "@id": `${SITE_URL}/#course`,
   name: "클로드 코드(Claude Code) 실전 강의",
-  description: "19년차 노무사가 가르치는 비개발자를 위한 클로드 코드 실무 교육. 터미널 여는 법부터 웹앱 배포까지 13단계 62개 강의.",
+  description: "19년차 노무사가 가르치는 비개발자를 위한 클로드 코드 실무 교육. 터미널 여는 법부터 웹앱 배포까지 14단계 64개 강의.",
   provider: { "@id": `${SITE_URL}/#org` },
   instructor: {
     "@type": "Person",
+    "@id": PERSON_ID,
     name: "박실로",
     jobTitle: "공인노무사",
     description: "19년차 공인노무사이자 클로드 코드 교육자",
@@ -66,7 +68,7 @@ const faqJsonLd = {
       name: "강의를 완료하면 무엇을 할 수 있나요?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "13단계 과정을 완료하면 퇴직금·임금 자동 계산, 취업규칙 검토 자동화, 진정서·의견서 초안 작성, MCP로 Gmail·캘린더·노션 연동, 커스텀 스킬과 플러그인 개발, 그리고 나만의 웹앱을 만들어 배포하는 것까지 가능합니다.",
+        text: "14단계 과정을 완료하면 퇴직금·임금 자동 계산, 취업규칙 검토 자동화, 진정서·의견서 초안 작성, MCP로 Gmail·캘린더·노션 연동, 커스텀 스킬과 플러그인 개발, 그리고 나만의 웹앱을 만들어 배포하는 것까지 가능합니다.",
       },
     },
     {
@@ -74,7 +76,7 @@ const faqJsonLd = {
       name: "클로드 코드 강의는 얼마나 걸리나요?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "총 13단계, 62개 강의로 약 59시간 분량입니다. 자기 페이스에 맞춰 진행할 수 있으며, Phase 1~3(기초)만 마쳐도 실무에 바로 적용할 수 있습니다.",
+        text: "총 14단계, 64개 강의로 약 61시간 분량입니다. 자기 페이스에 맞춰 진행할 수 있으며, Phase 1~3(기초)만 마쳐도 실무에 바로 적용할 수 있습니다.",
       },
     },
     {
@@ -384,9 +386,9 @@ export default function Home() {
               {/* stat ribbon */}
               <dl className="mt-12 flex flex-wrap gap-x-10 gap-y-4">
                 {[
-                  { k: "13단계", v: "체계적 커리큘럼" },
-                  { k: "62개 강의", v: "단계별 실습" },
-                  { k: "59시간", v: "현업 노무사 설계" },
+                  { k: "14단계", v: "체계적 커리큘럼" },
+                  { k: "64개 강의", v: "단계별 실습" },
+                  { k: "61시간", v: "현업 노무사 설계" },
                 ].map((s) => (
                   <div key={s.k}>
                     <dt className="text-2xl font-extrabold tracking-tight text-white">{s.k}</dt>
@@ -565,7 +567,7 @@ export default function Home() {
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end" data-reveal>
           <div className="max-w-xl">
             <p className="eyebrow text-brand-600">CURRICULUM</p>
-            <h2 className="display-sm mt-3 text-3xl md:text-4xl text-ink-900">13단계 커리큘럼</h2>
+            <h2 className="display-sm mt-3 text-3xl md:text-4xl text-ink-900">14단계 커리큘럼</h2>
             <p className="mt-4 text-lg text-ink-500 balance">
               터미널을 처음 여는 순간부터, 나만의 웹서비스를 세상에 공개하는 날까지
             </p>
