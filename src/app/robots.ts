@@ -5,7 +5,10 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com"
 const AI_BOTS = [
   "GPTBot",
   "OAI-SearchBot",
+  "ChatGPT-User",
   "ClaudeBot",
+  "Claude-SearchBot",
+  "Claude-User",
   "anthropic-ai",
   "PerplexityBot",
   "Google-Extended",

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import LessonReactions from "./LessonReactions";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
+const PERSON_ID = "https://silronomu.com/#person";
 
 export const revalidate = 60; // Revalidate every 60 seconds for ISR
 
@@ -77,7 +78,7 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
     headline: lesson.title,
     description: lesson.summary,
     url: `${SITE_URL}/lessons/${id}`,
-    author: { "@type": "Person", name: "박실로", jobTitle: "공인노무사", "@id": `${SITE_URL}/#person` },
+    author: { "@type": "Person", name: "박실로", jobTitle: "공인노무사", "@id": PERSON_ID },
     publisher: { "@type": "Organization", name: "한동노무법인" },
     isPartOf: {
       "@type": "Course",
