@@ -105,6 +105,13 @@ claude --remote --dangerously-skip-permissions -p "50인 사업장 5곳 취업�
         tip: "Auto Mode + --remote 조합은 '야근을 AI에게 시키는' 가장 강력한 방법입니다. 단, 반드시 먼저 소규모로 테스트한 후 대량 작업에 적용하세요."
       }
     ],
+    insights: [
+      {
+        heading: "챗봇은 안내데스크, 에이전트는 경력 비서",
+        content: "2024년 AI는 '답변하는 존재'에서 '스스로 일하는 존재'로 바뀌었습니다. 챗봇은 물어보면 답하는 안내데스크 직원이지만, AI 에이전트는 '다음 주 출장 준비해줘' 한마디에 일정 확인, 항공편 검색, 숙소 예약까지 알아서 처리하는 경력 비서입니다. AI가 도구에서 동료로 바뀌는 출발점이었죠.",
+        source: "AI 에이전트의 시대 (2024)",
+      },
+    ],
     keyTakeaways: [
       "Auto Mode는 반복적인 '허용' 클릭을 없애 대량 작업 효율을 극대화합니다",
       "Auto Mode(claude --enable-auto-mode, Shift+Tab → auto)의 지원 여부는 플랜·버전에 따라 다를 수 있으니 claude --help와 공식 문서로 확인합니다",

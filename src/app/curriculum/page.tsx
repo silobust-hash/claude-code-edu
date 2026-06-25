@@ -6,11 +6,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com"
 
 export const metadata: Metadata = {
   title: "전체 커리큘럼",
-  description: "클로드 코드 15단계 69강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
+  description: "클로드 코드 16단계 71강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
   alternates: { canonical: "/curriculum" },
   openGraph: {
     title: "전체 커리큘럼 | 노무사 x Claude Code",
-    description: "클로드 코드 15단계 69강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
+    description: "클로드 코드 16단계 71강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
     url: `${SITE_URL}/curriculum`,
   },
 };
@@ -557,6 +557,27 @@ const curriculum = [
       },
     ],
   },
+  {
+    phase: "Phase 16",
+    title: "AI 시대를 읽는 눈",
+    subtitle: "독서지도와 지식관리 — 박실로 노무사의 AI 통찰",
+    emoji: "📖",
+    duration: "약 2시간",
+    color: "border-indigo-400",
+    bgColor: "bg-indigo-50",
+    lessons: [
+      {
+        title: "AI·문명 독서지도 — 경량문명에서 종말론까지",
+        desc: "박실로 노무사가 읽은 AI 책들을 낙관~종말 스펙트럼으로 세워 AI 시대 인식틀을 세웁니다. '경고를 아는 낙관'과 경량문명 조직재편 자문 화두까지.",
+        tags: ["개념 이해", "독서·통찰", "NEW"],
+      },
+      {
+        title: "내 지식관리가 곧 AEO다 — AI에게 선택받는 노트 쓰기",
+        desc: "지식관리는 내 암묵지를 AI어로 옮기는 번역입니다. 나를 돕는 AI와 나를 선택할 AI는 같은 종 — 잘 쓴 노트가 잘 발견되는 노트가 되는 원리와 파이프라인.",
+        tags: ["개념 이해", "지식관리·AEO", "NEW"],
+      },
+    ],
+  },
 ];
 
 // Static gradient literals (Tailwind v4 scans these at build time).
@@ -577,6 +598,7 @@ const phaseRail = [
   "from-cyan-400",
   "from-purple-400",
   "from-rose-400",
+  "from-indigo-400",
 ];
 
 export default function CurriculumPage() {
@@ -597,10 +619,10 @@ export default function CurriculumPage() {
         <div className="absolute inset-0 bg-grid-dark mask-radial opacity-55" aria-hidden="true" />
         <div className="grain absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
-          <p className="eyebrow text-brand-300">CURRICULUM · 15 PHASES</p>
+          <p className="eyebrow text-brand-300">CURRICULUM · 16 PHASES</p>
           <h1 className="display mt-4 text-4xl md:text-5xl">전체 커리큘럼</h1>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/65 balance">
-            총 15단계, 약 66시간 분량의 교육 과정입니다.
+            총 16단계, 약 68시간 분량의 교육 과정입니다.
             <br className="hidden sm:block" />
             순서대로 따라가면 코딩 경험 없이도 웹앱 배포까지 가능합니다.
           </p>
