@@ -6,11 +6,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com"
 
 export const metadata: Metadata = {
   title: "전체 커리큘럼",
-  description: "클로드 코드 14단계 64강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
+  description: "클로드 코드 15단계 69강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
   alternates: { canonical: "/curriculum" },
   openGraph: {
     title: "전체 커리큘럼 | 노무사 x Claude Code",
-    description: "클로드 코드 14단계 64강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
+    description: "클로드 코드 15단계 69강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
     url: `${SITE_URL}/curriculum`,
   },
 };
@@ -503,7 +503,7 @@ const curriculum = [
   {
     phase: "Phase 14",
     title: "2026 최전선",
-    subtitle: "Mythos급 모델 Fable 5와 루프엔지니어링 — AI 활용의 최신 지형",
+    subtitle: "Mythos급 모델 Fable 5와 2026 신기능 — AI 활용의 최신 지형",
     emoji: "🌌",
     duration: "약 2시간",
     color: "border-purple-400",
@@ -515,9 +515,45 @@ const curriculum = [
         tags: ["개념 이해", "최신모델", "NEW"],
       },
       {
-        title: "루프엔지니어링 — 프롬프트 치는 사람에서 루프 설계하는 사람으로",
-        desc: "AI가 스스로 일감을 찾고 실행하고 검증하는 루프를 설계하는 2026년의 새 패러다임. 5대 구성요소와 노무사무소 아침 루프 실전 설계를 다룹니다.",
-        tags: ["개념 이해", "자동화", "NEW"],
+        title: "2026 최신 기능 총정리 — Compaction·Memory·Structured Output·Task Budget",
+        desc: "2026년 추가된 Compaction(자동 압축)·Memory(세션 넘는 기억)·Structured Output(형식 보장)·Task Budget(비용 통제)을 노무사 관점에서 한 번에 정리합니다.",
+        tags: ["개념 이해", "최신기능", "NEW"],
+      },
+    ],
+  },
+  {
+    phase: "Phase 15",
+    title: "AI 엔지니어링 5단 진화",
+    subtitle: "프롬프트 → 컨텍스트 → 하네스 → 에이전트 → 루프, 5대 패러다임 완전정복",
+    emoji: "🧭",
+    duration: "약 5시간",
+    color: "border-rose-400",
+    bgColor: "bg-rose-50",
+    lessons: [
+      {
+        title: "프롬프트 엔지니어링 — 무엇을 말할 것인가",
+        desc: "AI 활용 5단 진화의 출발점. 좋은 프롬프트의 4요소와 노무사 업무 패턴, 그리고 똑똑해진 2026년 모델에서 과한 지시가 역효과인 이유를 다룹니다.",
+        tags: ["개념 이해", "프롬프트", "NEW"],
+      },
+      {
+        title: "컨텍스트 엔지니어링 — 무엇을 줄 것인가",
+        desc: "1M 컨텍스트가 무한이 아니라 예산인 이유, 무엇을 줄지 설계하는 노무사 4종 세트, Compaction·메모리로 긴 작업의 맥락을 관리하는 법을 배웁니다.",
+        tags: ["개념 이해", "컨텍스트", "NEW"],
+      },
+      {
+        title: "하네스 엔지니어링 — 어떤 작업대를 만들 것인가",
+        desc: "Agent = Model + Harness 공식과 하네스 5레이어(도구·검증·메모리·가드레일·관측). 같은 모델로 성능을 끌어올린 실제 사례를 노무사 환경에 적용합니다.",
+        tags: ["개념 이해", "하네스", "핵심"],
+      },
+      {
+        title: "에이전트 엔지니어링 — 누구에게 맡길 것인가",
+        desc: "도구 표면 설계, 작성자와 검증자를 분리하는 서브에이전트, 서버가 알아서 돌리는 Managed Agents까지 — AI에게 일을 맡기는 기술을 다룹니다.",
+        tags: ["개념 이해", "에이전트", "NEW"],
+      },
+      {
+        title: "루프 엔지니어링 — 프롬프트 치는 사람에서 루프 설계하는 사람으로",
+        desc: "5단 진화의 정점. AI가 스스로 일감을 찾고 실행하고 검증하는 루프 설계, 5대 구성요소, effort·종료조건·상태관리, 노무사무소 아침 루프 실전을 다룹니다.",
+        tags: ["개념 이해", "자동화", "핵심"],
       },
     ],
   },
@@ -540,6 +576,7 @@ const phaseRail = [
   "from-fuchsia-400",
   "from-cyan-400",
   "from-purple-400",
+  "from-rose-400",
 ];
 
 export default function CurriculumPage() {
@@ -560,10 +597,10 @@ export default function CurriculumPage() {
         <div className="absolute inset-0 bg-grid-dark mask-radial opacity-55" aria-hidden="true" />
         <div className="grain absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
-          <p className="eyebrow text-brand-300">CURRICULUM · 14 PHASES</p>
+          <p className="eyebrow text-brand-300">CURRICULUM · 15 PHASES</p>
           <h1 className="display mt-4 text-4xl md:text-5xl">전체 커리큘럼</h1>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/65 balance">
-            총 14단계, 약 61시간 분량의 교육 과정입니다.
+            총 15단계, 약 66시간 분량의 교육 과정입니다.
             <br className="hidden sm:block" />
             순서대로 따라가면 코딩 경험 없이도 웹앱 배포까지 가능합니다.
           </p>

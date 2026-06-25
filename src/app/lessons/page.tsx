@@ -4,11 +4,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com"
 
 export const metadata: Metadata = {
   title: "강의 목록",
-  description: "클로드 코드 14단계 64강 전체 강의 목록 — Phase 1 AI 시대 이해하기부터 Phase 14 2026 최전선까지, 비개발자 노무사를 위한 단계별 강의를 한눈에 확인하세요.",
+  description: "클로드 코드 15단계 69강 전체 강의 목록 — Phase 1 AI 시대 이해하기부터 Phase 15 AI 엔지니어링 5단 진화까지, 비개발자 노무사를 위한 단계별 강의를 한눈에 확인하세요.",
   alternates: { canonical: "/lessons" },
   openGraph: {
     title: "강의 목록 | 노무사 x Claude Code",
-    description: "클로드 코드 14단계 64강 전체 강의 목록 — Phase 1 AI 시대 이해하기부터 Phase 14 2026 최전선까지, 비개발자 노무사를 위한 단계별 강의를 한눈에 확인하세요.",
+    description: "클로드 코드 15단계 69강 전체 강의 목록 — Phase 1 AI 시대 이해하기부터 Phase 15 AI 엔지니어링 5단 진화까지, 비개발자 노무사를 위한 단계별 강의를 한눈에 확인하세요.",
     url: `${SITE_URL}/lessons`,
   },
 };
@@ -159,7 +159,18 @@ const allLessons = [
     phaseTitle: "2026 최전선",
     lessons: [
       { id: "14-1", title: "Claude Fable 5 — Mythos급 최신 모델, 노무사에게 무엇이 달라졌나", status: "available" },
-      { id: "14-2", title: "루프엔지니어링 — 프롬프트 치는 사람에서 루프 설계하는 사람으로", status: "available" },
+      { id: "14-2", title: "2026 최신 기능 총정리 — Compaction·Memory·Structured Output·Task Budget", status: "available" },
+    ],
+  },
+  {
+    phase: 15,
+    phaseTitle: "AI 엔지니어링 5단 진화",
+    lessons: [
+      { id: "15-1", title: "프롬프트 엔지니어링 — 무엇을 말할 것인가", status: "available" },
+      { id: "15-2", title: "컨텍스트 엔지니어링 — 무엇을 줄 것인가", status: "available" },
+      { id: "15-3", title: "하네스 엔지니어링 — 어떤 작업대를 만들 것인가", status: "available" },
+      { id: "15-4", title: "에이전트 엔지니어링 — 누구에게 맡길 것인가", status: "available" },
+      { id: "15-5", title: "루프 엔지니어링 — 프롬프트 치는 사람에서 루프 설계하는 사람으로", status: "available" },
     ],
   },
 ];
@@ -173,7 +184,7 @@ export default function LessonsPage() {
         <div className="absolute inset-0 bg-grid-dark mask-radial opacity-55" aria-hidden="true" />
         <div className="grain absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
-          <p className="eyebrow text-brand-300">LESSONS · 64 강의</p>
+          <p className="eyebrow text-brand-300">LESSONS · 69 강의</p>
           <h1 className="display mt-4 text-4xl md:text-5xl">강의 목록</h1>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/65 balance">
             순서대로 따라가세요. 각 강의는 독립적이지만, 앞 단계를 먼저 보시면 더 잘 이해됩니다.
@@ -219,7 +230,7 @@ export default function LessonsPage() {
         </div>
 
         <div className="border-gradient relative mt-16 rounded-2xl bg-white p-8 text-center shadow-sm">
-          <h3 className="text-lg font-bold text-ink-900">전체 14단계, 64개 강의</h3>
+          <h3 className="text-lg font-bold text-ink-900">전체 15단계, 69개 강의</h3>
           <p className="mt-2 text-sm leading-relaxed text-ink-500">
             Phase 1부터 순서대로 따라가시면 됩니다.
             <br />
