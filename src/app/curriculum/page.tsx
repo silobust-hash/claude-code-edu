@@ -6,11 +6,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com"
 
 export const metadata: Metadata = {
   title: "전체 커리큘럼",
-  description: "클로드 코드 16단계 71강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
+  description: "클로드 코드 16단계 71강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지, 실행 명령과 검증 로그가 남는 비개발자용 단계별 학습 경로.",
   alternates: { canonical: "/curriculum" },
   openGraph: {
     title: "전체 커리큘럼 | 노무사 x Claude Code",
-    description: "클로드 코드 16단계 71강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지 비개발자용 단계별 학습 경로.",
+    description: "클로드 코드 16단계 71강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지, 실행 명령과 검증 로그가 남는 학습 경로.",
     url: `${SITE_URL}/curriculum`,
   },
 };
@@ -601,6 +601,25 @@ const phaseRail = [
   "from-indigo-400",
 ];
 
+const outcomeStages = [
+  {
+    title: "기초 세팅",
+    desc: "터미널, Node.js, Claude Code 설치와 로그인까지 스스로 재현합니다.",
+  },
+  {
+    title: "업무 자동화",
+    desc: "임금계산, 문서 초안, 취업규칙 검토처럼 반복 업무를 Claude Code에 연결합니다.",
+  },
+  {
+    title: "도구 확장",
+    desc: "스킬, MCP, 플러그인, 워크트리로 내 사무실용 작업 루틴을 만듭니다.",
+  },
+  {
+    title: "배포와 운영",
+    desc: "웹앱을 만들고 배포한 뒤 오류 로그와 개선 루프까지 관리합니다.",
+  },
+];
+
 export default function CurriculumPage() {
   return (
     <div>
@@ -631,6 +650,18 @@ export default function CurriculumPage() {
       </section>
 
       <div className="mx-auto max-w-4xl px-6 py-16">
+        <section className="mb-14 grid gap-3 md:grid-cols-4">
+          {outcomeStages.map((stage, i) => (
+            <article key={stage.title} className="rounded-2xl border border-ink-200/80 bg-white p-5 shadow-sm">
+              <span className="font-mono text-xs font-bold text-brand-600">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h2 className="mt-2 text-base font-bold text-ink-900">{stage.title}</h2>
+              <p className="mt-2 text-sm leading-relaxed text-ink-500">{stage.desc}</p>
+            </article>
+          ))}
+        </section>
+
         <div className="space-y-14">
           {curriculum.map((phase, i) => (
             <div key={i} className="relative pl-7">

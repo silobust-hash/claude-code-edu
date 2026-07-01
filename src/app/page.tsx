@@ -7,7 +7,7 @@ const PERSON_ID = "https://silronomu.com/#person";
 
 export const metadata: Metadata = {
   title: "클로드 코드 강의 | 19년차 노무사가 가르치는 Claude Code 실무 교육",
-  description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 강의. 19년차 공인노무사 박실로가 터미널 여는 법부터 웹앱 배포까지, 16단계 71개 강의로 AI 업무 자동화를 가르칩니다.",
+  description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 강의. 터미널 여는 법부터 웹앱 배포까지, 실행 명령·검증 기준·오류 보고 양식이 남는 AI 업무 자동화 교육입니다.",
   alternates: { canonical: "/" },
 };
 
@@ -16,7 +16,7 @@ const courseJsonLd = {
   "@type": "Course",
   "@id": `${SITE_URL}/#course`,
   name: "클로드 코드(Claude Code) 실전 강의",
-  description: "19년차 노무사가 가르치는 비개발자를 위한 클로드 코드 실무 교육. 터미널 여는 법부터 웹앱 배포까지 16단계 71개 강의.",
+  description: "19년차 노무사가 가르치는 비개발자를 위한 클로드 코드 실무 교육. 터미널 여는 법부터 웹앱 배포까지 실행 로그 중심으로 배우는 16단계 71개 강의.",
   provider: { "@id": `${SITE_URL}/#org` },
   instructor: {
     "@type": "Person",
@@ -312,6 +312,29 @@ const features: {
   },
 ];
 
+const executionLoop = [
+  {
+    step: "01",
+    title: "환경을 확인합니다",
+    desc: "터미널, Node.js, Claude Code 로그인 상태를 먼저 점검합니다.",
+  },
+  {
+    step: "02",
+    title: "명령을 한 줄씩 실행합니다",
+    desc: "복잡한 설명보다 지금 붙여넣을 명령과 기대 결과를 먼저 봅니다.",
+  },
+  {
+    step: "03",
+    title: "결과를 검증합니다",
+    desc: "파일 생성, 브라우저 화면, 테스트 출력 중 하나로 성공 여부를 확인합니다.",
+  },
+  {
+    step: "04",
+    title: "업무 루틴으로 남깁니다",
+    desc: "한 번 성공한 명령과 프롬프트를 반복 업무용 루틴으로 저장합니다.",
+  },
+];
+
 export default function Home() {
   return (
     <div className="overflow-x-clip">
@@ -486,6 +509,39 @@ export default function Home() {
               <p className="mt-2 leading-relaxed text-ink-500">{item.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ───────────── Execution Loop ───────────── */}
+      <section className="mx-auto max-w-6xl px-6 pb-24">
+        <div
+          data-reveal
+          className="rounded-3xl border border-ink-200/80 bg-white p-8 shadow-sm md:p-10"
+        >
+          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.35fr] lg:items-start">
+            <div>
+              <p className="eyebrow text-brand-600">EXECUTION LOOP</p>
+              <h2 className="display-sm mt-3 text-3xl text-ink-900 md:text-4xl">
+                강의마다 손에 남는
+                <br />
+                실행 로그를 만듭니다
+              </h2>
+              <p className="mt-4 leading-relaxed text-ink-500">
+                Claude Code는 눈으로만 이해하면 금방 잊힙니다. 이 과정은 매 강의마다
+                실행 명령, 성공 기준, 오류 보고 양식까지 남기도록 구성했습니다.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {executionLoop.map((item) => (
+                <article key={item.step} className="rounded-2xl border border-ink-200 bg-ink-50 p-5">
+                  <span className="font-mono text-xs font-bold text-brand-600">{item.step}</span>
+                  <h3 className="mt-2 font-bold text-ink-900">{item.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-500">{item.desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

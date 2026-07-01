@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { lessons } from "@/data/lessons";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
-const RELEASE_DATE = new Date("2026-05-30");
+const RELEASE_DATE = new Date("2026-07-01");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lessonEntries = Object.values(lessons).map((lesson) => {

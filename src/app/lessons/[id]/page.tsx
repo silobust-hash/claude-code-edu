@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import LessonReactions from "./LessonReactions";
 import LessonPresentation from "@/components/LessonPresentation";
 import LessonGate from "@/components/LessonGate";
+import LessonActionKit from "@/components/LessonActionKit";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
 const PERSON_ID = "https://silronomu.com/#person";
@@ -134,6 +135,8 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
       <div className="mb-10">
         <LessonPresentation lesson={lesson} accent="#6366f1" />
       </div>
+
+      <LessonActionKit lesson={lesson} />
 
       <div className="prose prose-slate max-w-none">
         {lesson.sections.map((section: { heading: string; content: string; code?: string; tip?: string }, i: number) => (
