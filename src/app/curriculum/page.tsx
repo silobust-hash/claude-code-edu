@@ -637,7 +637,7 @@ export default function CurriculumPage() {
         <div className="absolute inset-0 mesh-aurora opacity-50" aria-hidden="true" />
         <div className="absolute inset-0 bg-grid-dark mask-radial opacity-55" aria-hidden="true" />
         <div className="grain absolute inset-0" aria-hidden="true" />
-        <div className="relative mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
+        <div className="relative mx-auto max-w-4xl px-6 pt-28 pb-16 text-center md:pt-20">
           <p className="eyebrow text-brand-300">CURRICULUM · 16 PHASES</p>
           <h1 className="display mt-4 text-4xl md:text-5xl">전체 커리큘럼</h1>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/65 balance">
