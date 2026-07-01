@@ -63,7 +63,7 @@ export default function SiteNav() {
       <div
         className={`transition-all duration-300 ${
           scrolled
-            ? "border-b border-white/10 bg-ink-950/90 backdrop-blur-xl supports-[backdrop-filter]:bg-ink-950/75 shadow-[0_8px_30px_rgba(10,10,26,0.35)]"
+            ? "border-b border-white/10 bg-ink-950 shadow-[0_8px_30px_rgba(10,10,26,0.35)]"
             : "border-b border-white/5 bg-ink-950"
         }`}
       >
