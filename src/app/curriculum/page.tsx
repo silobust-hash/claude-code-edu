@@ -44,6 +44,13 @@ const breadcrumbJsonLd = {
   ],
 };
 
+type CurriculumLesson = {
+  title: string;
+  desc: string;
+  tags: string[];
+  href?: string;
+};
+
 const curriculum = [
   {
     phase: "Phase 1",
@@ -580,6 +587,7 @@ const curriculum = [
         title: "만류귀종 — 돌고 돌아 다시 페르소나",
         desc: "말투 페르소나를 넘어 관점·판단기준·증거기준·금지선을 설계합니다. Fable/Showrunner와 GPT-5.6 Sol 공식 근거를 구분해 실무 적용 힌트로 정리합니다.",
         tags: ["개념 이해", "페르소나", "NEW"],
+        href: "/lessons/16-3",
       },
     ],
   },
@@ -692,30 +700,11 @@ export default function CurriculumPage() {
 
               <div className="mt-6 space-y-3">
                 {phase.lessons.map((lesson, j) => (
-                  <div
+                  <LessonCard
                     key={j}
-                    className="group rounded-2xl border border-ink-200/80 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md"
-                  >
-                    <div className="flex items-start gap-3">
-                      <span className="mt-0.5 grid h-7 min-w-[2.6rem] place-items-center rounded-lg bg-brand-50 px-2 font-mono text-xs font-bold text-brand-600 ring-1 ring-brand-100">
-                        {i + 1}.{j + 1}
-                      </span>
-                      <div className="flex-1">
-                        <h3 className="font-bold text-ink-900">{lesson.title}</h3>
-                        <p className="mt-1 text-sm leading-relaxed text-ink-500">{lesson.desc}</p>
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          {lesson.tags.map((tag, k) => (
-                            <span
-                              key={k}
-                              className="rounded-full bg-ink-100 px-2.5 py-1 text-xs font-medium text-ink-500"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    lesson={lesson}
+                    index={`${i + 1}.${j + 1}`}
+                  />
                 ))}
               </div>
             </div>
@@ -740,4 +729,45 @@ export default function CurriculumPage() {
       </div>
     </div>
   );
+}
+
+function LessonCard({ lesson, index }: { lesson: CurriculumLesson; index: string }) {
+  const className =
+    "group block rounded-2xl border border-ink-200/80 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md";
+
+  const content = (
+    <div className="flex items-start gap-3">
+      <span className="mt-0.5 grid h-7 min-w-[2.6rem] place-items-center rounded-lg bg-brand-50 px-2 font-mono text-xs font-bold text-brand-600 ring-1 ring-brand-100">
+        {index}
+      </span>
+      <div className="flex-1">
+        <h3 className="font-bold text-ink-900">{lesson.title}</h3>
+        <p className="mt-1 text-sm leading-relaxed text-ink-500">{lesson.desc}</p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {lesson.tags.map((tag, k) => (
+            <span
+              key={k}
+              className="rounded-full bg-ink-100 px-2.5 py-1 text-xs font-medium text-ink-500"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  if (lesson.href) {
+    return (
+      <Link
+        href={lesson.href}
+        aria-label={`${lesson.title} 강의 보기`}
+        className={className}
+      >
+        {content}
+      </Link>
+    );
+  }
+
+  return <div className={className}>{content}</div>;
 }
