@@ -6,11 +6,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com"
 
 export const metadata: Metadata = {
   title: "전체 커리큘럼",
-  description: "클로드 코드 16단계 71강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지, 실행 명령과 검증 로그가 남는 비개발자용 단계별 학습 경로.",
+  description: "클로드 코드 16단계 72강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지, 실행 명령과 검증 로그가 남는 비개발자용 단계별 학습 경로.",
   alternates: { canonical: "/curriculum" },
   openGraph: {
     title: "전체 커리큘럼 | 노무사 x Claude Code",
-    description: "클로드 코드 16단계 71강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지, 실행 명령과 검증 로그가 남는 학습 경로.",
+    description: "클로드 코드 16단계 72강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지, 실행 명령과 검증 로그가 남는 학습 경로.",
     url: `${SITE_URL}/curriculum`,
   },
 };
@@ -560,9 +560,9 @@ const curriculum = [
   {
     phase: "Phase 16",
     title: "AI 시대를 읽는 눈",
-    subtitle: "독서지도와 지식관리 — 박실로 노무사의 AI 통찰",
+    subtitle: "독서지도·지식관리·페르소나 — 박실로 노무사의 AI 통찰",
     emoji: "📖",
-    duration: "약 2시간",
+    duration: "약 3시간",
     color: "border-indigo-400",
     bgColor: "bg-indigo-50",
     lessons: [
@@ -575,6 +575,11 @@ const curriculum = [
         title: "내 지식관리가 곧 AEO다 — AI에게 선택받는 노트 쓰기",
         desc: "지식관리는 내 암묵지를 AI어로 옮기는 번역입니다. 나를 돕는 AI와 나를 선택할 AI는 같은 종 — 잘 쓴 노트가 잘 발견되는 노트가 되는 원리와 파이프라인.",
         tags: ["개념 이해", "지식관리·AEO", "NEW"],
+      },
+      {
+        title: "만류귀종 — 돌고 돌아 다시 페르소나",
+        desc: "말투 페르소나를 넘어 관점·판단기준·증거기준·금지선을 설계합니다. Fable/Showrunner와 GPT-5.6 Sol 공식 근거를 구분해 실무 적용 힌트로 정리합니다.",
+        tags: ["개념 이해", "페르소나", "NEW"],
       },
     ],
   },
