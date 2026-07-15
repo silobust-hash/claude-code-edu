@@ -31,14 +31,14 @@ export default function SiteFooter() {
           {/* 학습 */}
           <div>
             <p className="eyebrow text-brand-300/80">학습</p>
-            <ul className="mt-4 space-y-2.5 text-sm text-white/65">
+            <ul className="mt-4 space-y-0 text-sm text-white/65">
               <li>
-                <Link href="/curriculum" className="hover:text-white transition-colors">
+                <Link href="/curriculum" className="inline-flex min-h-11 items-center transition-colors hover:text-white">
                   전체 커리큘럼
                 </Link>
               </li>
               <li>
-                <Link href="/lessons" className="hover:text-white transition-colors">
+                <Link href="/lessons" className="inline-flex min-h-11 items-center transition-colors hover:text-white">
                   강의 목록
                 </Link>
               </li>
@@ -47,7 +47,7 @@ export default function SiteFooter() {
                   href="https://claude.ai"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="inline-flex min-h-11 items-center transition-colors hover:text-white"
                 >
                   Claude AI
                 </a>
@@ -58,13 +58,13 @@ export default function SiteFooter() {
           {/* 네트워크 */}
           <div>
             <p className="eyebrow text-brand-300/80">네트워크</p>
-            <ul className="mt-4 space-y-2.5 text-sm text-white/65">
+            <ul className="mt-4 space-y-0 text-sm text-white/65">
               <li>
                 <a
                   href="https://silronomu.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="inline-flex min-h-11 items-center transition-colors hover:text-white"
                 >
                   홈페이지
                 </a>
@@ -74,7 +74,7 @@ export default function SiteFooter() {
                   href="https://ai-school.silronomu.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="inline-flex min-h-11 items-center transition-colors hover:text-white"
                 >
                   AI업무학교
                 </a>
@@ -84,7 +84,7 @@ export default function SiteFooter() {
                   href="https://www.threads.com/@silrobag?hl=ko"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="inline-flex min-h-11 items-center transition-colors hover:text-white"
                 >
                   Threads
                 </a>

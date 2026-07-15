@@ -1,36 +1,83 @@
+import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 
-const SESSION_COOKIE = "admin-session";
+const ADMIN_SESSION_COOKIE = "admin-session";
 const SESSION_MAX_AGE = 60 * 60 * 24; // 24 hours
+const SESSION_VERSION = "v2";
+const LEGACY_COOKIES = ["admin-session-v1", "admin-session-hash"];
 
-async function hashPassword(password: string): Promise<string> {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(password + "claude-code-edu-salt");
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+function getAdminSessionSecret(): string | null {
+  return process.env.ADMIN_SESSION_SECRET || null;
+}
+
+export function buildSignedSession(rawToken: string, secret: string): string {
+  const sig = createHmac("sha256", secret).update(rawToken).digest("base64url");
+  return `${rawToken}.${sig}`;
+}
+
+export function verifySignedSession(raw: string, secret: string): boolean {
+  const parts = raw.split(".");
+  if (parts.length !== 2) return false;
+
+  const [token, signature] = parts;
+  const expected = createHmac("sha256", secret).update(token).digest("base64url");
+
+  if (signature.length !== expected.length) return false;
+
+  const expectedBuf = Buffer.from(expected);
+  const sigBuf = Buffer.from(signature);
+  if (!timingSafeEqual(expectedBuf, sigBuf)) return false;
+
+  const [version, issuedAtStr, nonce] = token.split("|");
+  if (version !== SESSION_VERSION) return false;
+  if (!issuedAtStr || !nonce) return false;
+
+  const issuedAt = Number(issuedAtStr);
+  if (!Number.isFinite(issuedAt) || issuedAt <= 0) return false;
+  if (Date.now() > issuedAt + SESSION_MAX_AGE * 1000) return false;
+
+  return true;
+}
+
+export async function invalidateAdminSessionCookies(): Promise<void> {
+  const cookieStore = await cookies();
+  cookieStore.delete(ADMIN_SESSION_COOKIE);
+  for (const cookieName of LEGACY_COOKIES) {
+    cookieStore.delete(cookieName);
+  }
 }
 
 export async function login(password: string): Promise<boolean> {
-  const adminPassword = process.env.ADMIN_PASSWORD || "0715";
+  const cookieStore = await cookies();
+  const secret = getAdminSessionSecret();
 
-  if (password !== adminPassword) {
+  // Safe failure if secret is missing
+  if (!secret) {
     return false;
   }
 
-  const sessionToken = await hashPassword(password + Date.now().toString());
-  const cookieStore = await cookies();
-  cookieStore.set(SESSION_COOKIE, sessionToken, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    maxAge: SESSION_MAX_AGE,
-    path: "/",
-  });
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  if (!adminPassword || adminPassword.length === 0) {
+    return false;
+  }
 
-  // Store valid token hash for verification
-  const tokenHash = await hashPassword(sessionToken);
-  cookieStore.set("admin-session-hash", tokenHash, {
+  const normalizedPassword = password.trim();
+  const provided = Buffer.from(normalizedPassword);
+  const expected = Buffer.from(adminPassword);
+
+  if (provided.length !== expected.length) {
+    return false;
+  }
+  if (!timingSafeEqual(provided, expected)) {
+    return false;
+  }
+
+  const issuedAt = Date.now();
+  const nonce = randomBytes(18).toString("base64url");
+  const rawToken = `${SESSION_VERSION}|${issuedAt}|${nonce}`;
+  const signedToken = buildSignedSession(rawToken, secret);
+
+  cookieStore.set(ADMIN_SESSION_COOKIE, signedToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
@@ -43,20 +90,36 @@ export async function login(password: string): Promise<boolean> {
 
 export async function logout(): Promise<void> {
   const cookieStore = await cookies();
-  cookieStore.delete(SESSION_COOKIE);
-  cookieStore.delete("admin-session-hash");
+  cookieStore.delete(ADMIN_SESSION_COOKIE);
+  for (const cookieName of LEGACY_COOKIES) {
+    cookieStore.delete(cookieName);
+  }
 }
 
 export async function isAuthenticated(): Promise<boolean> {
-  const cookieStore = await cookies();
-  const session = cookieStore.get(SESSION_COOKIE);
-  const sessionHash = cookieStore.get("admin-session-hash");
-
-  if (!session?.value || !sessionHash?.value) {
+  const secret = getAdminSessionSecret();
+  if (!secret) {
     return false;
   }
 
-  // Verify the session token matches its hash
-  const expectedHash = await hashPassword(session.value);
-  return expectedHash === sessionHash.value;
+  const cookieStore = await cookies();
+  const session = cookieStore.get(ADMIN_SESSION_COOKIE);
+  if (!session?.value) {
+    return false;
+  }
+
+  const isValid = verifySignedSession(session.value, secret);
+  if (!isValid) {
+    return false;
+  }
+
+  return true;
+}
+
+export async function isAuthenticatedStrict(): Promise<boolean> {
+  const authed = await isAuthenticated();
+  if (!authed) {
+    await invalidateAdminSessionCookies();
+  }
+  return authed;
 }

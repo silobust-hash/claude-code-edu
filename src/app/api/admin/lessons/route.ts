@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
-import { isAuthenticated } from "@/lib/auth";
+import { isAuthenticatedStrict } from "@/lib/auth";
 import { lessons } from "@/data/lessons";
 import { getLessonFromBlob, listBlobOverrides } from "@/lib/storage";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const authed = await isAuthenticated();
-  if (!authed) {
+  const isValid = await isAuthenticatedStrict();
+  if (!isValid) {
     return NextResponse.json({ error: "인증이 필요합니다." }, { status: 401 });
   }
 

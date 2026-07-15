@@ -2,6 +2,7 @@ import { isAuthenticated } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { lessons } from "@/data/lessons";
 import { getLessonFromBlob } from "@/lib/storage";
+import { isValidLessonId } from "@/lib/lesson-catalog";
 import LessonEditor from "./LessonEditor";
 
 export const dynamic = "force-dynamic";
@@ -15,6 +16,8 @@ export default async function EditLessonPage({
   if (!authed) redirect("/admin");
 
   const { id } = await params;
+  if (!isValidLessonId(id)) redirect("/admin/dashboard");
+
   const staticData = lessons[id];
 
   if (!staticData) {

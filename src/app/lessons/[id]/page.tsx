@@ -1,23 +1,26 @@
 import { lessons } from "@/data/lessons";
+import { getLessonAccessStatus } from "@/lib/lesson-access";
+import { isAuthenticated } from "@/lib/auth";
 import { getLessonFromBlob } from "@/lib/storage";
+import { serializeJsonLd } from "@/lib/serialize-jsonld";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import LessonReactions from "./LessonReactions";
 import LessonPresentation from "@/components/LessonPresentation";
 import LessonGate from "@/components/LessonGate";
 import LessonActionKit from "@/components/LessonActionKit";
+import { getOrderedLessons, isValidLessonId } from "@/lib/lesson-catalog";
+import LessonProgressToggle from "@/components/LessonProgressToggle";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
 const PERSON_ID = "https://silronomu.com/#person";
+const lessonCatalog = getOrderedLessons().map((lesson) => ({ id: lesson.id, title: lesson.title }));
 
-export const revalidate = 60; // Revalidate every 60 seconds for ISR
-
-export function generateStaticParams() {
-  return Object.keys(lessons).map((id) => ({ id }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+  if (!isValidLessonId(id)) return { title: "유효하지 않은 강의입니다" };
 
   let lesson: Record<string, unknown> | null = null;
   try {
@@ -57,8 +60,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function LessonPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+  if (!isValidLessonId(id)) notFound();
 
-  // Try blob first, fall back to static data
+  const authed = await isAuthenticated();
+  const hasAccess = authed || (await getLessonAccessStatus());
+
   let lesson: Record<string, any> | null = null;
   try {
     lesson = await getLessonFromBlob(id);
@@ -71,6 +77,28 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
   }
 
   if (!lesson) notFound();
+
+  if (!hasAccess) {
+    return (
+      <div className="max-w-3xl mx-auto px-6 py-16">
+        <div className="mb-8">
+          <Link href="/lessons" className="text-sm text-indigo-500 hover:text-indigo-700 transition-colors">
+            ← 강의 목록으로
+          </Link>
+        </div>
+        <div className="mb-6">
+          <span className="text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full">{lesson.phase}</span>
+          <span className="text-xs text-slate-400 ml-2">{lesson.id}</span>
+        </div>
+        <h1 className="text-3xl font-bold mb-4 leading-tight">{lesson.title}</h1>
+        <p className="text-lg text-slate-500 mb-4 leading-relaxed">{lesson.summary}</p>
+        <p className="text-sm text-slate-500 mb-8">
+          본문은 인증 후 공개됩니다. 강의 코드를 입력해 전체 내용을 보려면 아래로 이동하세요.
+        </p>
+        <LessonGate accent="#6366f1" />
+      </div>
+    );
+  }
 
   const prevId = lesson.prev ? lesson.prev : null;
   const nextId = lesson.next ? lesson.next : null;
@@ -107,14 +135,9 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }} />
+
       <div className="mb-8">
         <Link href="/lessons" className="text-sm text-indigo-500 hover:text-indigo-700 transition-colors">
           ← 강의 목록으로
@@ -122,16 +145,14 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
       </div>
 
       <div className="mb-6">
-        <span className="text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full">
-          {lesson.phase}
-        </span>
+        <span className="text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full">{lesson.phase}</span>
         <span className="text-xs text-slate-400 ml-2">{lesson.id}</span>
       </div>
 
       <h1 className="text-3xl font-bold mb-4 leading-tight">{lesson.title}</h1>
       <p className="text-lg text-slate-500 mb-6 leading-relaxed">{lesson.summary}</p>
+      <LessonProgressToggle lessonId={lesson.id} lessonTitle={lesson.title} catalog={lessonCatalog} />
 
-      <LessonGate accent="#6366f1">
       <div className="mb-10">
         <LessonPresentation lesson={lesson} accent="#6366f1" />
       </div>
@@ -185,7 +206,6 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
           </Link>
         ) : <div />}
       </div>
-      </LessonGate>
     </div>
   );
 }

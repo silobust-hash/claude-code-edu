@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isAuthenticated } from "@/lib/auth";
+import { isAuthenticatedStrict } from "@/lib/auth";
 import { lessons } from "@/data/lessons";
 import {
   getLessonFromBlob,
   saveLessonToBlob,
   deleteLessonFromBlob,
 } from "@/lib/storage";
+import { isLessonPayload } from "@/lib/lesson-schema";
+import { isValidLessonId } from "@/lib/lesson-catalog";
 
 export const dynamic = "force-dynamic";
 
@@ -13,12 +15,18 @@ export async function GET(
   _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const authed = await isAuthenticated();
-  if (!authed) {
+  const isValid = await isAuthenticatedStrict();
+  if (!isValid) {
     return NextResponse.json({ error: "인증이 필요합니다." }, { status: 401 });
   }
 
   const { id } = await params;
+  if (!isValidLessonId(id)) {
+    return NextResponse.json(
+      { error: "유효하지 않은 강의 ID 형식입니다." },
+      { status: 400 }
+    );
+  }
 
   try {
     // Try blob first
@@ -56,36 +64,52 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const authed = await isAuthenticated();
-  if (!authed) {
+  const isValid = await isAuthenticatedStrict();
+  if (!isValid) {
     return NextResponse.json({ error: "인증이 필요합니다." }, { status: 401 });
   }
 
   const { id } = await params;
+  if (!isValidLessonId(id)) {
+    return NextResponse.json(
+      { error: "유효하지 않은 강의 ID 형식입니다." },
+      { status: 400 }
+    );
+  }
 
   try {
     const data = await request.json();
 
-    // Validate required fields
-    if (!data.title || !data.summary || !data.sections) {
+    if (!isLessonPayload(data)) {
       return NextResponse.json(
-        { error: "제목, 요약, 섹션은 필수 항목입니다." },
+        { error: "유효하지 않은 강의 데이터 형식입니다." },
         { status: 400 }
       );
     }
 
-    // Ensure the id field matches
-    data.id = id;
-
-    // Preserve prev/next from static data if not provided
-    const staticData = lessons[id];
-    if (staticData) {
-      if (data.prev === undefined) data.prev = staticData.prev;
-      if (data.next === undefined) data.next = staticData.next;
-      if (data.phase === undefined) data.phase = staticData.phase;
+    if (data.id !== id) {
+      return NextResponse.json(
+        { error: "요청 경로와 데이터 ID가 일치하지 않습니다." },
+        { status: 400 }
+      );
     }
 
-    const url = await saveLessonToBlob(id, data);
+    if (!isValidLessonId(data.id)) {
+      return NextResponse.json(
+        { error: "유효하지 않은 강의 ID입니다." },
+        { status: 400 }
+      );
+    }
+
+    const staticData = lessons[id];
+    if (!staticData) {
+      return NextResponse.json(
+        { error: "강의 ID가 존재하지 않습니다." },
+        { status: 404 }
+      );
+    }
+
+    const url = await saveLessonToBlob(id, data as unknown as Record<string, unknown>);
 
     return NextResponse.json({ success: true, url });
   } catch (error) {
@@ -101,12 +125,18 @@ export async function DELETE(
   _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const authed = await isAuthenticated();
-  if (!authed) {
+  const isValid = await isAuthenticatedStrict();
+  if (!isValid) {
     return NextResponse.json({ error: "인증이 필요합니다." }, { status: 401 });
   }
 
   const { id } = await params;
+  if (!isValidLessonId(id)) {
+    return NextResponse.json(
+      { error: "유효하지 않은 강의 ID 형식입니다." },
+      { status: 400 }
+    );
+  }
 
   try {
     await deleteLessonFromBlob(id);

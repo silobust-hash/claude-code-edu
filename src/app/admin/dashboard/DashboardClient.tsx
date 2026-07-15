@@ -19,12 +19,22 @@ interface DashboardClientProps {
   groupedLessons: PhaseGroup[];
   totalLessons: number;
   totalOverrides: number;
+  todayLessonCode: string;
+  lessonAccessSecretSet: boolean;
+  lessonAccessExpiresAt: string;
+  lessonAccessDate: string;
+  lessonAccessNowText: string;
 }
 
 export default function DashboardClient({
   groupedLessons,
   totalLessons,
   totalOverrides,
+  todayLessonCode,
+  lessonAccessSecretSet,
+  lessonAccessExpiresAt,
+  lessonAccessDate,
+  lessonAccessNowText,
 }: DashboardClientProps) {
   const searchParams = useSearchParams();
   const saved = searchParams.get("saved");
@@ -37,6 +47,25 @@ export default function DashboardClient({
           강의 콘텐츠를 수정하고 관리합니다.
         </p>
       </div>
+
+      <section className="mb-8 p-5 rounded-xl border border-indigo-100 bg-indigo-50">
+        <h2 className="text-sm font-bold text-indigo-700">오늘 수강자 접근 코드</h2>
+        {lessonAccessSecretSet ? (
+          <div className="mt-2 text-sm text-slate-700">
+            <p>일자: {lessonAccessDate}</p>
+            <p className="font-semibold text-xl text-indigo-700 tracking-widest mt-1">
+              {todayLessonCode}
+            </p>
+            <p className="text-xs text-slate-500 mt-1">
+              현재 서울 시각: {lessonAccessNowText}, 자정(서울) 기준 만료: {lessonAccessExpiresAt}
+            </p>
+          </div>
+        ) : (
+          <p className="text-sm text-red-500 mt-2">
+            SECRET_NOT_SET: LESSON_ACCESS_SECRET가 설정되지 않아 코드가 생성되지 않습니다.
+          </p>
+        )}
+      </section>
 
       {saved && (
         <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-sm text-emerald-700">
@@ -102,13 +131,15 @@ export default function DashboardClient({
                       href={`/lessons/${lesson.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-slate-400 hover:text-slate-600 px-3 py-1.5 rounded-lg border border-slate-200 hover:border-slate-300 transition-colors"
+                      className="text-xs text-slate-400 hover:text-slate-600 px-3 py-2 min-h-[44px] rounded-lg border border-slate-200 hover:border-slate-300 transition-colors flex items-center"
+                      aria-label={`${lesson.id} 강의 미리보기`}
                     >
                       미리보기
                     </a>
                     <Link
                       href={`/admin/edit/${lesson.id}`}
-                      className="text-xs text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-1.5 rounded-lg transition-colors"
+                      className="text-xs text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 min-h-[44px] rounded-lg transition-colors flex items-center"
+                      aria-label={`${lesson.id} 강의 수정`}
                     >
                       수정
                     </Link>

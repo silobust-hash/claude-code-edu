@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import ScrollReveal from "@/components/ScrollReveal";
+import { serializeJsonLd } from "@/lib/serialize-jsonld";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
 const PERSON_ID = "https://silronomu.com/#person";
@@ -341,11 +342,11 @@ export default function Home() {
       <ScrollReveal />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(courseJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
       />
 
       {/* ───────────── Hero ───────────── */}
@@ -403,6 +404,12 @@ export default function Home() {
                   className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur transition-colors hover:bg-white/10"
                 >
                   바로 시작하기
+                </Link>
+                <Link
+                  href="/level-test"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-brand-600/90 px-7 py-3.5 font-semibold text-white backdrop-blur transition-colors hover:bg-brand-500"
+                >
+                  수준진단 바로가기
                 </Link>
               </div>
 

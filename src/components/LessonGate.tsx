@@ -1,43 +1,46 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
-// 강의안(강의 상세 본문) 접근 게이트.
-// 접근 코드 = 오늘 날짜 YYMMDD (예: 2026-06-25 → "260625"). 매일 자동으로 바뀐다.
-// 통과는 그 페이지를 보는 동안만 유효(저장 안 함) — 떠나거나 새로고침하면 다시 묻는다. 커리큘럼·목록·홈은 게이트 밖이라 공개.
-
-function todayCode(): string {
-  const d = new Date();
-  const yy = String(d.getFullYear()).slice(2);
-  const mm = String(d.getMonth() + 1).padStart(2, "0");
-  const dd = String(d.getDate()).padStart(2, "0");
-  return `${yy}${mm}${dd}`;
+interface LessonGateProps {
+  children?: React.ReactNode;
+  accent?: string;
 }
 
-export default function LessonGate({
-  children,
-  accent = "#6366f1",
-}: {
-  children: React.ReactNode;
-  accent?: string;
-}) {
-  const [authed, setAuthed] = useState(false);
+export default function LessonGate({ children, accent = "#6366f1" }: LessonGateProps) {
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const errorRef = useRef<HTMLParagraphElement | null>(null);
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (value.trim() === todayCode()) {
-      setError(false);
-      setAuthed(true);
-    } else {
+    setError(false);
+    setSubmitting(true);
+
+    try {
+      const res = await fetch("/api/lesson-access", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: value.trim() }),
+      });
+
+      if (!res.ok) {
+        await res.json().catch(() => ({}));
+        setError(true);
+        setSubmitting(false);
+        errorRef.current?.focus();
+        return;
+      }
+
+      window.location.reload();
+    } catch {
       setError(true);
+      setSubmitting(false);
+      errorRef.current?.focus();
     }
   }
-
-  // 저장하지 않는다 — 페이지를 떠나거나 새로고침하면 다시 코드를 묻는다.
-  if (authed) return <>{children}</>;
 
   return (
     <div style={{ display: "flex", justifyContent: "center", padding: "24px 0 8px" }}>
@@ -64,12 +67,19 @@ export default function LessonGate({
           <br />
           강사가 안내한 6자리 코드를 입력하세요.
         </p>
+
+        {children}
+
         <form onSubmit={onSubmit}>
+          <label htmlFor="lesson-access-code" className="sr-only">
+            접근 코드
+          </label>
           <input
+            id="lesson-access-code"
             value={value}
-            onChange={(e) => {
-              setValue(e.target.value);
+            onChange={(event) => {
               setError(false);
+              setValue(event.target.value);
             }}
             inputMode="numeric"
             autoFocus
@@ -89,14 +99,20 @@ export default function LessonGate({
             }}
           />
           {error && (
-            <p style={{ color: "#ef4444", fontSize: 13, margin: "0 0 12px" }}>
-              접근 코드가 올바르지 않습니다. 강사에게 오늘의 코드를 확인하세요.
+            <p
+              ref={errorRef}
+              role="alert"
+              tabIndex={-1}
+              className="text-sm text-red-600"
+              style={{ fontSize: 13, margin: "0 0 12px" }}
+            >
+              접근 코드가 올바르지 않습니다.
             </p>
           )}
           <button
             type="submit"
+            disabled={submitting}
             style={{
-              width: "100%",
               background: accent,
               color: "#fff",
               border: "none",
@@ -104,12 +120,15 @@ export default function LessonGate({
               padding: "12px 0",
               fontSize: 15,
               fontWeight: 700,
-              cursor: "pointer",
+              cursor: submitting ? "not-allowed" : "pointer",
+              minHeight: 44,
+              width: "100%",
             }}
           >
-            강의안 열기
+            {submitting ? "확인 중..." : "강의안 열기"}
           </button>
         </form>
+
         <p style={{ fontSize: 12, color: "#94a3b8", margin: "18px 0 0" }}>
           커리큘럼은 코드 없이 볼 수 있습니다.{" "}
           <Link href="/curriculum" style={{ color: accent, fontWeight: 600 }}>
