@@ -6,11 +6,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com"
 
 export const metadata: Metadata = {
   title: "전체 커리큘럼",
-  description: "클로드 코드 16단계 72강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지, 실행 명령과 검증 로그가 남는 비개발자용 단계별 학습 경로.",
+  description: "클로드 코드 16단계 73강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지, 실행 명령과 검증 로그가 남는 비개발자용 단계별 학습 경로.",
   alternates: { canonical: "/curriculum" },
   openGraph: {
     title: "전체 커리큘럼 | 노무사 x Claude Code",
-    description: "클로드 코드 16단계 72강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지, 실행 명령과 검증 로그가 남는 학습 경로.",
+    description: "클로드 코드 16단계 73강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지, 실행 명령과 검증 로그가 남는 학습 경로.",
     url: `${SITE_URL}/curriculum`,
   },
 };
@@ -567,9 +567,9 @@ const curriculum = [
   {
     phase: "Phase 16",
     title: "AI 시대를 읽는 눈",
-    subtitle: "독서지도·지식관리·페르소나 — 박실로 노무사의 AI 통찰",
+    subtitle: "독서지도·지식관리·페르소나·운영 라우팅 — 박실로 노무사의 AI 통찰",
     emoji: "📖",
-    duration: "약 3시간",
+    duration: "약 4시간",
     color: "border-indigo-400",
     bgColor: "bg-indigo-50",
     lessons: [
@@ -588,6 +588,12 @@ const curriculum = [
         desc: "말투 페르소나를 넘어 관점·판단기준·증거기준·금지선을 설계합니다. Fable/Showrunner와 GPT-5.6 Sol 공식 근거를 구분해 실무 적용 힌트로 정리합니다.",
         tags: ["개념 이해", "페르소나", "NEW"],
         href: "/lessons/16-3",
+      },
+      {
+        title: "Fable 5와 GPT-5.6 운영 라우팅 — Chat·Work·Codex·Sites를 어떻게 나눌까",
+        desc: "Fable 5와 GPT-5.6 Sol/Terra/Luna를 제품·모델·추론단계·검증 게이트로 분리하고, Chat·Work·Codex·Sites를 노무사 실무 흐름에 맞게 배치합니다.",
+        tags: ["개념 이해", "운영 라우팅", "NEW"],
+        href: "/lessons/16-4",
       },
     ],
   },

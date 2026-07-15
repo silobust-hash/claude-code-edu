@@ -4,11 +4,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com"
 
 export const metadata: Metadata = {
   title: "강의 목록",
-  description: "클로드 코드 16단계 72강 전체 강의 목록 — Phase 1 AI 시대 이해하기부터 Phase 16 AI 시대를 읽는 눈까지, 비개발자 노무사를 위한 단계별 강의를 한눈에 확인하세요.",
+  description: "클로드 코드 16단계 73강 전체 강의 목록 — Phase 1 AI 시대 이해하기부터 Phase 16 AI 시대를 읽는 눈까지, 비개발자 노무사를 위한 단계별 강의를 한눈에 확인하세요.",
   alternates: { canonical: "/lessons" },
   openGraph: {
     title: "강의 목록 | 노무사 x Claude Code",
-    description: "클로드 코드 16단계 72강 전체 강의 목록 — Phase 1 AI 시대 이해하기부터 Phase 16 AI 시대를 읽는 눈까지, 비개발자 노무사를 위한 단계별 강의를 한눈에 확인하세요.",
+    description: "클로드 코드 16단계 73강 전체 강의 목록 — Phase 1 AI 시대 이해하기부터 Phase 16 AI 시대를 읽는 눈까지, 비개발자 노무사를 위한 단계별 강의를 한눈에 확인하세요.",
     url: `${SITE_URL}/lessons`,
   },
 };
@@ -180,6 +180,7 @@ const allLessons = [
       { id: "16-1", title: "AI·문명 독서지도 — 경량문명에서 종말론까지", status: "available" },
       { id: "16-2", title: "내 지식관리가 곧 AEO다 — AI에게 선택받는 노트 쓰기", status: "available" },
       { id: "16-3", title: "만류귀종 — 돌고 돌아 다시 페르소나", status: "available" },
+      { id: "16-4", title: "Fable 5와 GPT-5.6 운영 라우팅 — Chat·Work·Codex·Sites를 어떻게 나눌까", status: "available" },
     ],
   },
 ];
@@ -193,7 +194,7 @@ export default function LessonsPage() {
         <div className="absolute inset-0 bg-grid-dark mask-radial opacity-55" aria-hidden="true" />
         <div className="grain absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
-          <p className="eyebrow text-brand-300">LESSONS · 72 강의</p>
+          <p className="eyebrow text-brand-300">LESSONS · 73 강의</p>
           <h1 className="display mt-4 text-4xl md:text-5xl">강의 목록</h1>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/65 balance">
             순서대로 따라가세요. 각 강의는 독립적이지만, 앞 단계를 먼저 보시면 더 잘 이해됩니다.
@@ -239,7 +240,7 @@ export default function LessonsPage() {
         </div>
 
         <div className="border-gradient relative mt-16 rounded-2xl bg-white p-8 text-center shadow-sm">
-          <h3 className="text-lg font-bold text-ink-900">전체 16단계, 72개 강의</h3>
+          <h3 className="text-lg font-bold text-ink-900">전체 16단계, 73개 강의</h3>
           <p className="mt-2 text-sm leading-relaxed text-ink-500">
             Phase 1부터 순서대로 따라가시면 됩니다.
             <br />
