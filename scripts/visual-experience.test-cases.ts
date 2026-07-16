@@ -65,6 +65,25 @@ test("주요 navigation 링크는 44px 터치영역을 사용한다", async () =
   assert.equal(siteFooter.match(/inline-flex min-h-11 items-center/g)?.length, 6);
 });
 
+test("최상단 채널 전환 띠는 두 교육 채널의 역할과 현재 위치를 명확히 표시한다", async () => {
+  const [layout, channelBar, siteNav] = await Promise.all([
+    readFile("src/app/layout.tsx", "utf8"),
+    readFile("src/components/EducationChannelBar.tsx", "utf8"),
+    readFile("src/components/SiteNav.tsx", "utf8"),
+  ]);
+
+  assert.match(layout, /<EducationChannelBar \/>[\s\S]*<SiteNav \/>/);
+  assert.match(channelBar, /aria-label="교육 채널 전환"/);
+  assert.match(channelBar, /https:\/\/ai-school\.silronomu\.com/);
+  assert.match(channelBar, /이동 · 입문·공통 기초/);
+  assert.match(channelBar, /현재 채널 · 실무 심화/);
+  assert.match(channelBar, /aria-current="page"/);
+  assert.match(channelBar, /min-h-\[60px\]/);
+  assert.doesNotMatch(channelBar, /truncate/);
+  assert.doesNotMatch(channelBar, /opacity-0|delay-/);
+  assert.doesNotMatch(siteNav, /https:\/\/ai-school\.silronomu\.com|AI업무학교/);
+});
+
 test("수준진단은 서버의 최소 강의 카탈로그만 클라이언트에 전달한다", async () => {
   const [page, client] = await Promise.all([
     readFile("src/app/level-test/page.tsx", "utf8"),

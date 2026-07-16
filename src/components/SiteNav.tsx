@@ -54,15 +54,6 @@ export default function SiteNav() {
       >
         수준진단
       </Link>
-      <a
-        href="https://ai-school.silronomu.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:text-white transition-colors px-2 py-2 min-h-[44px] flex items-center rounded-md"
-        aria-label="AI업무학교 새 창 열기"
-      >
-        AI업무학교
-      </a>
     </>
   );
 

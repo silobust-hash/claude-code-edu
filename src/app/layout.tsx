@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import EducationChannelBar from "@/components/EducationChannelBar";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import { serializeJsonLd } from "@/lib/serialize-jsonld";
@@ -161,6 +162,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <EducationChannelBar />
         <SiteNav />
         <main>{children}</main>
         <Analytics />
