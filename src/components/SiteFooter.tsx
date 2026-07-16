@@ -23,8 +23,8 @@ export default function SiteFooter() {
               </span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/55 balance">
-              1M 컨텍스트 시대, 노무사의 새로운 무기. 19년차 공인노무사 박실로가
-              비개발자를 위해 만든 Claude Code 실무 교육.
+              장문 컨텍스트와 업무 자동화를 현업에 적용하며 정리한
+              비개발자용 Claude Code 실무 교육.
             </p>
           </div>
 

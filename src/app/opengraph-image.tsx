@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "클로드 코드 강의 | 19년차 노무사 박실로";
+export const alt = "비개발자를 위한 클로드 코드 실무 교육";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -30,7 +30,7 @@ export default function OpengraphImage() {
             marginBottom: 24,
           }}
         >
-          1M 컨텍스트 시대의 AI 활용
+          장문 컨텍스트를 제대로 쓰는 법
         </div>
         <div style={{ fontSize: 84, fontWeight: 800, lineHeight: 1.1 }}>
           클로드 코드 강의
@@ -43,7 +43,7 @@ export default function OpengraphImage() {
             marginTop: 28,
           }}
         >
-          19년차 노무사 박실로 · 한동노무법인
+          현업에서 직접 써보고 다듬은 실무 과정
         </div>
       </div>
     ),

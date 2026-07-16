@@ -11,10 +11,10 @@ const ORG_ID = "https://silronomu.com/#organization";
 
 export const metadata: Metadata = {
   title: {
-    default: "클로드 코드 강의 | 19년차 노무사가 가르치는 Claude Code 실무 교육",
+    default: "클로드 코드 실무 교육 | 비개발자를 위한 단계별 과정",
     template: "%s | 노무사 x Claude Code",
   },
-  description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 강의. 19년차 공인노무사 박실로가 터미널 여는 법부터 웹앱 배포까지, 16단계 74개 강의로 AI 업무 자동화를 가르칩니다.",
+  description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 교육. 노무 실무에 직접 적용하며 정리한 16단계 74개 강의로 터미널 기초부터 웹앱 배포까지 익힙니다.",
   keywords: ["클로드 코드 강의", "Claude Code 교육", "클로드 코드 교육", "AI 노무사", "비개발자 코딩", "바이브코딩", "클로드 코드 설치", "Claude Code 강의", "AI 업무 자동화", "노무사 AI"],
   authors: [{ name: "박실로", url: "https://silronomu.com" }],
   creator: "박실로 (공인노무사)",
@@ -28,12 +28,12 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     url: SITE_URL,
     siteName: "노무사 x Claude Code",
-    title: "클로드 코드 강의 | 19년차 노무사가 가르치는 Claude Code 실무 교육",
+    title: "클로드 코드 실무 교육 | 비개발자를 위한 단계별 과정",
     description: "코딩 경험 없는 비개발자를 위한 클로드 코드 실전 강의. 터미널 여는 법부터 웹앱 배포까지 16단계 74개 강의.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "클로드 코드 강의 | 노무사가 가르치는 Claude Code",
+    title: "클로드 코드 실무 교육 | 현업 적용 중심 과정",
     description: "코딩 경험 없는 비개발자를 위한 클로드 코드 실전 강의. 16단계 74개 강의로 AI 업무 자동화.",
   },
   verification: {
@@ -90,7 +90,7 @@ const personJsonLd = {
     "Claude Code", "AI 업무 자동화", "바이브코딩",
     "클로드 코드 교육", "비개발자 AI 활용",
   ],
-  description: "19년차 공인노무사이자 클로드 코드(Claude Code) 교육자. 비개발자 전문직을 위한 AI 활용 교육을 진행합니다.",
+  description: "공인노무사이자 클로드 코드(Claude Code) 교육 콘텐츠 운영자. 노무 실무에 직접 적용한 과정을 비개발자 눈높이로 정리합니다.",
   url: "https://silronomu.com",
   hasCredential: {
     "@type": "EducationalOccupationalCredential",
@@ -134,7 +134,7 @@ const websiteJsonLd = {
   "@type": "WebSite",
   name: "노무사 x Claude Code",
   url: SITE_URL,
-  description: "19년차 노무사가 가르치는 비개발자를 위한 클로드 코드(Claude Code) 실무 교육",
+  description: "현업에서 직접 써보고 다듬은 비개발자용 클로드 코드(Claude Code) 실무 교육",
   author: { "@id": PERSON_ID },
   publisher: { "@id": `${SITE_URL}/#org` },
 };

@@ -7,7 +7,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com"
 export const metadata: Metadata = {
   title: "소개",
   description:
-    "19년차 공인노무사 박실로가 운영하는 노무사 x Claude Code 소개 페이지입니다. AI업무학교(입문)와 edu(실무 심화) 과정 역할을 정리했습니다.",
+    "공인노무사 박실로가 현업에서 직접 활용하며 정리한 노무사 x Claude Code 소개 페이지입니다. AI업무학교(입문)와 edu(실무 심화) 과정 역할을 안내합니다.",
   alternates: {
     canonical: "/about",
   },
@@ -60,7 +60,7 @@ export default function AboutPage() {
       </h1>
       <p className="mt-4 text-slate-300 leading-relaxed">
         노무사 x Claude Code는 비개발자도 현장 업무에 즉시 적용 가능한 AI 기반 실무 교육입니다.
-        19년차 공인노무사 박실로가 노무사 실무와 자동화 학습을 연결해 운영 가능한 형태로 가르칩니다.
+        박실로 공인노무사가 노무 실무에 직접 적용하며 배운 내용을 실행과 검증이 가능한 형태로 정리했습니다.
       </p>
 
       <section className="mt-10 space-y-4">

@@ -264,7 +264,7 @@ claude -p "HD-2026-015 예상 조사기일을 Google Calendar에 등록해줘"
         heading: "지금까지의 단계 총정리 (Phase 1~11)",
         content: `여기까지가 전체 13단계 과정 중 Phase 11까지의 여정입니다. 노무사 업무 관점에서 되돌아봅시다.
 
-Phase 1 (AI 시대 이해하기): 1M 컨텍스트의 의미, ChatGPT와 Claude의 차이, Claude Code가 무엇인지 개념을 잡았습니다. → 새 도구를 쓰기 전에, 그 도구가 왜 게임체인저인지부터 이해했습니다.
+Phase 1 (AI 시대 이해하기): 장문 컨텍스트와 1M의 의미, ChatGPT와 Claude의 차이, Claude Code가 무엇인지 개념을 잡았습니다. → 새 도구를 쓰기 전에, 모델과 제품의 실제 조건부터 이해했습니다.
 
 Phase 2 (설치와 첫걸음): 터미널을 처음 열고, Node.js와 Claude Code를 설치하고, 첫 대화를 나눴습니다. → 노무사의 새로운 업무 파트너가 생겼습니다.
 

@@ -17,7 +17,7 @@ function build(): string {
 
   return `# 클로드 코드 강의 (노무사 x Claude Code)
 
-> 19년차 공인노무사 박실로가 만든 비개발자용 Claude Code 실전 교육. ${TOTAL_PHASES}단계 ${TOTAL_LESSONS}강.
+> 박실로 공인노무사가 노무 실무에 직접 적용하며 정리한 비개발자용 Claude Code 실전 교육. ${TOTAL_PHASES}단계 ${TOTAL_LESSONS}강.
 
 코딩 경험이 전혀 없는 비개발자(노무사·변호사·회계사·세무사 등 전문직)를 위한 클로드 코드(Claude Code) 실무 교육입니다. 터미널 여는 법부터 임금 계산 자동화, MCP 서버 연동, 커스텀 스킬·플러그인 개발, Next.js 웹앱 배포까지 단계별로 다룹니다.
 

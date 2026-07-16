@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { lessons } from "@/data/lessons";
 
-export const alt = "클로드 코드 강의";
+export const alt = "클로드 코드 실무 교육";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -64,7 +64,7 @@ export default async function LessonOpengraphImage({
             marginTop: 32,
           }}
         >
-          19년차 노무사 박실로 · 한동노무법인
+          박실로 공인노무사 · 현업 적용 중심
         </div>
       </div>
     ),

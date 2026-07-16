@@ -7,7 +7,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com"
 const PERSON_ID = "https://silronomu.com/#person";
 
 export const metadata: Metadata = {
-  title: "클로드 코드 강의 | 19년차 노무사가 가르치는 Claude Code 실무 교육",
+  title: "클로드 코드 실무 교육 | 비개발자를 위한 단계별 과정",
   description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 강의. 터미널 여는 법부터 웹앱 배포까지, 실행 명령·검증 기준·오류 보고 양식이 남는 AI 업무 자동화 교육입니다.",
   alternates: { canonical: "/" },
 };
@@ -17,14 +17,14 @@ const courseJsonLd = {
   "@type": "Course",
   "@id": `${SITE_URL}/#course`,
   name: "클로드 코드(Claude Code) 실전 강의",
-  description: "19년차 노무사가 가르치는 비개발자를 위한 클로드 코드 실무 교육. 터미널 여는 법부터 웹앱 배포까지 실행 로그 중심으로 배우는 16단계 74개 강의.",
+  description: "현업에서 직접 써보고 다듬은 비개발자용 클로드 코드 실무 교육. 터미널 여는 법부터 웹앱 배포까지 실행 로그 중심으로 배우는 16단계 74개 강의.",
   provider: { "@id": `${SITE_URL}/#org` },
   instructor: {
     "@type": "Person",
     "@id": PERSON_ID,
     name: "박실로",
     jobTitle: "공인노무사",
-    description: "19년차 공인노무사이자 클로드 코드 교육자",
+    description: "노무 실무에 클로드 코드를 직접 적용하며 교육 내용을 정리하는 공인노무사",
   },
   educationalLevel: "Beginner",
   inLanguage: "ko",
@@ -53,7 +53,7 @@ const faqJsonLd = {
       name: "클로드 코드 강의는 비개발자도 들을 수 있나요?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "네, 이 강의는 코딩 경험이 전혀 없는 비개발자를 위해 설계되었습니다. 터미널 여는 법부터 시작하며, 19년차 노무사가 비개발자 관점에서 쉽게 설명합니다. 엑셀 함수 정도 쓸 줄 안다면 충분합니다.",
+        text: "네, 이 강의는 코딩 경험이 전혀 없는 비개발자를 위해 설계되었습니다. 터미널 여는 법부터 시작하며, 노무 실무에 직접 적용하며 정리한 내용을 비개발자 관점에서 쉽게 설명합니다. 엑셀 함수 정도 쓸 줄 안다면 충분합니다.",
       },
     },
     {
@@ -61,7 +61,7 @@ const faqJsonLd = {
       name: "클로드 코드와 ChatGPT의 차이점은 무엇인가요?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ChatGPT는 웹 채팅 기반이지만, 클로드 코드(Claude Code)는 터미널에서 동작하며 파일을 직접 읽고, 코드를 작성하고, 명령을 실행할 수 있는 AI 파트너입니다. 1M 컨텍스트로 근로기준법 전문(약 8만자)을 통째로 읽고 분석할 수 있어, 법률 업무에 특히 강력합니다.",
+        text: "ChatGPT의 일반 대화 화면과 클로드 코드(Claude Code)는 쓰임이 다릅니다. 클로드 코드는 터미널에서 파일을 읽고, 코드를 작성하고, 명령을 실행할 수 있습니다. 장문 컨텍스트 한도는 선택한 모델·제품·요금제에 따라 달라지므로 현재 화면의 모델 사양을 확인한 뒤 필요한 문서만 선별해 사용하는 것이 안전합니다.",
       },
     },
     {
@@ -100,12 +100,12 @@ const courses = [
   {
     phase: "Phase 1",
     title: "AI 시대 이해하기",
-    subtitle: "1M 컨텍스트가 뭐길래?",
+    subtitle: "장문 컨텍스트는 어떻게 써야 할까?",
     emoji: "🌅",
     color: "from-amber-400 to-orange-500",
     lessons: [
       "AI가 노무사 업무를 바꾸는 방식",
-      "1M 컨텍스트의 의미 — 법령 전문을 통째로 읽는 AI",
+      "장문 컨텍스트와 1M의 의미 — 모델·제품별 한도 이해",
       "ChatGPT vs Claude — 노무사에게 맞는 AI는?",
       "Claude Code란? 터미널에서 만나는 AI 파트너",
       "IT 용어 사전 — 개발자 말, 노무사 말로 번역하기",
@@ -270,7 +270,7 @@ const features: {
   {
     icon: "📚",
     title: "법령 통째로 이해",
-    desc: "1M 컨텍스트로 근로기준법, 산안법, 중처법 전문을 한번에 읽고 분석합니다.",
+    desc: "긴 법령과 규정을 선별해 함께 읽고, 근거를 표시하며 단계적으로 분석합니다.",
     span: "md:col-span-2 lg:col-span-2 lg:row-span-2",
     variant: "feature",
   },
@@ -373,26 +373,26 @@ export default function Home() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-300 opacity-75" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand-300" />
                 </span>
-                1M 컨텍스트 시대의 AI 활용
+                장문 컨텍스트를 제대로 쓰는 법
               </div>
 
-              <h1 className="display mt-7 text-[2.7rem] leading-[1.05] sm:text-6xl md:text-[4.2rem]">
+              <h1 className="display mt-7 max-w-full text-[2.45rem] leading-[1.08] sm:text-6xl md:text-[4.2rem]">
                 코딩 몰라도 괜찮아요.
                 <br />
                 <span className="text-gradient">Claude Code</span>
-                <span className="text-white">가 있으니까.</span>
+                <span className="block text-white sm:inline">가 있으니까.</span>
               </h1>
 
-              <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/65 md:text-xl balance">
-                19년차 노무사가 직접 만든 실무 교육 과정.
+              <p className="mt-7 max-w-full break-keep text-base leading-relaxed text-white/65 sm:max-w-xl sm:text-lg md:text-xl balance">
+                현업에서 직접 써보고 다듬은 실무 교육 과정.
                 <br className="hidden sm:block" />
                 터미널 여는 법부터 웹앱 배포까지, 노무사의 일하는 방식을 바꿔보세요.
               </p>
 
-              <div className="mt-10 flex flex-wrap items-center gap-4">
+              <div className="mt-10 grid w-full grid-cols-1 gap-4 sm:flex sm:flex-wrap sm:items-center">
                 <Link
                   href="/curriculum"
-                  className="btn-glow inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-semibold text-white"
+                  className="btn-glow inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 font-semibold text-white sm:w-auto"
                 >
                   커리큘럼 보기
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -401,13 +401,13 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/lessons"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur transition-colors hover:bg-white/10"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur transition-colors hover:bg-white/10 sm:w-auto"
                 >
                   바로 시작하기
                 </Link>
                 <Link
                   href="/level-test"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-brand-600/90 px-7 py-3.5 font-semibold text-white backdrop-blur transition-colors hover:bg-brand-500"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-brand-600/90 px-7 py-3.5 font-semibold text-white backdrop-blur transition-colors hover:bg-brand-500 sm:w-auto"
                 >
                   수준진단 바로가기
                 </Link>
@@ -559,7 +559,7 @@ export default function Home() {
           <div className="max-w-2xl" data-reveal>
             <p className="eyebrow text-brand-600">WHAT CHANGES</p>
             <h2 className="display-sm mt-3 text-3xl md:text-4xl text-ink-900">
-              1M 컨텍스트로 달라지는 노무사 업무
+              장문 컨텍스트로 달라지는 노무사 업무
             </h2>
           </div>
 
