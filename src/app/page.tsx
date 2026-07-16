@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import ScrollReveal from "@/components/ScrollReveal";
 import { serializeJsonLd } from "@/lib/serialize-jsonld";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
@@ -181,21 +180,21 @@ const courses = [
   },
   {
     phase: "Phase 7",
-    title: "마켓플레이스 — 만능 공구 사러 가기",
-    subtitle: "공식·커뮤니티·MCP 마켓 총정리",
+    title: "도구 생태계와 마켓플레이스",
+    subtitle: "공식·커뮤니티·MCP 도구 찾기",
     emoji: "🧰",
     color: "from-yellow-400 to-amber-500",
     lessons: [
-      "공식 마켓플레이스 — Anthropic 직영 공구상",
-      "커뮤니티 마켓 — 동네 철물점에서 보물 찾기",
-      "MCP 서버 레지스트리 — 전문 장비 대여점",
-      "나만의 공구함 꾸리기 — 실전 활용",
+      "공식 마켓플레이스 — 검증된 도구 확인",
+      "커뮤니티 마켓 — 유지보수와 보안 점검",
+      "MCP 서버 레지스트리 — 연동 도구 찾기",
+      "업무별 도구 구성과 선택 기준",
     ],
   },
   {
     phase: "Phase 8",
     title: "MCP 서버로 업무 연동",
-    subtitle: "Gmail, 캘린더, 노션 한방에",
+    subtitle: "업무 도구 연결과 활용",
     emoji: "🔗",
     color: "from-blue-400 to-cyan-500",
     lessons: [
@@ -208,12 +207,12 @@ const courses = [
   {
     phase: "Phase 9",
     title: "나만의 도구 만들기",
-    subtitle: "코딩 제로에서 웹앱 배포까지",
+    subtitle: "기초 개념에서 웹앱 배포까지",
     emoji: "🛠️",
     color: "from-rose-400 to-pink-500",
     lessons: [
-      "HTML/CSS/JS 기초 — Claude가 알려주니까 쉬워요",
-      "Next.js로 웹사이트 뚝딱 만들기",
+      "HTML/CSS/JS 기초 — 구조와 역할 이해",
+      "Next.js 웹사이트 구성과 배포",
       "Vercel 배포 — 내가 만든 서비스를 세상에",
       "실전: 노무 상담 접수 폼 만들어 배포하기",
     ],
@@ -221,7 +220,7 @@ const courses = [
   {
     phase: "Phase 10",
     title: "Worktree — 병렬 AI 코딩",
-    subtitle: "여러 사건을 동시에 처리하는 비법",
+    subtitle: "독립 작업을 병렬로 관리하기",
     emoji: "🌳",
     color: "from-teal-400 to-emerald-500",
     lessons: [
@@ -234,7 +233,7 @@ const courses = [
   {
     phase: "Phase 11",
     title: "고급 활용과 자동화",
-    subtitle: "AI 노무사 워크플로우 완성",
+    subtitle: "AI 업무 워크플로우 정리",
     emoji: "🎯",
     color: "from-violet-400 to-purple-600",
     lessons: [
@@ -246,12 +245,12 @@ const courses = [
   },
   {
     phase: "Phase 12",
-    title: "최신 기능 마스터하기",
+    title: "최신 기능 이해와 안전한 적용",
     subtitle: "Auto Mode, Dispatch, Computer Use, Hooks",
     emoji: "🔮",
     color: "from-fuchsia-400 to-pink-600",
     lessons: [
-      "Auto Mode — AI에게 전권을 위임하기",
+      "Auto Mode — 자동 실행 범위와 승인 기준",
       "Dispatch — AI 비서 여러 명 동시 투입",
       "Computer Use — AI가 화면을 직접 조작하기",
       "Hooks — 이벤트 기반 자동화",
@@ -282,8 +281,8 @@ const features: {
   },
   {
     icon: "🎪",
-    title: "스킬로 원클릭 자동화",
-    desc: "/임금계산 한 번이면 끝. 복잡한 작업을 슬래시 명령어 하나로 실행합니다.",
+    title: "스킬로 반복 작업 표준화",
+    desc: "반복 작업을 슬래시 명령어로 표준화하고 같은 절차로 실행합니다.",
     span: "lg:col-span-2",
   },
   {
@@ -296,7 +295,7 @@ const features: {
   {
     icon: "💼",
     title: "엑셀·PPT·크롬에서도",
-    desc: "터미널 없이도 OK. 익숙한 엑셀, PPT, 크롬 브라우저에서 바로 Claude를 씁니다.",
+    desc: "엑셀, PPT, 크롬 등 익숙한 화면에서도 Claude 활용 흐름을 익힙니다.",
     span: "lg:col-span-2",
   },
   {
@@ -307,7 +306,7 @@ const features: {
   },
   {
     icon: "🌐",
-    title: "배포까지 한번에",
+    title: "제작부터 배포까지",
     desc: "코딩 경험 없이도 웹앱을 만들어 Vercel에 배포할 수 있습니다.",
     span: "lg:col-span-3",
   },
@@ -339,7 +338,6 @@ const executionLoop = [
 export default function Home() {
   return (
     <div className="overflow-x-clip">
-      <ScrollReveal />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(courseJsonLd) }}
@@ -377,48 +375,42 @@ export default function Home() {
               </div>
 
               <h1 className="display mt-7 max-w-full text-[2.45rem] leading-[1.08] sm:text-6xl md:text-[4.2rem]">
-                코딩 몰라도 괜찮아요.
+                코딩 경험이 없어도
                 <br />
                 <span className="text-gradient">Claude Code</span>
-                <span className="block text-white sm:inline">가 있으니까.</span>
+                <span className="block text-white">로 업무 도구를 만듭니다.</span>
               </h1>
 
               <p className="mt-7 max-w-full break-keep text-base leading-relaxed text-white/65 sm:max-w-xl sm:text-lg md:text-xl balance">
                 현업에서 직접 써보고 다듬은 실무 교육 과정.
                 <br className="hidden sm:block" />
-                터미널 여는 법부터 웹앱 배포까지, 노무사의 일하는 방식을 바꿔보세요.
+                터미널 기초부터 웹앱 배포까지, 업무에 연결하는 과정을 단계별로 실습합니다.
               </p>
 
               <div className="mt-10 grid w-full grid-cols-1 gap-4 sm:flex sm:flex-wrap sm:items-center">
                 <Link
-                  href="/curriculum"
+                  href="/level-test"
                   className="btn-glow inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 font-semibold text-white sm:w-auto"
                 >
-                  커리큘럼 보기
+                  수준진단 시작
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14M13 6l6 6-6 6" />
                   </svg>
                 </Link>
                 <Link
-                  href="/lessons"
+                  href="/curriculum"
                   className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur transition-colors hover:bg-white/10 sm:w-auto"
                 >
-                  바로 시작하기
-                </Link>
-                <Link
-                  href="/level-test"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-brand-600/90 px-7 py-3.5 font-semibold text-white backdrop-blur transition-colors hover:bg-brand-500 sm:w-auto"
-                >
-                  수준진단 바로가기
+                  커리큘럼 보기
                 </Link>
               </div>
 
               {/* stat ribbon */}
-              <dl className="mt-12 flex flex-wrap gap-x-10 gap-y-4">
+              <dl className="mt-12 hidden flex-wrap gap-x-10 gap-y-4 sm:flex">
                 {[
                   { k: "16단계", v: "체계적 커리큘럼" },
                   { k: "74개 강의", v: "단계별 실습" },
-                  { k: "70시간", v: "현업 노무사 설계" },
+                  { k: "70시간", v: "업무 흐름 중심" },
                 ].map((s) => (
                   <div key={s.k}>
                     <dt className="text-2xl font-extrabold tracking-tight text-white">{s.k}</dt>
@@ -429,7 +421,7 @@ export default function Home() {
             </div>
 
             {/* Visual column — terminal mock (decorative) */}
-            <div className="relative" aria-hidden="true">
+            <div className="relative hidden lg:block" aria-hidden="true">
               <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-brand-500/20 to-violet-600/10 blur-2xl" />
               <div className="border-gradient relative rounded-2xl bg-ink-900/80 p-1.5 shadow-2xl backdrop-blur">
                 <div className="rounded-xl bg-ink-950/90 ring-1 ring-white/5">
@@ -741,9 +733,9 @@ export default function Home() {
           <div className="relative mx-auto max-w-2xl">
             <h2 className="display-sm text-3xl md:text-5xl">지금 시작해보세요</h2>
             <p className="mt-5 text-lg leading-relaxed text-white/65 balance">
-              코딩을 몰라도 됩니다. 터미널이 뭔지 몰라도 됩니다.
+              개발 경험이 없어도 시작할 수 있습니다.
               <br className="hidden sm:block" />
-              이 교육 과정이 처음부터 끝까지 함께합니다.
+              수준진단으로 필요한 강의부터 선택해 단계별로 실습해보세요.
             </p>
             <Link
               href="/lessons"

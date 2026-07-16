@@ -1,8 +1,7 @@
 import Link from "next/link";
 
 /**
- * Dark-ink footer. Preserves all cross-site links (홈·AI업무학교·Threads)
- * and adds internal navigation. Pure presentational — no SEO logic here.
+ * Dark-ink footer with core learning and official-site links only.
  */
 export default function SiteFooter() {
   return (
@@ -43,14 +42,9 @@ export default function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="https://claude.ai"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center transition-colors hover:text-white"
-                >
-                  Claude AI
-                </a>
+                <Link href="/level-test" className="inline-flex min-h-11 items-center transition-colors hover:text-white">
+                  수준진단
+                </Link>
               </li>
             </ul>
           </div>
@@ -81,12 +75,12 @@ export default function SiteFooter() {
               </li>
               <li>
                 <a
-                  href="https://www.threads.com/@silrobag?hl=ko"
+                  href="https://blog.silronomu.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex min-h-11 items-center transition-colors hover:text-white"
                 >
-                  Threads
+                  노무 실무 블로그
                 </a>
               </li>
             </ul>

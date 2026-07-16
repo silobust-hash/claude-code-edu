@@ -1,7 +1,7 @@
 export const lessonsMarketplace: Record<string, any> = {
   "7-1": {
     id: "7-1",
-    phase: "Phase 7: 플러그인 마켓플레이스 — 만능 공구 사러 가기",
+    phase: "Phase 7: 플러그인 마켓플레이스와 확장 기능",
     title: "공식 마켓플레이스 — Anthropic 직영 공구상",
     summary:
       "제조사가 직접 운영하는 직영 매장처럼, Anthropic이 공식으로 제공하는 플러그인 마켓플레이스에서 품질이 검증된 도구를 설치하고 활용하는 방법을 배웁니다.",
@@ -43,7 +43,7 @@ export const lessonsMarketplace: Record<string, any> = {
 
   "7-2": {
     id: "7-2",
-    phase: "Phase 7: 플러그인 마켓플레이스 — 만능 공구 사러 가기",
+    phase: "Phase 7: 플러그인 마켓플레이스와 확장 기능",
     title: "커뮤니티 마켓플레이스 — 동네 철물점에서 보물 찾기",
     summary:
       "서드파티 커뮤니티가 운영하는 다양한 마켓플레이스에서 숨은 보석 같은 플러그인과 스킬을 발견하고, 안전하게 설치하여 활용하는 방법을 배웁니다.",
@@ -85,7 +85,7 @@ export const lessonsMarketplace: Record<string, any> = {
 
   "7-3": {
     id: "7-3",
-    phase: "Phase 7: 플러그인 마켓플레이스 — 만능 공구 사러 가기",
+    phase: "Phase 7: 플러그인 마켓플레이스와 확장 기능",
     title: "MCP 서버 레지스트리 — 전문 장비 대여점",
     summary:
       "MCP 서버 레지스트리를 통해 Gmail, Calendar, Notion 등 전문 장비를 대여하듯 외부 서비스를 연결하고, 노무사 업무에 활용하는 방법을 배웁니다.",
@@ -125,7 +125,7 @@ export const lessonsMarketplace: Record<string, any> = {
 
   "7-4": {
     id: "7-4",
-    phase: "Phase 7: 플러그인 마켓플레이스 — 만능 공구 사러 가기",
+    phase: "Phase 7: 플러그인 마켓플레이스와 확장 기능",
     title: "나만의 공구함 꾸리기 — 마켓플레이스 실전 활용",
     summary:
       "공식 마켓, 커뮤니티 마켓, MCP 레지스트리에서 배운 내용을 종합하여 노무사에게 최적화된 나만의 도구 세트를 구성하고, 사무실 전용 마켓까지 만들어 봅니다.",
@@ -147,7 +147,7 @@ export const lessonsMarketplace: Record<string, any> = {
       {
         heading: "따라하기 실습 — 통합 설정 완성하기",
         content:
-          "지금까지 배운 세 가지 마켓플레이스를 모두 활용하여, 노무사 업무에 최적화된 통합 환경을 구성하는 실습을 해보겠습니다. 건설기술자가 새 현장에 투입되기 전에 공구함을 점검하듯이, 우리도 AI 공구함을 완성해 봅시다.\n\n[1단계: 공식 마켓에서 기본 도구 설치]\n공식 마켓을 등록(/plugin marketplace add anthropics/claude-plugins-official)한 뒤, /plugin install 명령으로 GitHub, Notion 플러그인을 설치합니다.\n\n[2단계: 커뮤니티 마켓에서 전문 스킬 추가]\nBuild with Claude 마켓을 등록하고, 문서 검토 스킬이나 리서치 스킬을 설치합니다.\n\n[3단계: MCP 서버 연결]\n원격 HTTP 방식은 claude mcp add --transport http 로 추가하고(예: Notion), Gmail·Calendar는 Anthropic 디렉터리(claude.ai/directory)에서 커넥터를 추가한 뒤 /mcp 로 인증합니다. 각 서비스별로 연결 상태를 확인합니다.\n\n[4단계: 통합 테스트]\n모든 도구가 제대로 작동하는지 간단한 테스트를 합니다. '오늘 온 이메일 요약해 줘', '이번 주 일정 보여줘', '사건대장에서 진행 중인 사건 목록 보여줘' 같은 요청으로 각 연결 상태를 확인합니다.",
+          "지금까지 배운 세 가지 마켓플레이스를 활용하여 노무사 업무에 필요한 확장 기능을 구성하는 실습을 해보겠습니다. 필요한 도구만 선별하고, 설치 후 권한과 연결 상태를 각각 확인하는 것이 핵심입니다.\n\n[1단계: 공식 마켓에서 기본 도구 설치]\n공식 마켓을 등록(/plugin marketplace add anthropics/claude-plugins-official)한 뒤, /plugin install 명령으로 GitHub, Notion 플러그인을 설치합니다.\n\n[2단계: 커뮤니티 마켓에서 전문 스킬 추가]\nBuild with Claude 마켓을 등록하고, 문서 검토 스킬이나 리서치 스킬을 설치합니다.\n\n[3단계: MCP 서버 연결]\n원격 HTTP 방식은 claude mcp add --transport http 로 추가하고(예: Notion), Gmail·Calendar는 Anthropic 디렉터리(claude.ai/directory)에서 커넥터를 추가한 뒤 /mcp 로 인증합니다. 각 서비스별로 연결 상태를 확인합니다.\n\n[4단계: 통합 테스트]\n각 도구가 필요한 범위에서 작동하는지 간단히 시험합니다. '오늘 온 이메일 요약해 줘', '이번 주 일정 보여줘', '사건대장에서 진행 중인 사건 목록 보여줘' 같은 요청으로 연결 상태와 권한 범위를 확인합니다.",
         code: '# === 노무사 통합 환경 설정 따라하기 (순서대로 입력) ===\n\n# 1단계: 공식 마켓 등록 후 플러그인 설치 (Claude Code 안에서 입력)\n/plugin marketplace add anthropics/claude-plugins-official\n/plugin install github@claude-plugins-official\n/plugin install notion@claude-plugins-official\n/plugin install slack@claude-plugins-official\n\n# 2단계: MCP 서버 연결\n# (2-1) 원격 HTTP 서버 — Notion 공식 서버 연결 후 /mcp 에서 인증\nclaude mcp add --transport http notion https://mcp.notion.com/mcp\n# (2-2) Gmail·Google Calendar — 패키지 설치가 아니라 커넥터로 추가\n#   ① https://claude.ai/directory 에서 Gmail, Calendar 커넥터를 추가\n#   ② Claude Code에서 /mcp 를 입력해 로그인(OAuth)하고 상태 확인\n\n# 3단계: 커뮤니티 스킬 설치 (터미널에서 입력)\n# git clone = 인터넷의 파일 묶음을 내 컴퓨터로 다운로드하는 명령어\ngit clone https://github.com/travisvn/awesome-claude-skills ~/awesome-skills\ncp ~/awesome-skills/skills/문서검토.md ~/.claude/commands/\n\n# 4단계: 설치·연결 상태 확인\nclaude mcp list      # 추가된 MCP 서버 목록\nls ~/.claude/commands/  # 설치된 커스텀 명령어\n# /mcp  ← Claude Code 안에서 인증·연결 상태 확인\n\n# 5단계: Claude Code 실행 후 통합 테스트\nclaude\n> 오늘 이메일 요약해 줘\n> 이번 주 일정 보여줘\n> 사건대장 현황 보여줘',
       },
       {
