@@ -8,12 +8,12 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com"
 export const metadata: Metadata = {
   title: "전체 커리큘럼",
   description:
-    "클로드 코드 16단계 73강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지, 실행 명령과 검증 로그가 남는 비개발자용 단계별 학습 경로.",
+    "클로드 코드 16단계 74강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지, 실행 명령과 검증 로그가 남는 비개발자용 단계별 학습 경로.",
   alternates: { canonical: "/curriculum" },
   openGraph: {
     title: "전체 커리큘럼 | 노무사 x Claude Code",
     description:
-      "클로드 코드 16단계 73강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지, 실행 명령과 검증 로그가 남는 비개발자용 단계별 학습 경로.",
+      "클로드 코드 16단계 74강 전체 커리큘럼 — 터미널 기초부터 MCP·스킬·플러그인·웹앱 배포까지, 실행 명령과 검증 로그가 남는 비개발자용 단계별 학습 경로.",
     url: `${SITE_URL}/curriculum`,
   },
 };
@@ -74,7 +74,7 @@ export default function CurriculumPage() {
           <p className="eyebrow text-brand-300">CURRICULUM</p>
           <h1 className="display mt-3 text-4xl md:text-5xl">전체 커리큘럼</h1>
           <p className="mx-auto mt-5 max-w-2xl text-white/70 balance">
-            16단계 · 총 73강. 매 강의는 실제 강의 페이지로 직접 연결되어,
+            16단계 · 총 74강. 매 강의는 실제 강의 페이지로 직접 연결되어,
             단계별로 빠르게 이동할 수 있습니다.
           </p>
         </div>

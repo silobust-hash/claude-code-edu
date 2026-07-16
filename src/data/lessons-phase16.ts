@@ -5,7 +5,7 @@ export const lessonsPhase16: Record<string, any> = {
       title: "AI·문명 독서지도 — 경량문명에서 종말론까지",
       summary:
         "박실로 노무사가 직접 읽은 AI 책들을 '낙관에서 종말까지' 한 줄에 세워, AI 시대를 보는 인식틀을 세웁니다. 한 권만 읽으면 한쪽으로 기웁니다. 스펙트럼으로 읽어야 노무사의 리스크 감각이 작동합니다.",
-      prev: "15-5",
+      prev: "15-6",
       next: "16-2",
       sections: [
         {

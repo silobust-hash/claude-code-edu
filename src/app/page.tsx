@@ -17,7 +17,7 @@ const courseJsonLd = {
   "@type": "Course",
   "@id": `${SITE_URL}/#course`,
   name: "클로드 코드(Claude Code) 실전 강의",
-  description: "19년차 노무사가 가르치는 비개발자를 위한 클로드 코드 실무 교육. 터미널 여는 법부터 웹앱 배포까지 실행 로그 중심으로 배우는 16단계 73개 강의.",
+  description: "19년차 노무사가 가르치는 비개발자를 위한 클로드 코드 실무 교육. 터미널 여는 법부터 웹앱 배포까지 실행 로그 중심으로 배우는 16단계 74개 강의.",
   provider: { "@id": `${SITE_URL}/#org` },
   instructor: {
     "@type": "Person",
@@ -77,7 +77,7 @@ const faqJsonLd = {
       name: "클로드 코드 강의는 얼마나 걸리나요?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "총 16단계, 73개 강의로 약 70시간 분량입니다. 자기 페이스에 맞춰 진행할 수 있으며, Phase 1~3(기초)만 마쳐도 실무에 바로 적용할 수 있습니다.",
+        text: "총 16단계, 74개 강의로 약 70시간 분량입니다. 자기 페이스에 맞춰 진행할 수 있으며, Phase 1~3(기초)만 마쳐도 실무에 바로 적용할 수 있습니다.",
       },
     },
     {
@@ -417,7 +417,7 @@ export default function Home() {
               <dl className="mt-12 flex flex-wrap gap-x-10 gap-y-4">
                 {[
                   { k: "16단계", v: "체계적 커리큘럼" },
-                  { k: "73개 강의", v: "단계별 실습" },
+                  { k: "74개 강의", v: "단계별 실습" },
                   { k: "70시간", v: "현업 노무사 설계" },
                 ].map((s) => (
                   <div key={s.k}>

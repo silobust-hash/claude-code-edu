@@ -146,11 +146,11 @@ run("강의 API 페이로드 스키마 기본 검증이 동작해야 함", () =>
   assert(!isLessonPayload({ ...payload, keyTakeaways: "invalid" as unknown as typeof payload.keyTakeaways }));
 });
 
-run("커리큘럼 페이지는 전체 강의 73개 링크를 렌더링해야 함", () => {
+run("커리큘럼 페이지는 전체 강의 74개 링크를 렌더링해야 함", () => {
   const curriculumSource = read("src/app/curriculum/page.tsx");
   assert(curriculumSource.includes("href={`/lessons/${lesson.id}`"));
   const links = getOrderedLessons().map((lesson) => `/lessons/${lesson.id}`);
-  assert.strictEqual(links.length, 73);
+  assert.strictEqual(links.length, 74);
   assert(curriculumSource.includes("lessonGroups"));
 });
 
@@ -578,6 +578,7 @@ run("수준진단 추천 링크는 타입별 교차 ID를 정확히 반영해야
   assert(designLinks.includes("/lessons/13-1"));
   assert(designLinks.includes("/lessons/14-1"));
   assert(designLinks.includes("/lessons/15-1"));
+  assert(designLinks.includes("/lessons/15-6"));
   assert(designLinks.includes("/lessons/16-1"));
   assert(designLinks.length <= 5);
 });

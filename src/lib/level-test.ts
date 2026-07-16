@@ -110,7 +110,7 @@ export const LEVEL_TEST_QUESTIONS: LevelTestQuestion[] = [
     id: "c-05",
     section: "개념 이해",
     area: "concept",
-    text: "학습 계획을 짤 때 73개 강의를 볼 때 가장 현실적인 방식은?",
+    text: "학습 계획을 짤 때 74개 강의를 볼 때 가장 현실적인 방식은?",
     options: [
       { value: 0, label: "인기 강의만 랜덤하게 보며 완성" },
       { value: 1, label: "완독 기록만으로 끝내기" },
@@ -347,6 +347,7 @@ const RECOMMENDATIONS_BY_TYPE: Record<
     { label: "edu 13-1", href: "/lessons/13-1", site: "edu-internal" },
     { label: "edu 14-1", href: "/lessons/14-1", site: "edu-internal" },
     { label: "edu 15-1", href: "/lessons/15-1", site: "edu-internal" },
+    { label: "edu 15-6", href: "/lessons/15-6", site: "edu-internal" },
     { label: "edu 16-1", href: "/lessons/16-1", site: "edu-internal" },
   ],
 };
