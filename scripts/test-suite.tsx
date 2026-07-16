@@ -110,14 +110,16 @@ run("JSON-LD 직렬화는 HTML 종료 문자와 자바스크립트 줄 구분자
   assert.deepStrictEqual(JSON.parse(serialized), source);
 });
 
-run("일일 접근 코드는 비밀값 기반 생성/비교가 일치해야 함", () => {
+run("일일 접근 코드는 서울 기준 YYMMDD로 생성/비교되어야 함", () => {
   process.env.LESSON_ACCESS_SECRET = "lesson-secret";
   const today = getTodayLessonCode();
   assert.strictEqual(today.length, 6);
+  assert.strictEqual(today, seoulDateString());
 
   const expected = createLessonAccessCode("lesson-secret", "260701");
-  const todayFromDate = createLessonAccessCode("lesson-secret", "260701");
-  assert.strictEqual(expected, todayFromDate);
+  assert.strictEqual(expected, "260701");
+  assert.strictEqual(createLessonAccessCode("different-secret", "260701"), "260701");
+  assert.strictEqual(createLessonAccessCode("lesson-secret", "20260701"), "");
 
   const first = today;
   const second = getTodayLessonCode();

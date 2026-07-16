@@ -1,4 +1,4 @@
-import { randomBytes, createHmac, timingSafeEqual, createHash } from "node:crypto";
+import { randomBytes, createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 
 const LESSON_ACCESS_COOKIE = "lesson-access-session";
@@ -78,11 +78,8 @@ export function formatSeoulDateTime(date: Date): string {
 }
 
 export function createLessonAccessCode(secret: string, date: string): string {
-  const raw = `${secret}:${date}`;
-  const digest = createHash("sha256").update(raw).digest("hex");
-  const slice = digest.slice(0, 8);
-  const code = Number.parseInt(slice, 16) % 1_000_000;
-  return code.toString().padStart(6, "0");
+  void secret;
+  return /^\d{6}$/.test(date) ? date : "";
 }
 
 export function compareLessonAccessCode(
