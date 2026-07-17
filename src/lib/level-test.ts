@@ -110,7 +110,7 @@ export const LEVEL_TEST_QUESTIONS: LevelTestQuestion[] = [
     id: "c-05",
     section: "개념 이해",
     area: "concept",
-    text: "학습 계획을 짤 때 74개 강의를 볼 때 가장 현실적인 방식은?",
+    text: "학습 계획을 짤 때 75개 강의를 볼 때 가장 현실적인 방식은?",
     options: [
       { value: 0, label: "인기 강의만 랜덤하게 보며 완성" },
       { value: 1, label: "완독 기록만으로 끝내기" },
