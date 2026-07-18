@@ -70,11 +70,11 @@ const SAME_AS = [
   "https://xn--hc0bn7fv7j9tf6rl.net/",
   "https://blog.naver.com/5215678",
   "https://silronomusa.blogspot.com/",
-  "https://www.facebook.com/share/17SYegaFj5/",
+  "https://www.facebook.com/people/박실로/100063776575717/",
   "https://www.instagram.com/silrobag/",
   "https://www.threads.net/@silrobag",
   "https://x.com/silrobag",
-  "https://youtube.com/channel/UCAkNJ16PNf2cNfhXsVbh-gg",
+  "https://www.youtube.com/@코딩하는노무사",
   "https://www.linkedin.com/in/실로-박-385a1a104/",
 ];
 
