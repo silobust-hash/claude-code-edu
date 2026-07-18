@@ -48,6 +48,7 @@ export default function LessonGate({ children, accent = "#6366f1" }: LessonGateP
         style={{
           width: "100%",
           maxWidth: 420,
+          boxSizing: "border-box",
           background: "#fff",
           border: "1px solid #e2e8f0",
           borderRadius: 18,

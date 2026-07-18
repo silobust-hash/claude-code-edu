@@ -90,8 +90,8 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
           <span className="text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full">{lesson.phase}</span>
           <span className="text-xs text-slate-400 ml-2">{lesson.id}</span>
         </div>
-        <h1 className="text-3xl font-bold mb-4 leading-tight break-words [overflow-wrap:anywhere]">{lesson.title}</h1>
-        <p className="text-lg text-slate-500 mb-4 leading-relaxed break-words [overflow-wrap:anywhere]">{lesson.summary}</p>
+        <h1 className="text-3xl font-bold mb-4 leading-tight break-words" style={{ overflowWrap: "anywhere" }}>{lesson.title}</h1>
+        <p className="text-lg text-slate-500 mb-4 leading-relaxed break-words" style={{ overflowWrap: "anywhere" }}>{lesson.summary}</p>
         <p className="text-sm text-slate-500 mb-8">
           본문은 인증 후 공개됩니다. 강의 코드를 입력해 전체 내용을 보려면 아래로 이동하세요.
         </p>
@@ -149,8 +149,8 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
         <span className="text-xs text-slate-400 ml-2">{lesson.id}</span>
       </div>
 
-      <h1 className="text-3xl font-bold mb-4 leading-tight break-words [overflow-wrap:anywhere]">{lesson.title}</h1>
-      <p className="text-lg text-slate-500 mb-6 leading-relaxed break-words [overflow-wrap:anywhere]">{lesson.summary}</p>
+      <h1 className="text-3xl font-bold mb-4 leading-tight break-words" style={{ overflowWrap: "anywhere" }}>{lesson.title}</h1>
+      <p className="text-lg text-slate-500 mb-6 leading-relaxed break-words" style={{ overflowWrap: "anywhere" }}>{lesson.summary}</p>
       <LessonProgressToggle lessonId={lesson.id} lessonTitle={lesson.title} catalog={lessonCatalog} />
 
       <div className="mb-10">
