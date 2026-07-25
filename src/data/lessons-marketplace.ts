@@ -5,7 +5,7 @@ export const lessonsMarketplace: Record<string, any> = {
     title: "공식 마켓플레이스 — Anthropic 직영 공구상",
     summary:
       "제조사가 직접 운영하는 직영 매장처럼, Anthropic이 공식으로 제공하는 플러그인 마켓플레이스에서 품질이 검증된 도구를 설치하고 활용하는 방법을 배웁니다.",
-    prev: "6-5",
+    prev: "6-6",
     next: "7-2",
     sections: [
       {
