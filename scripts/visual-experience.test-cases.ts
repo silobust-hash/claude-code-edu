@@ -75,8 +75,8 @@ test("최상단 채널 전환 띠는 두 교육 채널의 역할과 현재 위�
   assert.match(layout, /<EducationChannelBar \/>[\s\S]*<SiteNav \/>/);
   assert.match(channelBar, /aria-label="교육 채널 전환"/);
   assert.match(channelBar, /https:\/\/ai-school\.silronomu\.com/);
-  assert.match(channelBar, /이동 · 입문·공통 기초/);
-  assert.match(channelBar, /현재 채널 · 실무 심화/);
+  assert.match(channelBar, /이동 · 콘텐츠 설계/);
+  assert.match(channelBar, /현재 채널 · 기술 구현·측정/);
   assert.match(channelBar, /aria-current="page"/);
   assert.match(channelBar, /min-h-\[60px\]/);
   assert.doesNotMatch(channelBar, /truncate/);

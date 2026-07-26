@@ -29,11 +29,11 @@ const catalog = orderedLessons.map((lesson) => ({ id: lesson.id, title: lesson.t
 
 export const metadata: Metadata = {
   title: "강의 목록",
-  description: "클로드 코드 16단계 78강 전체 강의 목록 — Phase 1 AI 시대 이해하기부터 Phase 16 AI 시대를 읽는 눈까지, 실습 파일이 남는 비개발자 노무사 단계별 강의를 한눈에 확인하세요.",
+  description: "클로드 코드 16단계 79강 전체 강의 목록 — Phase 1 AI 시대 이해하기부터 Phase 16 AI 시대를 읽고 구현하는 법까지, 실습 파일이 남는 비개발자 노무사 단계별 강의를 한눈에 확인하세요.",
   alternates: { canonical: "/lessons" },
   openGraph: {
     title: "강의 목록 | 노무사 x Claude Code",
-    description: "클로드 코드 16단계 78강 전체 강의 목록 — Phase 1 AI 시대 이해하기부터 Phase 16 AI 시대를 읽는 눈까지, 실습 파일이 남는 비개발자 노무사 단계별 강의를 한눈에 확인하세요.",
+    description: "클로드 코드 16단계 79강 전체 강의 목록 — Phase 1 AI 시대 이해하기부터 Phase 16 AI 시대를 읽고 구현하는 법까지, 실습 파일이 남는 비개발자 노무사 단계별 강의를 한눈에 확인하세요.",
     url: `${SITE_URL}/lessons`,
   },
 };
@@ -56,7 +56,7 @@ export default function LessonsPage() {
         <div className="absolute inset-0 bg-grid-dark mask-radial opacity-55" aria-hidden="true" />
         <div className="grain absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
-          <p className="eyebrow text-brand-300">LESSONS · 78개 강의</p>
+          <p className="eyebrow text-brand-300">LESSONS · 79개 강의</p>
           <h1 className="display mt-4 text-4xl md:text-5xl">강의 목록</h1>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/65 balance">
             순서대로 따라가세요. 각 강의는 독립적이지만, 앞 단계를 먼저 보시면 더 잘 이해됩니다.
@@ -103,7 +103,7 @@ export default function LessonsPage() {
         </div>
 
         <div className="border-gradient relative mt-16 rounded-2xl bg-white p-8 text-center shadow-sm">
-          <h3 className="text-lg font-bold text-ink-900">전체 16단계, 78개 강의</h3>
+          <h3 className="text-lg font-bold text-ink-900">전체 16단계, 79개 강의</h3>
           <p className="mt-2 text-sm leading-relaxed text-ink-500">
             Phase 1부터 순서대로 따라가시면 됩니다.
             <br />

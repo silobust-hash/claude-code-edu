@@ -138,7 +138,7 @@ export default function AboutPage() {
             </article>
 
             <article className="rounded-lg border border-brand-200 bg-white p-6 shadow-sm">
-              <p className="text-xs font-bold text-brand-700">실무 심화</p>
+              <p className="text-xs font-bold text-brand-700">기술 구현·측정</p>
               <h3 className="mt-2 text-lg font-bold text-ink-900">Claude Code 실무 과정</h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-600 balance">
                 터미널, 파일 작업, 자동화, 검증, 웹 서비스 제작과 배포를 단계별 과제로 실습합니다.

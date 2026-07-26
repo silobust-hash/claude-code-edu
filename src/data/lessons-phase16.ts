@@ -831,7 +831,7 @@ GPT Live는 음성·실시간 대화를 위한 인터페이스입니다. 사용�
     summary:
       "ChatGPT Work의 Record and Replay를 경쟁제품 기능 자랑으로 보지 않고, Claude Code에서 재현 가능한 자동화 설계 원리로 번역합니다. 화면 녹화와 관찰 기록을 근거로 workflow-observation.md, skill-spec.md, verification-checklist.md 초안을 만들고, 안정 단계와 변동요소를 분리해 안전한 스킬 명세를 설계합니다.",
     prev: "16-6",
-    next: null,
+    next: "16-8",
     updatedAt: "2026-07-25",
     sections: [
       {
@@ -995,6 +995,132 @@ Record and Replay, Computer Use, ChatGPT Work, Claude Code의 기능 제공 범�
       "샌드박스에서 먼저 재생하고, 멱등성·로그·실패조건·개인정보 제거 여부를 검증합니다.",
       "개인정보·계정·발송·게시·삭제·결제·권한변경은 자동화 대상이 아니라 사람 승인 게이트 대상입니다.",
       "기능 제공 범위, 플랜, 화면 구성은 달라질 수 있으므로 특정 화면을 고정 매뉴얼로 외우지 않습니다.",
+    ],
+  },
+
+  "16-8": {
+    id: "16-8",
+    phase: "Phase 16",
+    title: "네이버 AI탭 시대의 기술 구현 — 프로필·스키마·대표 URL·사이트맵·질문 측정",
+    summary:
+      "AI업무학교의 콘텐츠 작성 원칙을 실제 웹 운영으로 옮깁니다. 단일 프로필, 보이는 내용과 일치하는 구조화 데이터, 대표 URL과 사이트맵, 고정 질문 측정판을 코드와 배포 점검으로 구현합니다.",
+    prev: "16-7",
+    next: null,
+    updatedAt: "2026-07-26",
+    sections: [
+      {
+        heading: "이 모듈의 역할: 콘텐츠 작성과 기술 운영을 분리합니다",
+        content: `AI업무학교 6-21은 전문직 콘텐츠를 어떻게 쓰는지 다룹니다. 질문에 먼저 답하기, 경험 비식별화, 공식 근거, 발행 전 점검이 그 범위입니다. 이 모듈은 그 글을 받쳐 주는 웹 운영을 다룹니다. 프로필 데이터, 구조화 데이터, 대표 URL, 사이트맵, 고정 질문 측정 기록을 코드와 배포 흐름으로 관리합니다.
+
+둘을 섞으면 한쪽은 홍보 문구가 되고 다른 한쪽은 기술만 남습니다. 콘텐츠 채널은 '무엇을 답할 것인가', 개발 채널은 '그 답을 확인 가능한 사이트 구조로 어떻게 유지할 것인가'를 맡습니다. AI 답변에 나타나는 결과는 보장할 수 없으며, 이 구현은 검색엔진과 사용자에게 일관된 정보를 제공하기 위한 운영 기반입니다.`,
+        tip: "콘텐츠 내용의 사실성은 작성·검토 단계에서, URL·스키마·사이트맵의 정합성은 배포 단계에서 각각 확인합니다.",
+      },
+      {
+        heading: "프로필은 한 곳에서 관리하고 화면·스키마·플레이스와 대조합니다",
+        content: `이름, 주소, 전화, 대표 URL은 페이지마다 손으로 복사하지 않습니다. 코드의 단일 프로필 객체를 원천으로 두고, 화면 표시와 JSON-LD에 같은 값을 사용합니다. 네이버 플레이스는 코드가 대신 바꾸는 대상이 아닙니다. 공식 관리 화면에서 실제 정보와 대조하고, 틀린 사실이 확인되었을 때만 권한 있는 사람이 수정합니다.
+
+사업명 표기 방식, 지점 표기, 전화, 주소, 대표 URL이 소스 안에서 둘 이상이라면 먼저 실제 운영 기준을 정해야 합니다. 모르는 값을 추측해 통일하지 않습니다. 불일치는 배포 전 차단 항목으로 기록하고, 소유권·로그인·공식 서류 확인을 거쳐 바로잡습니다.`,
+        code: `// src/config/business-profile.ts
+export const businessProfile = {
+  name: "확인된 공식 사업명",
+  address: "공개·확인된 사업장 주소",
+  telephone: "공개·확인된 대표 전화",
+  url: "https://example.com/",
+  sameAs: ["공식 블로그 URL", "공식 플레이스 URL"],
+} as const;
+
+// 화면, JSON-LD, 연락처 컴포넌트는 이 객체만 사용합니다.
+// 플레이스 정보는 자동 수정하지 않고 공식 관리자 화면에서 대조합니다.`,
+      },
+      {
+        heading: "스키마는 보이는 사실만 JSON-LD로 적습니다",
+        content: `구조화 데이터는 검색엔진에 숨겨진 홍보 문구를 보내는 장치가 아닙니다. 화면에 실제로 보이는 사업명, 서비스, 주소, 전화, 대표 URL, 공식 채널만 넣습니다. Organization, LocalBusiness, ProfessionalService처럼 실제 성격에 맞는 유형을 선택하고, 같은 엔터티에는 같은 식별자를 사용합니다.
+
+후기, 평점, 수상, 자격, 가격처럼 근거가 없거나 화면에 없는 정보는 넣지 않습니다. 특히 허위 후기나 리뷰 문구를 지시하는 방식은 사용하지 않습니다. 서비스 설명도 범위를 과장하지 않고, 법률·노무 판단은 개별 자료에 따라 달라진다는 경계를 유지합니다.`,
+        code: `const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["ProfessionalService", "LocalBusiness"],
+  "@id": new URL("#business", businessProfile.url).toString(),
+  name: businessProfile.name,
+  url: businessProfile.url,
+  telephone: businessProfile.telephone,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: businessProfile.address,
+  },
+  sameAs: businessProfile.sameAs,
+};
+
+// 화면에 없는 평점·후기·수상 정보는 넣지 않습니다.`,
+      },
+      {
+        heading: "대표 URL과 사이트맵은 배포 환경까지 포함해 관리합니다",
+        content: `각 공개 페이지에는 하나의 대표 URL을 둡니다. 배포 미리보기 주소, 개발 주소, www·비www, http·https가 섞이면 대표 URL과 내부 링크가 흔들릴 수 있습니다. 대표 URL은 절대 주소로 생성하고, URL을 바꿀 때는 서버에서 이전 주소를 새 주소로 정상 이동시키며, 사이트맵에는 최종 공개 주소만 넣습니다.
+
+네이버 검색어드바이저는 사이트 등록·소유 확인 뒤 웹마스터 도구와 URL 검사를 제공합니다. 이 모듈에서는 로그인 우회나 자동 제출을 하지 않습니다. 공개 사이트의 robots.txt, sitemap.xml, 대표 URL, 응답 상태를 먼저 검사하고, 권한이 있는 운영자가 공식 화면에서 추가 확인합니다.`,
+        code: `const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
+if (!siteUrl?.startsWith("https://")) {
+  throw new Error("공개 대표 URL을 HTTPS 절대 주소로 설정하세요.");
+}
+
+export const canonicalUrl = (path: string) =>
+  new URL(path, siteUrl).toString();
+
+// sitemap.xml에는 canonicalUrl()이 만드는 최종 공개 주소만 넣습니다.`,
+      },
+      {
+        heading: "고정 질문 측정판은 순위표가 아니라 관찰 기록입니다",
+        content: `AI 검색 결과는 질문·시점·맥락에 따라 바뀔 수 있습니다. 그래서 '항상 몇 위'라는 대시보드를 만들지 않습니다. 대신 실제 고객 질문에 가까운 고정 질문 묶음과 관찰 기준을 정해, 일정한 주기로 사람이 확인한 결과를 기록합니다.
+
+질문마다 확인일, 질문 문장, 서비스 영역, 확인한 공개 화면, 나타난 출처 유형, 연결된 자사 페이지, 사실 확인 필요 여부를 남깁니다. 결과가 없거나 달라져도 실패로 단정하지 않고, 페이지의 첫답변·공식 근거·대표 URL·내부 링크를 재점검하는 신호로 씁니다. 비공개 계정 정보, 개인화된 결과, 자동 로그인 우회, 대량 수집은 측정 범위에서 제외합니다.`,
+        code: `type QuestionObservation = {
+  checkedAt: string;
+  question: string;
+  serviceArea: "병원노무" | "산재보상" | "산업안전" | "노동분쟁" | "AI문서검증";
+  publicSourceUrl?: string;
+  resultType: "직접답변" | "공식출처" | "자사페이지연결" | "미확인";
+  evidenceUrl?: string;
+  followUp: "없음" | "근거갱신" | "첫답변보완" | "NAP확인";
+};
+
+// 이 기록은 노출 보장용 순위표가 아니라 공개 화면의 정기 관찰 로그입니다.`,
+      },
+      {
+        heading: "배포 전 기술 점검표",
+        content: `배포 전에는 아래 순서로 확인합니다.
+
+1. 프로필 원천이 하나이고 화면·스키마·연락처에 같은 값이 쓰였는가
+2. 구조화 데이터가 화면의 사실과 같고 근거 없는 후기·평점·성과가 없는가
+3. 각 페이지의 canonical이 공개 HTTPS 대표 URL인가
+4. robots.txt와 sitemap.xml이 최종 공개 URL을 가리키는가
+5. 서비스 진입 페이지와 블로그·교육 채널 링크가 실제로 열리는가
+6. 고정 질문 측정 기록에 날짜·근거 URL·후속 조치가 남는가
+7. 빌드·형식 검사 후 공개 URL을 데스크톱과 모바일에서 직접 확인했는가
+
+이 체크는 검색 노출을 보장하지 않습니다. 대신 사이트가 스스로 말하는 사실을 일관되게 유지하고, 문제가 생겼을 때 어디를 다시 확인할지 알게 합니다.`,
+      },
+    ],
+    keyTakeaways: [
+      "AI업무학교는 콘텐츠의 첫답변·근거·비식별화 기준을, 이 모듈은 프로필·스키마·대표 URL·사이트맵·측정 구현을 맡습니다.",
+      "NAP은 하나의 원천에서 화면과 JSON-LD에 사용하고, 플레이스는 공식 관리 화면에서 실제와 다를 때만 수정합니다.",
+      "구조화 데이터에는 화면에 보이는 사실만 넣으며, 후기·평점·수상 정보를 만들거나 지시하지 않습니다.",
+      "대표 URL·이전 주소 이동·사이트맵·robots.txt는 배포 미리보기 주소가 아닌 최종 공개 주소 기준으로 점검합니다.",
+      "고정 질문 측정판은 공개 화면을 사람이 관찰하는 기록이며, 순위나 AI 답변 포함을 보장하지 않습니다.",
+    ],
+    relatedLinks: [
+      {
+        label: "AI업무학교 — 네이버 AI탭 시대, 전문직 콘텐츠는 어떻게 작성해야 하나",
+        url: "https://ai-school.silronomu.com/lessons/6-21",
+      },
+      {
+        label: "네이버 검색어드바이저 — 사이트 구조와 대표 URL 안내",
+        url: "https://searchadvisor.naver.com/guide/markup-structure",
+      },
+      {
+        label: "네이버 검색어드바이저 — URL 검사 안내",
+        url: "https://searchadvisor.naver.com/guide/url-inspection",
+      },
     ],
   },
 };

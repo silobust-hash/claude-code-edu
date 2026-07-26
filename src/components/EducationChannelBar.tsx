@@ -14,11 +14,11 @@ export default function EducationChannelBar() {
         <a
           href={AI_SCHOOL_URL}
           className="group flex min-h-[60px] min-w-0 items-center justify-between gap-2 bg-brand-700 px-4 py-2.5 text-white outline-none transition-colors hover:bg-brand-600 focus-visible:bg-brand-600 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white sm:px-5"
-          aria-label="AI업무학교 입문 및 공통 기초 채널로 이동"
+          aria-label="AI업무학교 콘텐츠 설계 채널로 이동"
         >
           <span className="min-w-0">
             <span className="block text-[11px] font-semibold leading-4 text-brand-100">
-              이동 · 입문·공통 기초
+              이동 · 콘텐츠 설계
             </span>
             <strong className="block whitespace-nowrap text-[13px] leading-5 sm:text-sm">
               AI업무학교
@@ -38,7 +38,7 @@ export default function EducationChannelBar() {
         >
           <span className="min-w-0">
             <span className="block text-[11px] font-semibold leading-4 text-accent-soft">
-              현재 채널 · 실무 심화
+              현재 채널 · 기술 구현·측정
             </span>
             <strong className="block whitespace-nowrap text-[13px] leading-5 text-white sm:text-sm">
               Claude Code 실무 과정

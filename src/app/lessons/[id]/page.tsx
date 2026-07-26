@@ -192,6 +192,26 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
         </div>
       )}
 
+      {Array.isArray(lesson.relatedLinks) && lesson.relatedLinks.length > 0 && (
+        <div className="mt-6 rounded-2xl border border-indigo-100 bg-indigo-50 p-6">
+          <h3 className="mb-3 font-bold text-indigo-800">연결 자료</h3>
+          <ul className="space-y-2">
+            {lesson.relatedLinks.map((link: { label: string; url: string }, i: number) => (
+              <li key={i}>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-indigo-600 hover:text-indigo-800 hover:underline"
+                >
+                  {link.label} →
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <LessonReactions lessonId={id} />
 
       <div className="flex justify-between mt-12 pt-8 border-t border-slate-200">
