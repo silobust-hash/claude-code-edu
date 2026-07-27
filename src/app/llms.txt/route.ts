@@ -32,6 +32,7 @@ ${lessonLines}
 - [강의 홈](${SITE_URL})
 - [소개](${SITE_URL}/about)
 - [박실로 노무사 / 한동노무법인](https://silronomu.com/)
+- [AI노무사 박실로 기준](https://silronomu.com/hub/ai-nomusa.html)
 - [AI업무학교](https://ai-school.silronomu.com/)
 `;
 }
