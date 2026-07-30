@@ -93,6 +93,16 @@ export default function SiteFooter() {
                   노무 실무 블로그
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://sanjae.silronomu.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center transition-colors hover:text-white"
+                >
+                  산재·산업안전 전문 블로그
+                </a>
+              </li>
             </ul>
           </div>
         </div>

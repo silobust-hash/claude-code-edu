@@ -62,7 +62,7 @@ test("주요 navigation 링크는 44px 터치영역을 사용한다", async () =
   ]);
 
   assert.match(siteNav, /group inline-flex min-h-11 items-center gap-2\.5/);
-  assert.equal(siteFooter.match(/inline-flex min-h-11 items-center/g)?.length, 7);
+  assert.equal(siteFooter.match(/inline-flex min-h-11 items-center/g)?.length, 8);
 });
 
 test("최상단 채널 전환 띠는 두 교육 채널의 역할과 현재 위치를 명확히 표시한다", async () => {

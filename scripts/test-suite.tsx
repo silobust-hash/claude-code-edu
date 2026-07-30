@@ -481,6 +481,23 @@ run("교육 채널의 박실로·한동노무법인 엔티티 식별자가 분�
   assert(aboutSource.includes('const OFFICIAL_ORG_ID = "https://xn--2q1bm94d.com/#organization"'));
   assert(footerSource.includes("https://xn--2q1bm94d.com/members"));
   assert(llms.includes("https://xn--2q1bm94d.com/members"));
+
+  const sameAsBlock = layoutSource.slice(
+    layoutSource.indexOf("const PERSON_PROFILE_SAME_AS"),
+    layoutSource.indexOf("const PARK_SILLO_SUBJECT_OF"),
+  );
+  const subjectOfBlock = layoutSource.slice(
+    layoutSource.indexOf("const PARK_SILLO_SUBJECT_OF"),
+    layoutSource.indexOf("const personJsonLd"),
+  );
+
+  assert(footerSource.includes("https://sanjae.silronomu.com/"));
+  assert(footerSource.includes("산재·산업안전 전문 블로그"));
+  assert(llms.includes("https://sanjae.silronomu.com/"));
+  assert(llms.includes("산재·산업안전 전문 블로그"));
+  assert(subjectOfBlock.includes("https://sanjae.silronomu.com/"));
+  assert(subjectOfBlock.includes('name: "산재·산업안전 전문 블로그"'));
+  assert(!sameAsBlock.includes("https://sanjae.silronomu.com/"));
 });
 
 run("사이트맵과 llms.txt에 /about가 반영되어야 함", () => {

@@ -87,6 +87,11 @@ const PARK_SILLO_SUBJECT_OF = [
     name: "AI업무학교",
     url: "https://ai-school.silronomu.com/",
   },
+  {
+    "@type": "WebSite",
+    name: "산재·산업안전 전문 블로그",
+    url: "https://sanjae.silronomu.com/",
+  },
 ];
 
 const personJsonLd = {
