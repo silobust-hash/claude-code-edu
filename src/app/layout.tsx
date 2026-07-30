@@ -66,7 +66,6 @@ export const metadata: Metadata = {
 const PERSON_PROFILE_SAME_AS = [
   "https://www.instagram.com/silrobag/",
   "https://www.threads.net/@silrobag",
-  "https://x.com/silrobag",
   "https://www.youtube.com/@코딩하는노무사",
   "https://www.linkedin.com/in/실로-박-385a1a104/",
 ];
