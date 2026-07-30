@@ -60,7 +60,17 @@ export default function SiteFooter() {
                   rel="noopener noreferrer"
                   className="inline-flex min-h-11 items-center transition-colors hover:text-white"
                 >
-                  홈페이지
+                  박실로 노무사 개인 홈페이지
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://xn--2q1bm94d.com/members"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center transition-colors hover:text-white"
+                >
+                  한동노무법인 공식 홈페이지
                 </a>
               </li>
               <li>

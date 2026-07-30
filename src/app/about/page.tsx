@@ -4,6 +4,7 @@ import { serializeJsonLd } from "@/lib/serialize-jsonld";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
 const PROFILE_URL = `${SITE_URL}/about`;
+const OFFICIAL_ORG_ID = "https://xn--2q1bm94d.com/#organization";
 
 export const metadata: Metadata = {
   title: "소개",
@@ -20,8 +21,9 @@ const personJsonLd = {
   jobTitle: "공인노무사",
   worksFor: {
     "@type": "Organization",
+    "@id": OFFICIAL_ORG_ID,
     name: "한동노무법인",
-    url: "https://silronomu.com",
+    url: "https://xn--2q1bm94d.com/",
   },
   knowsAbout: ["AI 활용", "Claude Code", "노무사 업무 자동화", "비개발자 교육"],
   url: "https://silronomu.com",
@@ -150,6 +152,45 @@ export default function AboutPage() {
                 커리큘럼 보기 <span className="ml-1" aria-hidden>→</span>
               </Link>
             </article>
+          </div>
+        </section>
+
+        <section className="mt-16 border-t border-ink-200 pt-12">
+          <p className="eyebrow text-brand-700">운영자와 공식 법인</p>
+          <h2 className="display-sm mt-3 text-2xl text-ink-900 md:text-3xl">
+            교육의 운영 기준과 노무 전문 서비스를 구분해 안내합니다
+          </h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <a
+              href="https://silronomu.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg border border-ink-200 bg-white p-6 shadow-sm transition hover:border-brand-300 hover:shadow-md"
+            >
+              <p className="text-xs font-bold text-brand-700">운영자 개인 홈페이지</p>
+              <h3 className="mt-2 text-lg font-bold text-ink-900">박실로 공인노무사</h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-600">
+                박실로 노무사의 활동, 글과 상담 안내를 확인할 수 있습니다.
+              </p>
+              <span className="mt-5 inline-flex min-h-11 items-center text-sm font-semibold text-brand-700">
+                개인 홈페이지 보기 <span className="ml-1" aria-hidden>→</span>
+              </span>
+            </a>
+            <a
+              href="https://xn--2q1bm94d.com/members"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg border border-ink-200 bg-white p-6 shadow-sm transition hover:border-brand-300 hover:shadow-md"
+            >
+              <p className="text-xs font-bold text-brand-700">공식 법인 홈페이지</p>
+              <h3 className="mt-2 text-lg font-bold text-ink-900">한동노무법인 구성원 안내</h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-600">
+                인사·노무 자문과 노동사건 대응 등 법인 전문 서비스를 확인할 수 있습니다.
+              </p>
+              <span className="mt-5 inline-flex min-h-11 items-center text-sm font-semibold text-brand-700">
+                한동노무법인 보기 <span className="ml-1" aria-hidden>→</span>
+              </span>
+            </a>
           </div>
         </section>
 

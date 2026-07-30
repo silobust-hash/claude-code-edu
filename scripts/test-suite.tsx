@@ -466,6 +466,23 @@ run("/about 페이지가 생성되어 있으며 소개/레벨진단/메타 정�
   assert(aboutSource.includes("profilePageJsonLd"));
 });
 
+run("교육 채널의 박실로·한동노무법인 엔티티 식별자가 분리되어야 함", () => {
+  const layoutSource = read("src/app/layout.tsx");
+  const aboutSource = read("src/app/about/page.tsx");
+  const footerSource = read("src/components/SiteFooter.tsx");
+  const llms = read("src/app/llms.txt/route.ts");
+
+  assert(layoutSource.includes('const PERSON_ID = "https://silronomu.com/#person"'));
+  assert(layoutSource.includes('const ORG_ID = "https://xn--2q1bm94d.com/#organization"'));
+  assert(!layoutSource.includes('const ORG_ID = "https://silronomu.com/#organization"'));
+  assert(layoutSource.includes("const PERSON_PROFILE_SAME_AS"));
+  assert(layoutSource.includes("subjectOf: PARK_SILLO_SUBJECT_OF"));
+  assert(!layoutSource.includes('"https://edu.silronomu.com/",'));
+  assert(aboutSource.includes('const OFFICIAL_ORG_ID = "https://xn--2q1bm94d.com/#organization"'));
+  assert(footerSource.includes("https://xn--2q1bm94d.com/members"));
+  assert(llms.includes("https://xn--2q1bm94d.com/members"));
+});
+
 run("사이트맵과 llms.txt에 /about가 반영되어야 함", () => {
   const sitemap = read("src/app/sitemap.ts");
   const llms = read("src/app/llms.txt/route.ts");

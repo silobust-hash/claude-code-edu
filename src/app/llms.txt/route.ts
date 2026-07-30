@@ -31,7 +31,8 @@ ${lessonLines}
 ## 소개
 - [강의 홈](${SITE_URL})
 - [소개](${SITE_URL}/about)
-- [박실로 노무사 / 한동노무법인](https://silronomu.com/)
+- [박실로 노무사 개인 홈페이지](https://silronomu.com/)
+- [한동노무법인 공식 홈페이지 · 구성원](https://xn--2q1bm94d.com/members)
 - [AI노무사 박실로 기준](https://silronomu.com/hub/ai-nomusa.html)
 - [AI업무학교](https://ai-school.silronomu.com/)
 `;

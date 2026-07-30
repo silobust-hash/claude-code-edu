@@ -8,7 +8,8 @@ import "./globals.css";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
 const PERSON_ID = "https://silronomu.com/#person";
-const ORG_ID = "https://silronomu.com/#organization";
+const ORG_ID = "https://xn--2q1bm94d.com/#organization";
+const OFFICIAL_SITE_URL = "https://xn--2q1bm94d.com/";
 
 export const metadata: Metadata = {
   title: {
@@ -62,23 +63,30 @@ export const metadata: Metadata = {
   },
 };
 
-const SAME_AS = [
-  "https://silronomu.com/",
-  "https://blog.silronomu.com/",
-  "https://sanjae.silronomu.com/",
-  "https://edu.silronomu.com/",
-  "https://ai-school.silronomu.com/",
-  "https://xn--hc0b21e4rq52a9zgfzlxub.com/",
-  "https://xn--hc0b21et01ao2a.com/",
-  "https://xn--hc0bn7fv7j9tf6rl.net/",
-  "https://blog.naver.com/5215678",
-  "https://silronomusa.blogspot.com/",
-  "https://www.facebook.com/people/박실로/100063776575717/",
+const PERSON_PROFILE_SAME_AS = [
   "https://www.instagram.com/silrobag/",
   "https://www.threads.net/@silrobag",
   "https://x.com/silrobag",
   "https://www.youtube.com/@코딩하는노무사",
   "https://www.linkedin.com/in/실로-박-385a1a104/",
+];
+
+const PARK_SILLO_SUBJECT_OF = [
+  {
+    "@type": "ProfilePage",
+    name: "한동노무법인 구성원 · 박실로 노무사",
+    url: `${OFFICIAL_SITE_URL}members`,
+  },
+  {
+    "@type": "WebSite",
+    name: "노무사 × Claude Code",
+    url: SITE_URL,
+  },
+  {
+    "@type": "WebSite",
+    name: "AI업무학교",
+    url: "https://ai-school.silronomu.com/",
+  },
 ];
 
 const personJsonLd = {
@@ -95,7 +103,7 @@ const personJsonLd = {
     "클로드 코드 교육", "비개발자 AI 활용",
     "AI노무사", "AI 노동문서 검증", "전문직 AI 교육",
   ],
-  description: "19년 노동실무를 바탕으로 AI 노동문서 검증과 노무실무 자동화를 연구하는 공인노무사이자 클로드 코드 교육 콘텐츠 운영자입니다.",
+  description: "한동노무법인 대표노무사로서 노동실무와 AI 업무 자동화를 연구하고, 비개발자를 위한 Claude Code 실무 교육을 운영합니다.",
   url: "https://silronomu.com",
   hasCredential: {
     "@type": "EducationalOccupationalCredential",
@@ -103,7 +111,8 @@ const personJsonLd = {
     recognizedBy: { "@type": "GovernmentOrganization", name: "고용노동부" },
     identifier: { "@type": "PropertyValue", name: "공인노무사 직무개시등록번호", value: "제1243호" },
   },
-  sameAs: SAME_AS,
+  sameAs: PERSON_PROFILE_SAME_AS,
+  subjectOf: PARK_SILLO_SUBJECT_OF,
 };
 
 const educationalOrgJsonLd = {
@@ -112,8 +121,8 @@ const educationalOrgJsonLd = {
   "@id": `${SITE_URL}/#org`,
   name: "한동노무법인 AI업무학교(노무사 x Claude Code)",
   url: SITE_URL,
-  sameAs: SAME_AS,
-  founder: { "@id": PERSON_ID },
+  description: "박실로 공인노무사가 운영하는 비개발자용 Claude Code 실무 교육 채널입니다.",
+  creator: { "@id": PERSON_ID },
   parentOrganization: { "@id": ORG_ID },
   telephone: "+82-62-521-5678",
   address: {
@@ -141,6 +150,7 @@ const websiteJsonLd = {
   url: SITE_URL,
   description: "현업에서 직접 써보고 다듬은 비개발자용 클로드 코드(Claude Code) 실무 교육",
   author: { "@id": PERSON_ID },
+  about: { "@id": PERSON_ID },
   publisher: { "@id": `${SITE_URL}/#org` },
 };
 
