@@ -129,7 +129,7 @@ const educationalOrgJsonLd = {
     "@type": "PostalAddress",
     streetAddress: "금재로 27, 3층",
     addressLocality: "북구",
-    addressRegion: "광주광역시",
+    addressRegion: "전남광주통합특별시",
     postalCode: "61239",
     addressCountry: "KR",
   },
