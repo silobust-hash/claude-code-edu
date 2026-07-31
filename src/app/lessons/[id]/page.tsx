@@ -109,7 +109,7 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
     headline: lesson.title,
     description: lesson.summary,
     url: `${SITE_URL}/lessons/${id}`,
-    author: { "@type": "Person", name: "박실로", jobTitle: "공인노무사", "@id": PERSON_ID },
+    author: { "@id": PERSON_ID },
     publisher: {
       "@type": "Organization",
       "@id": "https://xn--2q1bm94d.com/#organization",

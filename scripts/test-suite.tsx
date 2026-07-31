@@ -462,13 +462,17 @@ run("/about 페이지가 생성되어 있으며 소개/레벨진단/메타 정�
   assert(aboutSource.includes('href="/level-test"'));
   assert(aboutSource.includes("ai-school.silronomu.com"));
   assert(aboutSource.includes("canonical: \"/about\""));
-  assert(aboutSource.includes("personJsonLd"));
   assert(aboutSource.includes("profilePageJsonLd"));
+  assert(aboutSource.includes('about: { "@id": PERSON_ID }'));
+  assert(aboutSource.includes('mainEntity: { "@id": PERSON_ID }'));
+  assert(!aboutSource.includes('"@type": "Person"'));
 });
 
 run("교육 채널의 박실로·한동노무법인 엔티티 식별자가 분리되어야 함", () => {
   const layoutSource = read("src/app/layout.tsx");
   const aboutSource = read("src/app/about/page.tsx");
+  const homeSource = read("src/app/page.tsx");
+  const lessonSource = read("src/app/lessons/[id]/page.tsx");
   const footerSource = read("src/components/SiteFooter.tsx");
   const llms = read("src/app/llms.txt/route.ts");
 
@@ -478,7 +482,6 @@ run("교육 채널의 박실로·한동노무법인 엔티티 식별자가 분�
   assert(layoutSource.includes("const PERSON_PROFILE_SAME_AS"));
   assert(layoutSource.includes("subjectOf: PARK_SILLO_SUBJECT_OF"));
   assert(!layoutSource.includes('"https://edu.silronomu.com/",'));
-  assert(aboutSource.includes('const OFFICIAL_ORG_ID = "https://xn--2q1bm94d.com/#organization"'));
   assert(footerSource.includes("https://xn--2q1bm94d.com/members"));
   assert(llms.includes("https://xn--2q1bm94d.com/members"));
 
@@ -498,6 +501,11 @@ run("교육 채널의 박실로·한동노무법인 엔티티 식별자가 분�
   assert(subjectOfBlock.includes("https://sanjae.silronomu.com/"));
   assert(subjectOfBlock.includes('name: "산재·산업안전 전문 블로그"'));
   assert(!sameAsBlock.includes("https://sanjae.silronomu.com/"));
+  assert.strictEqual((layoutSource.match(/"@type": "Person"/g) ?? []).length, 1);
+  assert.match(homeSource, /instructor:\s*\{ "@id": PERSON_ID \}/);
+  assert.match(lessonSource, /author:\s*\{ "@id": PERSON_ID \}/);
+  assert(!homeSource.includes('"@type": "Person"'));
+  assert(!lessonSource.includes('"@type": "Person"'));
 });
 
 run("사이트맵과 llms.txt에 /about가 반영되어야 함", () => {

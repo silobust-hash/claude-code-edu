@@ -4,7 +4,7 @@ import { serializeJsonLd } from "@/lib/serialize-jsonld";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
 const PROFILE_URL = `${SITE_URL}/about`;
-const OFFICIAL_ORG_ID = "https://xn--2q1bm94d.com/#organization";
+const PERSON_ID = "https://silronomu.com/#person";
 
 export const metadata: Metadata = {
   title: "소개",
@@ -13,30 +13,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
 };
 
-const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": "https://silronomu.com/#person",
-  name: "박실로",
-  jobTitle: "공인노무사",
-  worksFor: {
-    "@type": "Organization",
-    "@id": OFFICIAL_ORG_ID,
-    name: "한동노무법인",
-    url: "https://xn--2q1bm94d.com/",
-  },
-  knowsAbout: ["AI 활용", "Claude Code", "노무사 업무 자동화", "비개발자 교육"],
-  url: "https://silronomu.com",
-};
-
 const profilePageJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   "@id": `${PROFILE_URL}#profile`,
   url: PROFILE_URL,
   name: "Claude Code 실무 과정 교육 방향과 운영 기준",
-  about: personJsonLd,
-  mainEntity: { "@id": personJsonLd["@id"] },
+  about: { "@id": PERSON_ID },
+  mainEntity: { "@id": PERSON_ID },
   isPartOf: {
     "@type": "WebSite",
     name: "노무사 x Claude Code",
@@ -68,10 +52,6 @@ const principles = [
 export default function AboutPage() {
   return (
     <div className="bg-ink-50">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(personJsonLd) }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(profilePageJsonLd) }}
