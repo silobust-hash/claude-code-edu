@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     default: "클로드 코드 실무 교육 | 비개발자를 위한 단계별 과정",
     template: "%s | 노무사 x Claude Code",
   },
-  description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 교육. 노무 실무에 직접 적용하며 정리한 16단계 79개 강의로 터미널 기초부터 웹앱 배포까지 익힙니다.",
+  description: "코딩 경험 없는 비개발자를 위한 클로드 코드(Claude Code) 실전 교육. 노무 실무에 직접 적용하며 정리한 16단계 80개 강의로 터미널 기초부터 웹앱 배포까지 익힙니다.",
   keywords: ["클로드 코드 강의", "Claude Code 교육", "클로드 코드 교육", "AI노무사", "AI 노동문서 검증", "노무실무 자동화", "비개발자 코딩", "바이브코딩", "클로드 코드 설치", "Claude Code 강의", "AI 업무 자동화", "노무사 AI"],
   authors: [{ name: "박실로", url: "https://silronomu.com" }],
   creator: "박실로 (공인노무사)",
@@ -31,12 +31,12 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: "노무사 x Claude Code",
     title: "클로드 코드 실무 교육 | 비개발자를 위한 단계별 과정",
-    description: "코딩 경험 없는 비개발자를 위한 클로드 코드 실전 강의. 터미널 여는 법부터 웹앱 배포까지 16단계 79개 강의.",
+    description: "코딩 경험 없는 비개발자를 위한 클로드 코드 실전 강의. 터미널 여는 법부터 웹앱 배포까지 16단계 80개 강의.",
   },
   twitter: {
     card: "summary_large_image",
     title: "클로드 코드 실무 교육 | 현업 적용 중심 과정",
-    description: "코딩 경험 없는 비개발자를 위한 클로드 코드 실전 강의. 16단계 79개 강의로 AI 업무 자동화.",
+    description: "코딩 경험 없는 비개발자를 위한 클로드 코드 실전 강의. 16단계 80개 강의로 AI 업무 자동화.",
   },
   verification: {
     google: [

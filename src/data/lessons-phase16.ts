@@ -1005,7 +1005,7 @@ Record and Replay, Computer Use, ChatGPT Work, Claude Code의 기능 제공 범�
     summary:
       "AI업무학교의 콘텐츠 작성 원칙을 실제 웹 운영으로 옮깁니다. 단일 프로필, 보이는 내용과 일치하는 구조화 데이터, 대표 URL과 사이트맵, 고정 질문 측정판을 코드와 배포 점검으로 구현합니다.",
     prev: "16-7",
-    next: null,
+    next: "16-9",
     updatedAt: "2026-07-26",
     sections: [
       {
@@ -1120,6 +1120,263 @@ export const canonicalUrl = (path: string) =>
       {
         label: "네이버 검색어드바이저 — URL 검사 안내",
         url: "https://searchadvisor.naver.com/guide/url-inspection",
+      },
+    ],
+  },
+
+  "16-9": {
+    id: "16-9",
+    phase: "Phase 16",
+    title: "Orca IDE로 Claude Code·Codex 병렬 워크트리 운영하기",
+    summary:
+      "한 AI 에이전트의 응답을 기다리는 방식에서 벗어나, Orca IDE를 관제 화면으로 삼아 Claude Code와 Codex를 분리된 워크트리에서 병렬 운영하고 검증 후 통합하는 실전 수업입니다. 작업 분해·작성자·검증자·차이 검토·통합의 책임을 나누고, 외부 부작용과 자동화의 안전선을 문서로 남깁니다.",
+    prev: "16-8",
+    next: null,
+    updatedAt: "2026-08-02",
+    sections: [
+      {
+        heading: "Orca는 새 모델이 아니라, 여러 에이전트를 보는 운영층입니다",
+        content: `Orca IDE는 Claude Code나 Codex를 대체하는 새 AI 모델이 아닙니다. 여러 에이전트와 작업공간의 상태, 변경 내용, 브라우저 작업을 한 화면에서 보고 조율하는 시각적 에이전트 개발 환경(ADE)에 가깝습니다.
+
+그래서 기존의 통제 계약을 버리지 않습니다. AGENTS.md의 역할·권한·중단선, skills의 작업 절차, OMX의 실행·검증 흐름은 그대로 두고, Orca는 그 일이 어디까지 진행됐는지 보며 작업을 나누는 관제 화면으로 씁니다.
+
+병렬 운영의 병목은 모델의 숫자가 아닙니다. 무엇을 독립 작업으로 나눌지, 누가 수정하고 누가 검증할지, 어느 변경을 통합할지를 사람이 명확히 정하는 데 있습니다. 한 에이전트가 모든 일을 하게 하면 빠른 것처럼 보여도 검토와 되돌리기가 어려워집니다.`,
+        tip: "Orca 화면에 에이전트가 여러 개 보인다고 곧바로 병렬 실행하지 마세요. 먼저 서로 겹치지 않는 파일·산출물·완료 기준을 정합니다.",
+      },
+      {
+        heading: "병렬 작업의 기본 단위 — 작업 분해, 작성자, 검증자, 통합",
+        content: `실전에서는 아래 다섯 단계를 한 묶음으로 운영합니다.
+
+1. 작업 분해 — 조사·구현·검증처럼 서로 독립된 결과물로 나눕니다.
+2. 워크트리 배정 — 각 작성자는 자기 워크트리에서만 변경합니다.
+3. 별도 검증 — 작성 결과를 커밋한 뒤, 작성자가 아닌 검증자가 요구사항, 테스트, 차이를 확인합니다.
+4. 차이 검토 — 실제 diff를 보며 의도하지 않은 변경·비밀값·충돌을 찾습니다.
+5. 통합 결정 — 검증을 통과한 변경만 기준 브랜치에 합칩니다.
+
+예를 들어 교육 사이트 개선이라면 Claude Code에는 강의 데이터와 화면 문구를, Codex에는 테스트·링크·메타데이터 검토를 각각 맡길 수 있습니다. 단, 같은 파일을 동시에 고치게 하면 워크트리가 있어도 통합 충돌이 생깁니다. 한 파일의 작성 책임자는 한 명으로 정하는 것이 기본입니다.`,
+        code: `# 기준 저장소 위치를 기억하고 작성자 작업공간을 분리합니다.
+BASE_WORKTREE=$(pwd)
+git worktree add ../edu-orca-content -b feature/orca-content
+
+# 작성자 작업공간: 콘텐츠·구현만 담당
+cd ../edu-orca-content
+
+# 검증 작업공간은 작성자가 변경을 검증하고 커밋한 뒤 만듭니다.
+# 그래야 검증자가 작성 결과를 실제로 볼 수 있습니다.
+
+# 실제 고객 파일, 비밀값, 운영 계정은 이 실습에 넣지 않습니다.`,
+      },
+      {
+        heading: "실습 준비 — 비식별 샌드박스와 세 가지 운영 문서",
+        content: `이번 실습은 실제 고객 자료나 운영 저장소가 아니라 비식별 샘플이 든 샌드박스에서 합니다. 생성할 산출물은 아래 세 파일입니다.
+
+1. parallel-task-plan.md — 무엇을 누구에게 맡기고, 어느 파일을 누가 바꾸며, 완료 기준은 무엇인지
+2. worktree-review.md — 각 워크트리의 변경·테스트·충돌·보류 항목을 검토한 기록
+3. integration-decision.md — 어떤 변경을 왜 통합하거나 보류했는지 남기는 최종 결정 기록
+
+이 문서는 형식적인 보고서가 아닙니다. 에이전트를 늘린 뒤에도 사람이 통제권을 잃지 않게 하는 최소 운영 기록입니다. 실습의 모든 예시는 가짜 업무명·가짜 파일명만 씁니다.`,
+        code: `mkdir -p training/orca-parallel-lab
+cd training/orca-parallel-lab
+
+cat > sandbox-brief.md <<'EOF'
+# 병렬 운영 실습 브리프 (비식별)
+
+- 대상: 가상의 교육 페이지 문구와 샘플 테스트
+- 실제 고객사·사건·개인정보·계정정보: 사용하지 않음
+- 실제 발송·게시·결제·권한변경·운영 DB 변경: 하지 않음
+- 작성자 A: 강의 문구 초안
+- 작성자 B: 링크·메타데이터 점검
+- 검증자: 요구사항·테스트·diff 검토
+- 통합자: 검증 통과 항목만 기준 브랜치에 반영
+EOF
+
+touch parallel-task-plan.md worktree-review.md integration-decision.md`,
+      },
+      {
+        heading: "Claude Code와 Codex에 주는 역할별 프롬프트",
+        content: `같은 요청을 두 에이전트에게 복사하지 않습니다. 한쪽에는 작성 책임, 다른 쪽에는 독립 검증 책임을 줍니다. 아래 예시는 Orca의 각 작업 카드에 넣거나, 해당 워크트리 터미널에서 Claude Code·Codex에 전달할 수 있습니다.
+
+작성자는 자기 워크트리 밖을 수정하지 않고, 결과를 검증한 뒤 커밋합니다. 그 커밋에서 검증자 워크트리를 새로 만들어야 검증자가 작성 결과와 변경 내역을 정확히 볼 수 있습니다. 검증자는 결과를 임의로 고치지 않고 문제와 근거를 기록합니다. 이 분리가 있어야 "에이전트가 스스로 고쳤으니 괜찮다"는 자기 검증을 피할 수 있습니다.`,
+        code: `# Claude Code — 작성자 프롬프트
+현재 워크트리에서 sandbox-brief.md와 AGENTS.md를 읽고,
+parallel-task-plan.md를 작성해 주세요.
+
+필수 항목:
+- 작업을 서로 겹치지 않는 2~3개 단위로 분해
+- 각 단위의 담당 에이전트, 수정 가능 파일, 금지 파일
+- 완료 기준과 검증 명령
+- 외부 부작용(발송·게시·삭제·결제·권한변경)은 실행하지 않는 중단선
+
+비식별 샘플만 사용하고, 실제 계정·고객 자료·비밀값을 읽거나 만들지 마세요.
+
+# 터미널 — 작성 결과를 검증하고 커밋한 뒤 작성자 워크트리 루트로 돌아갑니다.
+git status --short
+git diff --check &&
+npm --prefix ../.. test &&
+git add . &&
+git commit -m "검증할 병렬 운영 계획을 남긴다"
+cd ../..
+
+# 작성자 커밋에서 검증자 작업공간을 만듭니다.
+git worktree add ../edu-orca-verify -b review/orca-content feature/orca-content
+cd ../edu-orca-verify
+cd training/orca-parallel-lab
+
+# Codex — 독립 검증자 프롬프트
+현재 워크트리에서 sandbox-brief.md와 parallel-task-plan.md를 읽고,
+worktree-review.md 초안을 작성해 주세요.
+
+확인할 항목:
+- 파일 소유권이 겹치지 않는가
+- 완료 기준이 테스트 가능한가
+- 실제 고객 자료·비밀값·외부 부작용 위험이 없는가
+- 작성자와 검증자의 역할이 분리됐는가
+- 통합 전 반드시 확인할 diff와 테스트는 무엇인가
+- 프로젝트 테스트 명령을 실제로 실행했고 결과를 기록했는가
+
+코드를 수정하거나 외부 서비스에 접속하지 말고, 근거와 보류 사유만 기록하세요.`,
+      },
+      {
+        heading: "Orca에서 보는 화면과 브라우저·디자인 모드의 역할",
+        content: `Orca의 가치는 에이전트 수를 많이 띄우는 데 있지 않습니다. 어떤 작업이 실행 중인지, 어느 워크트리에 변경이 쌓였는지, 어느 작업이 사람 검토를 기다리는지를 한눈에 보는 데 있습니다.
+
+브라우저와 디자인 모드는 화면 확인이 필요한 작업에 유용합니다. 예를 들어 Claude Code가 만든 페이지를 브라우저에서 열어 레이아웃과 링크를 확인하고, 디자인 모드로 화면 개선 의견을 별도 작업으로 만들 수 있습니다. 그러나 화면에서 정상으로 보인다고 테스트·접근성·메타데이터 검토까지 끝난 것은 아닙니다.
+
+GitHub 이슈 문맥도 작업의 출발점으로 쓸 수 있습니다. 이슈의 목표·완료 기준·관련 파일을 작업 카드에 넣되, 이슈에 고객 정보나 비밀값을 적지 않습니다. 이슈는 요구사항의 출처이고, 통합 승인은 별도의 검토 기록으로 남깁니다.`,
+        tip: "브라우저 확인은 사용자 경험 검증, 테스트는 동작 검증, diff 검토는 변경 범위 검증입니다. 하나로 다른 둘을 대신하지 않습니다.",
+      },
+      {
+        heading: "통합 전 검토와 의사결정 기록",
+        content: `통합자는 "작업이 끝났다"는 말이 아니라 변경 내용과 검증 결과를 근거로 판단합니다. worktree-review.md에는 기준 브랜치와 작성자 커밋 사이의 변경 파일, 실행한 명령, 통과·실패 결과, 충돌 가능성, 보류 사유를 적습니다. integration-decision.md에는 통합·보류·되돌림 중 무엇을 결정했는지와 다음 행동을 남깁니다.
+
+이 절차는 느려 보이지만, 병렬 작업에서 가장 비싼 실수인 잘못된 변경의 기준 브랜치 유입을 줄입니다. 검증이 끝나지 않았으면 통합하지 않는 것이 정상적인 완료입니다.`,
+        code: `# 검증자 워크트리에서 기준 브랜치와 작성 결과를 비교합니다.
+BASE_COMMIT=$(git rev-parse main)
+git diff --check "$BASE_COMMIT"..HEAD &&
+npm --prefix ../.. test
+git diff --stat "$BASE_COMMIT"..HEAD
+git log --oneline "$BASE_COMMIT"..HEAD
+
+# Codex가 작성한 검증 기록과 작업 중 변경을 확인합니다.
+git diff --check
+git status --short
+git diff -- worktree-review.md
+
+# 통합자가 검증 기록을 읽고 실제 결정을 채웁니다.
+cat > integration-decision.md <<'EOF'
+# 통합 결정
+
+- 결정일:
+- 통합 대상:
+- 결정: 통합 / 보류 / 되돌림
+- 근거: 요구사항 충족, 테스트, diff 검토 결과
+- 보류 또는 되돌림 사유:
+- 다음 확인:
+EOF`,
+      },
+      {
+        heading: "사람의 통합 승인 후에만 실행합니다",
+        content: `앞 단계는 검증 기록과 통합 결정 양식을 만드는 데서 멈춥니다. 통합자는 worktree-review.md를 읽고 integration-decision.md의 빈칸을 실제 판단으로 채웁니다. 결정이 보류 또는 되돌림이면 여기서 종료하고 기준 브랜치에는 아무것도 합치지 않습니다.
+
+아래 명령은 통합자가 결정란을 정확히 "통합"으로 확정하고, 검증 기록이 있으며, 테스트가 통과한 경우에만 실행합니다. 어느 조건이든 실패하면 뒤의 커밋과 병합은 실행되지 않습니다. 병합 뒤에도 전체 테스트를 다시 실행하고 작업 상태를 확인합니다.`,
+        code: `# worktree-review.md와 integration-decision.md를 사람이 먼저 완성합니다.
+# integration-decision.md의 결정 줄은 정확히 "- 결정: 통합"으로 적습니다.
+
+test -n "$BASE_WORKTREE" &&
+test -s worktree-review.md &&
+rg -q '^- 결정: 통합$' integration-decision.md &&
+git diff --check &&
+npm --prefix ../.. test &&
+git add worktree-review.md integration-decision.md &&
+git commit -m "병렬 작업의 검증과 통합 판단을 남긴다" &&
+cd "$BASE_WORKTREE" &&
+git merge --no-ff review/orca-content &&
+npm test &&
+git status --short`,
+        tip: "주석은 실행을 멈추지 않습니다. 승인 전 단계와 승인 후 명령을 별도 구간으로 나누고, 각 검증을 &&로 연결해야 실패 뒤에 커밋·병합이 이어지지 않습니다.",
+      },
+      {
+        heading: "자동화와 모바일은 관제를 보조할 뿐, 책임을 넘기지 않습니다",
+        content: `Orca의 자동화와 모바일 기능은 반복되는 관제·알림·작업 시작을 편하게 할 수 있습니다. 하지만 워크트리가 네트워크와 외부 부작용까지 격리하는 것은 아닙니다. 별도 워크트리에서 실행해도 이메일 발송, API 호출, 운영 DB 변경, 게시, 결제, 권한변경은 실제로 일어날 수 있습니다.
+
+따라서 자동화는 사람이 이미 샌드박스에서 여러 번 검증한 흐름에만 제한합니다. 모바일은 실행 중인 작업의 상태 확인과 중단 요청을 돕는 동반 화면으로 보고, 고위험 승인이나 최종 통합 판단을 대신하게 하지 않습니다.
+
+특히 실제 고객 자료, 사건 전략, 대외 제출, 계정·권한 변경은 병렬 처리 효율보다 승인과 책임 분리가 먼저입니다. Orca가 편리해도 기존 AGENTS.md와 승인 게이트를 우회하는 이유가 되지 않습니다.`,
+        tip: "워크트리 격리는 파일 변경 충돌을 줄이는 장치입니다. 외부 서비스·네트워크·권한의 안전장치는 별도로 설계해야 합니다.",
+      },
+      {
+        heading: "공식 자료와 입문 강의 연결",
+        content: `수업 기준일은 2026년 8월 2일입니다. 제품 기능·지원 에이전트·요금제·모바일 제공 방식은 바뀔 수 있으므로 실행 전 공식 문서를 다시 확인합니다.
+
+- 입문 강의: https://ai-school.silronomu.com/lessons/6-22
+- 원본 영상: https://www.youtube.com/watch?v=1x5T88dcDEw
+- Orca 공식 사이트: https://www.onorca.dev/
+- Orca 공식 문서: https://www.onorca.dev/docs
+- Orca worktree 문서: https://www.onorca.dev/docs/model/worktrees
+- Orca 브라우저·디자인 모드 문서: https://www.onorca.dev/docs/browser/design-mode
+- Orca 모바일 문서: https://www.onorca.dev/docs/mobile
+- Orca GitHub 저장소: https://github.com/stablyai/orca
+
+입문 강의가 "왜 병렬 AI 운영이 필요한가"를 다룬다면, 이 강의는 실제로 작업을 분해하고 워크트리·검증자·통합 기록을 운영하는 방법을 다룹니다.`,
+      },
+    ],
+    insights: [
+      {
+        heading: "병렬 AI의 핵심은 모델 수가 아니라 운영 설계다",
+        content: "여러 에이전트를 동시에 돌릴수록 작업 분해, 파일 소유권, 상태 관제, 독립 검증, 통합 결정이 중요해집니다. Orca는 이 흐름을 시각화하는 운영층이고, 기존 AGENTS.md·skills·OMX의 통제 계약을 대체하지 않습니다.",
+        source: "Orca 공식 문서 / 병렬 워크트리 운영 원칙",
+      },
+      {
+        heading: "작성자와 검증자를 분리해야 자기 검증을 줄일 수 있다",
+        content: "작성자는 변경을 만들고, 별도 검증자는 요구사항·테스트·diff를 확인한 뒤 통합자가 최종 결정을 남깁니다. 병렬 처리의 품질은 빠른 생성보다 이 책임 분리에서 나옵니다.",
+        source: "parallel-task-plan.md · worktree-review.md · integration-decision.md 실습",
+      },
+      {
+        heading: "워크트리는 외부 부작용까지 격리하지 않는다",
+        content: "워크트리는 파일 변경 충돌을 줄이지만 이메일 발송, API 호출, 운영 DB 변경, 게시, 결제, 권한변경까지 막아 주지 않습니다. 자동화는 샌드박스에서 검증한 흐름만 쓰고 고위험 작업은 사람 승인에서 멈춥니다.",
+        source: "Orca worktree 문서 / 안전한 자동화 운영 기준",
+      },
+    ],
+    keyTakeaways: [
+      "Orca IDE는 Claude Code·Codex를 대체하는 모델이 아니라, 여러 에이전트와 워크트리의 상태를 보는 시각적 운영층입니다.",
+      "기존 AGENTS.md·skills·OMX의 역할·권한·검증 계약은 유지하고, Orca는 관제 화면으로 사용합니다.",
+      "병렬 작업은 작업 분해 → 작성자 워크트리 → 별도 검증자 → diff 검토 → 통합 결정 순서로 운영합니다.",
+      "실습 산출물은 parallel-task-plan.md, worktree-review.md, integration-decision.md이며 비식별 샌드박스에서만 만듭니다.",
+      "브라우저·디자인 모드는 화면 검증을 돕고, GitHub 이슈는 요구사항 문맥을 제공하지만 테스트·diff 검토·통합 승인을 대신하지 않습니다.",
+      "워크트리는 외부 부작용을 격리하지 않으므로 발송·게시·삭제·결제·권한변경 자동화는 검증된 흐름과 사람 승인 없이는 실행하지 않습니다.",
+    ],
+    relatedLinks: [
+      {
+        label: "AI업무학교 — 병렬 AI 에이전트 운영의 기본",
+        url: "https://ai-school.silronomu.com/lessons/6-22",
+      },
+      {
+        label: "원본 영상 — Orca IDE 기~모~링!",
+        url: "https://www.youtube.com/watch?v=1x5T88dcDEw",
+      },
+      {
+        label: "Orca 공식 사이트",
+        url: "https://www.onorca.dev/",
+      },
+      {
+        label: "Orca 공식 문서",
+        url: "https://www.onorca.dev/docs",
+      },
+      {
+        label: "Orca 공식 문서 — Worktrees",
+        url: "https://www.onorca.dev/docs/model/worktrees",
+      },
+      {
+        label: "Orca 공식 문서 — 브라우저·디자인 모드",
+        url: "https://www.onorca.dev/docs/browser/design-mode",
+      },
+      {
+        label: "Orca 공식 문서 — 모바일",
+        url: "https://www.onorca.dev/docs/mobile",
+      },
+      {
+        label: "Orca GitHub 저장소",
+        url: "https://github.com/stablyai/orca",
       },
     ],
   },
