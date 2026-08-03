@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  PERSON_DAANGN_LOCAL_PROFILE_LABEL,
+  PERSON_DAANGN_LOCAL_PROFILE_PURPOSE,
+  PERSON_DAANGN_LOCAL_PROFILE_URL,
+} from "@/lib/person-profile";
 import { serializeJsonLd } from "@/lib/serialize-jsonld";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
@@ -169,6 +174,21 @@ export default function AboutPage() {
               </p>
               <span className="mt-5 inline-flex min-h-11 items-center text-sm font-semibold text-brand-700">
                 한동노무법인 보기 <span className="ml-1" aria-hidden>→</span>
+              </span>
+            </a>
+            <a
+              href={PERSON_DAANGN_LOCAL_PROFILE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg border border-ink-200 bg-white p-6 shadow-sm transition hover:border-brand-300 hover:shadow-md"
+            >
+              <p className="text-xs font-bold text-brand-700">{PERSON_DAANGN_LOCAL_PROFILE_PURPOSE}</p>
+              <h3 className="mt-2 text-lg font-bold text-ink-900">{PERSON_DAANGN_LOCAL_PROFILE_LABEL}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-600">
+                지역에서 박실로 노무사의 노무 상담과 업무 안내를 확인할 수 있습니다.
+              </p>
+              <span className="mt-5 inline-flex min-h-11 items-center text-sm font-semibold text-brand-700">
+                {PERSON_DAANGN_LOCAL_PROFILE_LABEL} 보기 <span className="ml-1" aria-hidden>→</span>
               </span>
             </a>
           </div>

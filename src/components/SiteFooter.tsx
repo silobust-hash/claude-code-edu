@@ -1,4 +1,8 @@
 import Link from "next/link";
+import {
+  PERSON_DAANGN_LOCAL_PROFILE_LABEL,
+  PERSON_DAANGN_LOCAL_PROFILE_URL,
+} from "@/lib/person-profile";
 
 /**
  * Dark-ink footer with core learning and official-site links only.
@@ -91,6 +95,16 @@ export default function SiteFooter() {
                   className="inline-flex min-h-11 items-center transition-colors hover:text-white"
                 >
                   노무 실무 블로그
+                </a>
+              </li>
+              <li>
+                <a
+                  href={PERSON_DAANGN_LOCAL_PROFILE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center transition-colors hover:text-white"
+                >
+                  {PERSON_DAANGN_LOCAL_PROFILE_LABEL}
                 </a>
               </li>
               <li>

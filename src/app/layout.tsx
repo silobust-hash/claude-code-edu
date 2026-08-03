@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import EducationChannelBar from "@/components/EducationChannelBar";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
+import { PERSON_DAANGN_LOCAL_PROFILE_URL } from "@/lib/person-profile";
 import { serializeJsonLd } from "@/lib/serialize-jsonld";
 import "./globals.css";
 
@@ -64,6 +65,7 @@ export const metadata: Metadata = {
 };
 
 const PERSON_PROFILE_SAME_AS = [
+  PERSON_DAANGN_LOCAL_PROFILE_URL,
   "https://www.instagram.com/silrobag/",
   "https://www.threads.net/@silrobag",
   "https://www.youtube.com/@코딩하는노무사",

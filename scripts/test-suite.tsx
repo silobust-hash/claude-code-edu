@@ -475,6 +475,7 @@ run("교육 채널의 박실로·한동노무법인 엔티티 식별자가 분�
   const lessonSource = read("src/app/lessons/[id]/page.tsx");
   const footerSource = read("src/components/SiteFooter.tsx");
   const llms = read("src/app/llms.txt/route.ts");
+  const personProfileSource = read("src/lib/person-profile.ts");
 
   assert(layoutSource.includes('const PERSON_ID = "https://silronomu.com/#person"'));
   assert(layoutSource.includes('const ORG_ID = "https://xn--2q1bm94d.com/#organization"'));
@@ -484,6 +485,7 @@ run("교육 채널의 박실로·한동노무법인 엔티티 식별자가 분�
   assert(!layoutSource.includes('"https://edu.silronomu.com/",'));
   assert(footerSource.includes("https://xn--2q1bm94d.com/members"));
   assert(llms.includes("https://xn--2q1bm94d.com/members"));
+  assert(personProfileSource.includes('export const PERSON_DAANGN_LOCAL_PROFILE_URL = "https://www.daangn.com/kr/local-profile/%EB%B0%95%EC%8B%A4%EB%A1%9C-%EA%B3%B5%EC%9D%B8%EB%85%B8%EB%AC%B4%EC%82%AC-1djry21yd15v/"'));
 
   const sameAsBlock = layoutSource.slice(
     layoutSource.indexOf("const PERSON_PROFILE_SAME_AS"),
@@ -501,6 +503,14 @@ run("교육 채널의 박실로·한동노무법인 엔티티 식별자가 분�
   assert(subjectOfBlock.includes("https://sanjae.silronomu.com/"));
   assert(subjectOfBlock.includes('name: "산재·산업안전 전문 블로그"'));
   assert(!sameAsBlock.includes("https://sanjae.silronomu.com/"));
+  assert(sameAsBlock.includes("PERSON_DAANGN_LOCAL_PROFILE_URL"));
+  assert(footerSource.includes("PERSON_DAANGN_LOCAL_PROFILE_URL"));
+  assert(footerSource.includes("PERSON_DAANGN_LOCAL_PROFILE_LABEL"));
+  assert(aboutSource.includes("PERSON_DAANGN_LOCAL_PROFILE_URL"));
+  assert(aboutSource.includes("PERSON_DAANGN_LOCAL_PROFILE_LABEL"));
+  assert(aboutSource.includes("PERSON_DAANGN_LOCAL_PROFILE_PURPOSE"));
+  assert(llms.includes("PERSON_DAANGN_LOCAL_PROFILE_URL"));
+  assert(llms.includes("PERSON_DAANGN_LOCAL_PROFILE_LABEL"));
   assert.strictEqual((layoutSource.match(/"@type": "Person"/g) ?? []).length, 1);
   assert.match(homeSource, /instructor:\s*\{ "@id": PERSON_ID \}/);
   assert.match(lessonSource, /author:\s*\{ "@id": PERSON_ID \}/);
