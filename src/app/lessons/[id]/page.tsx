@@ -18,6 +18,51 @@ const lessonCatalog = getOrderedLessons().map((lesson) => ({ id: lesson.id, titl
 
 export const dynamic = "force-dynamic";
 
+type PublicLesson = {
+  title: string;
+  summary: string;
+};
+
+export function buildLessonStructuredData(id: string, lesson: PublicLesson) {
+  const url = `${SITE_URL}/lessons/${id}`;
+
+  return {
+    article: {
+      "@context": "https://schema.org",
+      "@type": ["Article", "LearningResource"],
+      headline: lesson.title,
+      description: lesson.summary,
+      url,
+      author: { "@id": PERSON_ID },
+      publisher: {
+        "@type": "Organization",
+        "@id": "https://xn--2q1bm94d.com/#organization",
+        name: "한동노무법인",
+        url: "https://xn--2q1bm94d.com/",
+      },
+      isPartOf: {
+        "@type": "Course",
+        name: "클로드 코드(Claude Code) 실전 강의",
+        "@id": `${SITE_URL}/#course`,
+        url: SITE_URL,
+      },
+      learningResourceType: "lesson",
+      educationalLevel: "Beginner",
+      inLanguage: "ko",
+      isAccessibleForFree: true,
+    },
+    breadcrumb: {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "홈", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "강의 목록", item: `${SITE_URL}/lessons` },
+        { "@type": "ListItem", position: 3, name: lesson.title, item: url },
+      ],
+    },
+  };
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   if (!isValidLessonId(id)) return { title: "유효하지 않은 강의입니다" };
@@ -78,70 +123,44 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
 
   if (!lesson) notFound();
 
+  const structuredData = buildLessonStructuredData(id, {
+    title: lesson.title,
+    summary: lesson.summary,
+  });
+
   if (!hasAccess) {
     return (
-      <div className="max-w-3xl mx-auto px-6 py-16">
-        <div className="mb-8">
-          <Link href="/lessons" className="text-sm text-indigo-500 hover:text-indigo-700 transition-colors">
-            ← 강의 목록으로
-          </Link>
+      <>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData.article) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData.breadcrumb) }} />
+        <div className="max-w-3xl mx-auto px-6 py-16">
+          <div className="mb-8">
+            <Link href="/lessons" className="text-sm text-indigo-500 hover:text-indigo-700 transition-colors">
+              ← 강의 목록으로
+            </Link>
+          </div>
+          <div className="mb-6">
+            <span className="text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full">{lesson.phase}</span>
+            <span className="text-xs text-slate-400 ml-2">{lesson.id}</span>
+          </div>
+          <h1 className="text-3xl font-bold mb-4 leading-tight break-words" style={{ overflowWrap: "anywhere" }}>{lesson.title}</h1>
+          <p className="text-lg text-slate-500 mb-4 leading-relaxed break-words" style={{ overflowWrap: "anywhere" }}>{lesson.summary}</p>
+          <p className="text-sm text-slate-500 mb-8">
+            본문은 인증 후 공개됩니다. 강의 코드를 입력해 전체 내용을 보려면 아래로 이동하세요.
+          </p>
+          <LessonGate accent="#6366f1" />
         </div>
-        <div className="mb-6">
-          <span className="text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full">{lesson.phase}</span>
-          <span className="text-xs text-slate-400 ml-2">{lesson.id}</span>
-        </div>
-        <h1 className="text-3xl font-bold mb-4 leading-tight break-words" style={{ overflowWrap: "anywhere" }}>{lesson.title}</h1>
-        <p className="text-lg text-slate-500 mb-4 leading-relaxed break-words" style={{ overflowWrap: "anywhere" }}>{lesson.summary}</p>
-        <p className="text-sm text-slate-500 mb-8">
-          본문은 인증 후 공개됩니다. 강의 코드를 입력해 전체 내용을 보려면 아래로 이동하세요.
-        </p>
-        <LessonGate accent="#6366f1" />
-      </div>
+      </>
     );
   }
 
   const prevId = lesson.prev ? lesson.prev : null;
   const nextId = lesson.next ? lesson.next : null;
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": ["Article", "LearningResource"],
-    headline: lesson.title,
-    description: lesson.summary,
-    url: `${SITE_URL}/lessons/${id}`,
-    author: { "@id": PERSON_ID },
-    publisher: {
-      "@type": "Organization",
-      "@id": "https://xn--2q1bm94d.com/#organization",
-      name: "한동노무법인",
-      url: "https://xn--2q1bm94d.com/",
-    },
-    isPartOf: {
-      "@type": "Course",
-      name: "클로드 코드(Claude Code) 실전 강의",
-      "@id": `${SITE_URL}/#course`,
-      url: SITE_URL,
-    },
-    learningResourceType: "lesson",
-    educationalLevel: "Beginner",
-    inLanguage: "ko",
-    isAccessibleForFree: true,
-  };
-
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "홈", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "강의 목록", item: `${SITE_URL}/lessons` },
-      { "@type": "ListItem", position: 3, name: lesson.title, item: `${SITE_URL}/lessons/${id}` },
-    ],
-  };
-
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData.article) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData.breadcrumb) }} />
 
       <div className="mb-8">
         <Link href="/lessons" className="text-sm text-indigo-500 hover:text-indigo-700 transition-colors">

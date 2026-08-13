@@ -7,6 +7,7 @@ import assert from "node:assert/strict";
 import { NextRequest } from "next/server";
 
 import { getOrderedLessons, isValidLessonId } from "@/lib/lesson-catalog";
+import { lessons } from "@/data/lessons";
 import { buildSignedSession, verifySignedSession } from "@/lib/auth";
 import {
   compareLessonAccessCode,
@@ -27,7 +28,7 @@ import {
 } from "@/lib/level-test";
 import { serializeJsonLd } from "@/lib/serialize-jsonld";
 import { isLessonPayload } from "@/lib/lesson-schema";
-import { generateMetadata } from "@/app/lessons/[id]/page";
+import { buildLessonStructuredData, generateMetadata } from "@/app/lessons/[id]/page";
 import {
   calculateRetryAfter,
   clearAdminLoginBucket,
@@ -108,6 +109,29 @@ run("JSON-LD 직렬화는 HTML 종료 문자와 자바스크립트 줄 구분자
   assert(serialized.includes("\\u2028"));
   assert(serialized.includes("\\u2029"));
   assert.deepStrictEqual(JSON.parse(serialized), source);
+});
+
+run("비인증 강의에도 공개 요약 기반 Article·LearningResource·Breadcrumb JSON-LD만 제공해야 함", () => {
+  const structuredData = buildLessonStructuredData("16-9", {
+    title: "공개 강의 제목",
+    summary: "검색에 공개해도 되는 강의 요약",
+  });
+  assert.deepStrictEqual(structuredData.article["@type"], ["Article", "LearningResource"]);
+  assert.strictEqual(structuredData.article.url, "https://edu.silronomu.com/lessons/16-9");
+  assert.strictEqual(structuredData.article.headline, "공개 강의 제목");
+  assert.strictEqual(structuredData.article.description, "검색에 공개해도 되는 강의 요약");
+  assert(!("sections" in structuredData.article));
+  assert.strictEqual(structuredData.breadcrumb["@type"], "BreadcrumbList");
+  assert.strictEqual(structuredData.breadcrumb.itemListElement[2].item, "https://edu.silronomu.com/lessons/16-9");
+  assert(!JSON.stringify(structuredData).includes(lessons["16-9"].sections[0].content));
+
+  const pageSource = read("src/app/lessons/[id]/page.tsx");
+  const gateIndex = pageSource.indexOf("if (!hasAccess) {");
+  const firstJsonLdAfterGate = pageSource.indexOf('type="application/ld+json"', gateIndex);
+  const lessonSectionsIndex = pageSource.indexOf("lesson.sections.map");
+  assert(gateIndex >= 0);
+  assert(firstJsonLdAfterGate > gateIndex);
+  assert(lessonSectionsIndex > firstJsonLdAfterGate);
 });
 
 run("일일 접근 코드는 서울 기준 YYMMDD로 생성/비교되어야 함", () => {
