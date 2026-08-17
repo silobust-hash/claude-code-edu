@@ -529,7 +529,7 @@ run("교육 채널의 박실로·한동노무법인 엔티티 식별자가 분�
   assert(!sameAsBlock.includes("https://sanjae.silronomu.com/"));
   assert(footerSource.includes("https://safety.silronomu.com/"));
   assert(llms.includes("https://safety.silronomu.com/"));
-  assert(subjectOfBlock.includes("https://safety.silronomu.com/"));
+  assert(!subjectOfBlock.includes("https://safety.silronomu.com/"));
   assert(!sameAsBlock.includes("https://safety.silronomu.com/"));
   assert(sameAsBlock.includes("PERSON_DAANGN_LOCAL_PROFILE_URL"));
   assert(footerSource.includes("PERSON_DAANGN_LOCAL_PROFILE_URL"));
