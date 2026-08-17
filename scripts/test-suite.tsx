@@ -527,8 +527,16 @@ run("교육 채널의 박실로·한동노무법인 엔티티 식별자가 분�
   assert(subjectOfBlock.includes("https://sanjae.silronomu.com/"));
   assert(subjectOfBlock.includes('name: "산재·산업안전 전문 블로그"'));
   assert(!sameAsBlock.includes("https://sanjae.silronomu.com/"));
-  assert(footerSource.includes("https://safety.silronomu.com/"));
-  assert(llms.includes("https://safety.silronomu.com/"));
+  const safetyUrl = "https://safety.silronomu.com/";
+  const safetyLabel = "산업안전 실무 안내";
+  const escapedSafetyUrl = safetyUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const safetyAnchor = new RegExp(`<a\\b[^>]*href=["']${escapedSafetyUrl}["'][^>]*>(?:(?!<\\/a>)[\\s\\S])*?${safetyLabel}(?:(?!<\\/a>)[\\s\\S])*?<\\/a>`);
+  const safetyLlmsEntry = new RegExp(`^- \\[(?:${safetyLabel})\\]\\(${escapedSafetyUrl}\\):`, "m");
+  const splitSafetyAnchorFixture = `<a href="${safetyUrl}">Safety</a><a>${safetyLabel}</a>`;
+  assert(safetyAnchor.test(`<a href="${safetyUrl}">${safetyLabel}</a>`));
+  assert(!safetyAnchor.test(splitSafetyAnchorFixture));
+  assert(safetyAnchor.test(footerSource));
+  assert(safetyLlmsEntry.test(llms));
   assert(!subjectOfBlock.includes("https://safety.silronomu.com/"));
   assert(!sameAsBlock.includes("https://safety.silronomu.com/"));
   assert(sameAsBlock.includes("PERSON_DAANGN_LOCAL_PROFILE_URL"));
