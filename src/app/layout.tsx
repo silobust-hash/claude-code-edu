@@ -93,6 +93,11 @@ const PARK_SILLO_SUBJECT_OF = [
     name: "산재·산업안전 전문 블로그",
     url: "https://sanjae.silronomu.com/",
   },
+  {
+    "@type": "WebSite",
+    name: "산업안전 실무 안내",
+    url: "https://safety.silronomu.com/",
+  },
 ];
 
 const personJsonLd = {

@@ -117,6 +117,16 @@ export default function SiteFooter() {
                   산재·산업안전 전문 블로그
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://safety.silronomu.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center transition-colors hover:text-white"
+                >
+                  산업안전 실무 안내
+                </a>
+              </li>
             </ul>
           </div>
         </div>
