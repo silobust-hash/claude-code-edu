@@ -548,7 +548,9 @@ run("교육 채널의 박실로·한동노무법인 엔티티 식별자가 분�
   assert(llms.includes("PERSON_DAANGN_LOCAL_PROFILE_URL"));
   assert(llms.includes("PERSON_DAANGN_LOCAL_PROFILE_LABEL"));
   assert(personProfileSource.includes('export const PERSON_SILROPANDA_URL = "https://silropanda.com/"'));
-  assert(sameAsBlock.includes("PERSON_SILROPANDA_URL"));
+  assert(!sameAsBlock.includes("PERSON_SILROPANDA_URL"));
+  assert(subjectOfBlock.includes("PERSON_SILROPANDA_URL"));
+  assert(subjectOfBlock.includes("PERSON_SILROPANDA_LABEL"));
   assert(footerSource.includes("PERSON_SILROPANDA_URL"));
   assert(footerSource.includes("PERSON_SILROPANDA_LABEL"));
   assert(llms.includes("PERSON_SILROPANDA_URL"));

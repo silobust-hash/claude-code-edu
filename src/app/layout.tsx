@@ -5,6 +5,7 @@ import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import {
   PERSON_DAANGN_LOCAL_PROFILE_URL,
+  PERSON_SILROPANDA_LABEL,
   PERSON_SILROPANDA_URL,
 } from "@/lib/person-profile";
 import { serializeJsonLd } from "@/lib/serialize-jsonld";
@@ -73,7 +74,6 @@ const PERSON_PROFILE_SAME_AS = [
   "https://www.threads.com/@silrobag",
   "https://www.youtube.com/@코딩하는노무사",
   "https://www.linkedin.com/in/실로-박-385a1a104/",
-  PERSON_SILROPANDA_URL,
 ];
 
 const PARK_SILLO_SUBJECT_OF = [
@@ -96,6 +96,11 @@ const PARK_SILLO_SUBJECT_OF = [
     "@type": "WebSite",
     name: "산재·산업안전 전문 블로그",
     url: "https://sanjae.silronomu.com/",
+  },
+  {
+    "@type": "WebSite",
+    name: PERSON_SILROPANDA_LABEL,
+    url: PERSON_SILROPANDA_URL,
   },
 ];
 
