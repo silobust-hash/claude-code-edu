@@ -3,6 +3,9 @@ import {
   PERSON_DAANGN_LOCAL_PROFILE_LABEL,
   PERSON_DAANGN_LOCAL_PROFILE_PURPOSE,
   PERSON_DAANGN_LOCAL_PROFILE_URL,
+  PERSON_SILROPANDA_LABEL,
+  PERSON_SILROPANDA_PURPOSE,
+  PERSON_SILROPANDA_URL,
 } from "@/lib/person-profile";
 
 export const dynamic = "force-static";
@@ -40,6 +43,7 @@ ${lessonLines}
 - [산재·산업안전 전문 블로그](https://sanjae.silronomu.com/)
 - [산업안전 실무 안내](https://safety.silronomu.com/): 박실로 노무사의 산업안전 실무 안내
 - [${PERSON_DAANGN_LOCAL_PROFILE_LABEL}](${PERSON_DAANGN_LOCAL_PROFILE_URL}): ${PERSON_DAANGN_LOCAL_PROFILE_PURPOSE}
+- [${PERSON_SILROPANDA_LABEL}](${PERSON_SILROPANDA_URL}): ${PERSON_SILROPANDA_PURPOSE}
 - [한동노무법인 공식 홈페이지 · 구성원](https://xn--2q1bm94d.com/members)
 - [AI노무사 박실로 기준](https://silronomu.com/hub/ai-nomusa.html)
 - [AI업무학교](https://ai-school.silronomu.com/)

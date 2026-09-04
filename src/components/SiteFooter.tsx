@@ -2,6 +2,8 @@ import Link from "next/link";
 import {
   PERSON_DAANGN_LOCAL_PROFILE_LABEL,
   PERSON_DAANGN_LOCAL_PROFILE_URL,
+  PERSON_SILROPANDA_LABEL,
+  PERSON_SILROPANDA_URL,
 } from "@/lib/person-profile";
 
 /**
@@ -125,6 +127,16 @@ export default function SiteFooter() {
                   className="inline-flex min-h-11 items-center transition-colors hover:text-white"
                 >
                   산업안전 실무 안내
+                </a>
+              </li>
+              <li>
+                <a
+                  href={PERSON_SILROPANDA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center transition-colors hover:text-white"
+                >
+                  {PERSON_SILROPANDA_LABEL}
                 </a>
               </li>
             </ul>

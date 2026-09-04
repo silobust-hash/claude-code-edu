@@ -62,7 +62,7 @@ test("주요 navigation 링크는 44px 터치영역을 사용한다", async () =
   ]);
 
   assert.match(siteNav, /group inline-flex min-h-11 items-center gap-2\.5/);
-  assert.equal(siteFooter.match(/inline-flex min-h-11 items-center/g)?.length, 10);
+  assert.equal(siteFooter.match(/inline-flex min-h-11 items-center/g)?.length, 11);
   assert.match(siteFooter, /https:\/\/safety\.silronomu\.com\//);
 });
 
