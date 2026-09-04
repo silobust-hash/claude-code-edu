@@ -15,6 +15,7 @@ import {
   type LevelTestResult,
   type LevelTestLessonCatalogItem,
 } from "@/lib/level-test";
+import GrowthPath from "@/components/GrowthPath";
 
 const STORAGE_ANSWERS_KEY = "levelTestAnswersV1";
 const STORAGE_INDEX_KEY = "levelTestCurrentIndexV1";
@@ -233,6 +234,7 @@ export default function LevelTestPageClient({ lessonCatalog }: LevelTestPageClie
               다시하기
             </button>
           </div>
+          <GrowthPath compact />
         </section>
       </div>
     );

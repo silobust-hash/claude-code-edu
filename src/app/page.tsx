@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { serializeJsonLd } from "@/lib/serialize-jsonld";
+import GrowthPath from "@/components/GrowthPath";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
 const PERSON_ID = "https://silronomu.com/#person";
@@ -681,6 +682,10 @@ export default function Home() {
             </svg>
           </Link>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <GrowthPath />
       </section>
 
       {/* ───────────── FAQ ───────────── */}

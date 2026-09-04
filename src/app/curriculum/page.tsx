@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getOrderedLessons } from "@/lib/lesson-catalog";
 import { serializeJsonLd } from "@/lib/serialize-jsonld";
+import GrowthPath from "@/components/GrowthPath";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://edu.silronomu.com";
 
@@ -98,6 +99,7 @@ export default function CurriculumPage() {
             수준진단으로 맞춤 시작 구간 찾기
           </Link>
         </div>
+        <GrowthPath compact />
         {lessonGroups.map(([phaseId, phaseLessons]) => {
           const phase = Number(phaseId);
           return (
