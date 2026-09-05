@@ -42,6 +42,11 @@ export interface LevelTestResult {
   recommendations: {
     links: Array<{ label: string; href: string; site: "ai-school" | "edu" | "edu-internal" }>;
   };
+  practice: {
+    focusArea: LevelTestArea;
+    focusLabel: string;
+    links: Array<{ label: string; href: string; site: "ai-school" | "edu" | "edu-internal" }>;
+  };
 }
 
 export interface LevelTestAnswers {
@@ -62,60 +67,60 @@ export const LEVEL_TEST_QUESTIONS: LevelTestQuestion[] = [
     id: "c-01",
     section: "개념 이해",
     area: "concept",
-    text: "Claude Code의 장점 중 가장 정확한 것은?",
+    text: "[가상 교육안] ‘다음 주 신입 교육 안내’를 만들려 합니다. 목적·독자·자료 범위가 아직 정해지지 않았습니다. AI에 가장 먼저 줄 질문으로 적절한 것은?",
     options: [
-      { value: 0, label: "클라우드 채팅처럼 빠른 응답이 전부" },
-      { value: 1, label: "터미널 실행과 파일 편집까지 가능한 AI 보조" },
-      { value: 2, label: "법률 텍스트 검색에만 특화된 비밀키 도구" },
-      { value: 3, label: "코드 실행, 파일 조작, 검증 루프를 모두 설계 가능한 통합 작업 환경" },
+      { value: 0, label: "교육 안내문을 멋지게 써줘." },
+      { value: 1, label: "신입 교육 안내문을 써줘. 길이는 알아서 정해줘." },
+      { value: 2, label: "신입 교육 안내문을 1쪽으로 작성해줘. 대상은 신입으로 하고, 마감일처럼 없는 정보는 빈칸으로 표시해줘." },
+      { value: 3, label: "교육 목적·독자·확인된 자료·마감일을 먼저 묻고, 1쪽 안내문 초안을 작성해줘. 불명확한 정보는 추정하지 말아줘." },
     ],
   },
   {
     id: "c-02",
     section: "개념 이해",
     area: "concept",
-    text: "학습 목표를 세울 때 우선순위가 가장 낮은 것은?",
+    text: "[가상 업무 메모] ‘금요일까지 초안 제출’만 확인됐고 참석 인원과 최종 배포일은 비어 있습니다. AI가 일정표 초안을 냈습니다. 다음 행동으로 가장 적절한 것은?",
     options: [
-      { value: 0, label: "한 번에 기능을 끝내고 테스트를 생략" },
-      { value: 1, label: "직무 흐름을 모아 점진적으로 자동화" },
-      { value: 2, label: "입력-처리-출력을 구분해 문서화" },
-      { value: 3, label: "반복 업무를 템플릿·검증 루프로 표준화" },
+      { value: 0, label: "AI가 채운 날짜를 사실로 보고 바로 공유한다." },
+      { value: 1, label: "일단 일정표를 공유하고 나중에 틀리면 고친다." },
+      { value: 2, label: "확인된 금요일 마감만 표시하고, 빈 정보는 추정값이라고 적는다." },
+      { value: 3, label: "확인된 사실과 미확인 정보를 구분한 뒤, 참석 인원과 최종 배포일을 담당자에게 후속 질문한다." },
     ],
   },
   {
     id: "c-03",
     section: "개념 이해",
     area: "concept",
-    text: "노무사 실무 문서 자동화에서 가장 먼저 정리할 개념은?",
+    text: "[가상 안내문] ‘교육은 금요일까지 초안을 제출한다. 참석 인원은 다음 회의에서 확정한다.’라는 원문을 읽었습니다. 아래 문장 중 원문 사실과 아직 알 수 없는 내용을 가장 분명하게 구분한 것은?",
     options: [
-      { value: 0, label: "정확도보다 속도만 끌어올리기" },
-      { value: 1, label: "입력 규칙과 산식 범위를 먼저 정의" },
-      { value: 2, label: "툴 이름을 먼저 외우기" },
-      { value: 3, label: "출력 형식/리스크 범위를 먼저 합의" },
+      { value: 0, label: "참석 인원은 20명이다." },
+      { value: 1, label: "참석 인원은 곧 확정될 것이다." },
+      { value: 2, label: "참석 인원은 아직 미확정이므로 다음 회의에서 정해질 수 있다." },
+      { value: 3, label: "[확인된 사실] 초안 마감은 금요일이다. [확인된 사실] 참석 인원은 다음 회의에서 확정한다. [추정 금지] 인원수와 확정일은 원문만으로 알 수 없다." },
     ],
   },
   {
     id: "c-04",
     section: "개념 이해",
     area: "concept",
-    text: "다음 중 오류를 줄이기 위한 개념 설명으로 가장 적절한 것은?",
+    text: "[가상 요약] 원문에는 ‘초안은 금요일까지 제출’과 ‘참석 인원은 다음 회의에서 확정’이 있습니다. ‘교육은 금요일에 확정된 20명에게 배포된다’는 요약을 검토할 때 가장 큰 문제는?",
     options: [
-      { value: 0, label: "한 번에 모든 데이터를 한 파일에 처리" },
-      { value: 1, label: "사실관계와 산식 출처를 함께 기록" },
-      { value: 2, label: "템플릿을 즉흥적으로 수정" },
-      { value: 3, label: "검토 항목을 정의하고 단계별 확인" },
+      { value: 0, label: "문장이 짧아서 읽기 어렵다." },
+      { value: 1, label: "금요일이라는 기한이 들어 있으므로 그대로 써도 된다." },
+      { value: 2, label: "초안 제출과 최종 배포를 구분하지 않았을 수 있다." },
+      { value: 3, label: "원문에 없는 ‘20명’과 ‘금요일 배포’를 사실처럼 넣어, 미확정 정보와 예외를 누락했다." },
     ],
   },
   {
     id: "c-05",
     section: "개념 이해",
     area: "concept",
-    text: "학습 계획을 짤 때 80개 강의를 볼 때 가장 현실적인 방식은?",
+    text: "[가상 비교 결과] 새 모델은 일정표 초안이 더 매끄럽지만, 원문에 없던 배포일을 두 번 단정했습니다. 기존 모델은 문장은 투박하지만 미확정 정보를 질문으로 남겼습니다. 다음 판단으로 가장 적절한 것은?",
     options: [
-      { value: 0, label: "인기 강의만 랜덤하게 보며 완성" },
-      { value: 1, label: "완독 기록만으로 끝내기" },
-      { value: 2, label: "필요 영역만 골라 즉흥적으로 이동" },
-      { value: 3, label: "수준진단 기반으로 시작 구간을 정해 연속 진행" },
+      { value: 0, label: "새 모델이 더 최신이므로 그대로 전면 도입한다." },
+      { value: 1, label: "두 결과 모두 쓸 수 없으니 비교를 중단한다." },
+      { value: 2, label: "기존 모델만 계속 쓰고 새 모델은 다시 보지 않는다." },
+      { value: 3, label: "새 모델의 문장 장점은 기록하되, 근거 누락 원인을 더 시험한 뒤 이 과제에서는 기존 모델을 유지하거나 새 모델 사용을 보류한다." },
     ],
   },
   {
@@ -185,8 +190,8 @@ export const LEVEL_TEST_QUESTIONS: LevelTestQuestion[] = [
     text: "실무 사건 접수 흐름을 AI로 먼저 개선할 순서는?",
     options: [
       { value: 0, label: "문서 작성만 자동화" },
-      { value: 1, label: "접수-분류-작업리스트를 함께 정렬" },
-      { value: 2, label: "상담 기록을 생략하고 처리" },
+      { value: 1, label: "접수 항목을 표준화해 기본 누락을 줄인다." },
+      { value: 2, label: "접수-분류-작업리스트를 연결해 처리 흐름을 정렬한다." },
       { value: 3, label: "근로기준·내부절차를 함께 매핑" },
     ],
   },
@@ -197,21 +202,21 @@ export const LEVEL_TEST_QUESTIONS: LevelTestQuestion[] = [
     text: "퇴직금 사건에서 가장 먼저 구축해야 하는 자동화 산출물은?",
     options: [
       { value: 0, label: "최종 의견서 자동 발송" },
-      { value: 1, label: "입력값 점검표 + 계산 로그" },
-      { value: 2, label: "최종 수임료 산정식만 저장" },
-      { value: 3, label: "반려 사유 체크리스트·검수 증적" },
+      { value: 1, label: "필요한 입력값 목록만 먼저 정리한다." },
+      { value: 2, label: "입력값 점검표와 계산 로그를 남긴다." },
+      { value: 3, label: "입력값 점검표·계산 로그에 예외 반려 사유와 검수 증적까지 연결한다." },
     ],
   },
   {
     id: "p-03",
     section: "업무 적용",
     area: "practice",
-    text: "의뢰인 안내 자동화에서 중요한 원칙은?",
+    text: "[가상 업무보고] AI가 작성한 교육 운영안을 팀장에게 설명해야 합니다. 판단을 실제로 소유하고 있는지 확인하는 준비로 가장 적절한 것은?",
     options: [
-      { value: 0, label: "모든 의사결정을 AI에 위임" },
-      { value: 1, label: "상태가 바뀔 때마다 로그와 이력 안내" },
-      { value: 2, label: "완성본 바로 발송 후 수정" },
-      { value: 3, label: "변경 이유·근거·일정 재확인 절차" },
+      { value: 0, label: "AI가 만든 원고를 그대로 외워서 읽는다." },
+      { value: 1, label: "결론만 한 문장으로 외우고 질문은 받지 않는다." },
+      { value: 2, label: "결론과 핵심 근거는 말할 수 있지만, 반론이나 조건 변화는 준비하지 않는다." },
+      { value: 3, label: "결론 1문장·핵심 근거·반론 또는 한계·판단을 바꿀 조건을 자기 언어로 30초 설명해 본다." },
     ],
   },
   {
@@ -230,12 +235,12 @@ export const LEVEL_TEST_QUESTIONS: LevelTestQuestion[] = [
     id: "p-05",
     section: "업무 적용",
     area: "practice",
-    text: "협업 시 가장 유의할 부분은?",
+    text: "새 모델 도입을 검토합니다. 이름이나 광고 문구 대신, 비식별 가상 과제로 우선 확인할 기준으로 가장 적절한 것은?",
     options: [
-      { value: 0, label: "결과물 공유 전 사내 승인 생략" },
-      { value: 1, label: "중간 산출물의 기준 포맷 통일" },
-      { value: 2, label: "메신저에서 임시로 전달" },
-      { value: 3, label: "검토 기록·버전·승인 루트 명시" },
+      { value: 0, label: "모델 이름이 새로우면 기존 절차 없이 전체 업무에 적용한다." },
+      { value: 1, label: "답변이 더 길고 자연스러운지만 비교한다." },
+      { value: 2, label: "같은 질문을 한 번씩 던져 보고 마음에 드는 쪽을 고른다." },
+      { value: 3, label: "같은 비식별 과제에서 근거 표시·누락·수정 횟수·시간·계정별 접근 조건을 기록해 비교한다." },
     ],
   },
   {
@@ -296,9 +301,9 @@ export const LEVEL_TEST_QUESTIONS: LevelTestQuestion[] = [
     text: "보안 사고 시 가장 먼저 해야 할 대응은?",
     options: [
       { value: 0, label: "일단 외부 공유를 늘려 조치 추적" },
-      { value: 1, label: "즉시 공개 보고 후 처리" },
-      { value: 2, label: "접근 제한·증적 보존 후 원인분석" },
-      { value: 3, label: "복구 후 동일 실수 재발 방지 절차" },
+      { value: 1, label: "증적을 남기지 않고 서비스부터 복구한다." },
+      { value: 2, label: "접근 제한과 복구는 시작하지만 증적 보존과 원인 분석은 빠뜨린다." },
+      { value: 3, label: "접근 제한·증적 보존 → 원인 분석 → 복구와 재발 방지 절차 순서로 대응한다." },
     ],
   },
 ];
@@ -364,6 +369,35 @@ const SAFETY_GATE_ZERO_THRESHOLD = 0;
 
 const MAX_RECOMMENDATION_LINKS = 5;
 
+const AREA_PRACTICE_LINKS: Record<
+  LevelTestArea,
+  Array<{ label: string; href: string; site: "ai-school" | "edu" | "edu-internal" }>
+> = {
+  concept: [
+    { label: "edu 14-1", href: "/lessons/14-1", site: "edu-internal" },
+    { label: "edu 16-4", href: "/lessons/16-4", site: "edu-internal" },
+  ],
+  tool: [
+    { label: "AI업무학교 2-1", href: "https://ai-school.silronomu.com/lessons/2-1", site: "ai-school" },
+    { label: "edu 2-1", href: "/lessons/2-1", site: "edu-internal" },
+  ],
+  practice: [
+    { label: "edu 9-1", href: "/lessons/9-1", site: "edu-internal" },
+    { label: "edu 15-1", href: "/lessons/15-1", site: "edu-internal" },
+  ],
+  safety: [
+    { label: "AI업무학교 1-3", href: "https://ai-school.silronomu.com/lessons/1-3", site: "ai-school" },
+    { label: "edu 3-4", href: "/lessons/3-4", site: "edu-internal" },
+  ],
+};
+
+const AREA_PRACTICE_LABELS: Record<LevelTestArea, string> = {
+  concept: "질문·근거 읽기",
+  tool: "도구 실행 기록",
+  practice: "업무 적용 설계",
+  safety: "검증·보안 판단",
+};
+
 function buildRecommendationLinks(
   type: LevelTestProfileType,
   safetyFundamentalsRequired: boolean
@@ -385,6 +419,19 @@ function buildRecommendationLinks(
 
   addUnique(RECOMMENDATIONS_BY_TYPE[type]);
   return links.slice(0, MAX_RECOMMENDATION_LINKS);
+}
+
+function buildPracticePlan(
+  areas: LevelTestResult["areas"],
+): LevelTestResult["practice"] {
+  const focusArea = (Object.entries(areas) as Array<[LevelTestArea, LevelTestScoreArea]>)
+    .sort(([, first], [, second]) => first.percentage - second.percentage)[0]?.[0] ?? "concept";
+
+  return {
+    focusArea,
+    focusLabel: AREA_PRACTICE_LABELS[focusArea],
+    links: AREA_PRACTICE_LINKS[focusArea],
+  };
 }
 
 function assertAnswersInRange(
@@ -486,6 +533,7 @@ export function calculateLevelTestResult(answers: LevelTestAnswers): LevelTestRe
     recommendations: {
       links: recommendationLinks,
     },
+    practice: buildPracticePlan(areas),
   };
 }
 

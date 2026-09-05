@@ -17,9 +17,10 @@ import {
 } from "@/lib/level-test";
 import GrowthPath from "@/components/GrowthPath";
 
-const STORAGE_ANSWERS_KEY = "levelTestAnswersV1";
-const STORAGE_INDEX_KEY = "levelTestCurrentIndexV1";
-const STORAGE_RESULT_KEY = "levelTestResultV1";
+const STORAGE_VERSION = "V2";
+const STORAGE_ANSWERS_KEY = `levelTestAnswers${STORAGE_VERSION}`;
+const STORAGE_INDEX_KEY = `levelTestCurrentIndex${STORAGE_VERSION}`;
+const STORAGE_RESULT_KEY = `levelTestResult${STORAGE_VERSION}`;
 
 function loadStoredValue<T>(key: string): T | null {
   if (typeof window === "undefined") {
@@ -154,6 +155,9 @@ export default function LevelTestPageClient({ lessonCatalog }: LevelTestPageClie
           </p>
           <p className="mt-1 text-lg font-semibold text-brand-700">유형: {result.type}</p>
           <p className="mt-3 text-sm text-ink-700">
+            이 결과는 질문·근거 읽기·판단의 학습 방향을 위한 간이진단입니다. 실제 구술 설명 능력이나 말의 속도·유창함을 채점하지 않습니다.
+          </p>
+          <p className="mt-3 text-sm text-ink-700">
             {result.safetyFundamentalsRequired
               ? "주요 안전문항에서 위험 답변(0점)이 있어 안전기초 보강이 필요합니다."
               : "안전문항 기준 점검 통과로 기본 안전기초를 충족했습니다. 보완 안내 없이 다음 학습으로 이어도 됩니다."}
@@ -181,6 +185,56 @@ export default function LevelTestPageClient({ lessonCatalog }: LevelTestPageClie
                 );
               })}
           </div>
+
+          <section className="mt-8 rounded-xl border border-brand-200 bg-brand-50/40 p-5">
+            <h2 className="text-lg font-bold text-ink-900">30초 구술방어 자가점검</h2>
+            <p className="mt-2 text-sm leading-6 text-ink-700">
+              이번에 연습할 영역은 <strong>{result.practice.focusLabel}</strong>입니다. 답을 입력하거나 녹음하지 말고, 비식별 가상 사례를 하나 골라 자기 말로 설명해 보세요.
+            </p>
+            <p className="mt-2 text-sm leading-6 text-ink-700">
+              먼저 누구에게 설명하는지, 그 사람이 알아야 할 한 가지, 설명 뒤에 내려야 할 다음 판단·행동을 정합니다.
+            </p>
+            <ol className="mt-3 list-decimal space-y-1 pl-5 text-sm leading-6 text-ink-700">
+              <li>결론 한 문장</li>
+              <li>핵심어 3개와 가장 중요한 근거 2개</li>
+              <li>반론 또는 한계 1개</li>
+              <li>판단을 유지·수정·유보하게 할 조건 1개</li>
+            </ol>
+            <p className="mt-3 text-sm text-ink-700">
+              같은 내용을 30초·1분·3분으로 길이만 바꿔 설명해 보세요. 말솜씨가 아니라 결론·근거·한계·수정 조건을 구분하는지가 자가점검 기준입니다.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {result.practice.links.map((link) => {
+                if (isInternalLessonLink(link.href)) {
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="inline-flex min-h-11 items-center justify-center rounded-full border border-brand-300 bg-white px-4 py-2 text-sm font-semibold text-brand-900 transition hover:bg-brand-50"
+                    >
+                      {getRecommendationDisplayLabel(link, lessonCatalog)}
+                    </Link>
+                  );
+                }
+
+                if (isExternalLink(link.href) && isAllowedExternalHref(link.href)) {
+                  return (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-11 items-center justify-center rounded-full border border-brand-300 bg-white px-4 py-2 text-sm font-semibold text-brand-900"
+                    >
+                      {getRecommendationDisplayLabel(link, lessonCatalog)}
+                    </a>
+                  );
+                }
+
+                return null;
+              })}
+            </div>
+          </section>
 
           <div className="mt-8">
             <h2 className="text-lg font-bold text-ink-900">추천 시작 강의</h2>
@@ -250,7 +304,10 @@ export default function LevelTestPageClient({ lessonCatalog }: LevelTestPageClie
           수준 진단 시작
         </h1>
         <p className="mt-2 text-sm text-ink-600">
-          1개씩 진행하며, 각 문항은 반드시 1개 선택해야 다음으로 이동할 수 있습니다.
+          질문·근거 읽기·판단의 학습 방향을 찾는 교육용 간이진단입니다. 1개씩 진행하며, 각 문항은 반드시 1개 선택해야 다음으로 이동할 수 있습니다.
+        </p>
+        <p className="mt-2 text-sm text-ink-600">
+          객관식 20문항은 실제 말하기나 구술 설명 능력을 직접 측정하지 않습니다. 결과 뒤 30초 자가점검으로 결론·근거·반론·수정 조건을 자기 언어로 설명해 보세요.
         </p>
 
         <div className="mt-6">

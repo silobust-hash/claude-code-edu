@@ -602,6 +602,82 @@ run("수준진단 채점은 4영역 가중치와 유형 임계값을 사용해�
   assert.strictEqual(medium.type, "실무준비형");
 });
 
+run("수준진단은 질문·근거 읽기·판단과 모델 도입 기준을 사례형으로 점검해야 함", () => {
+  const requiredQuestionIds = ["c-01", "c-02", "c-03", "c-04", "c-05", "p-03", "p-05"];
+  const requiredPhrases = ["목적·독자·자료 범위", "후속 질문", "[추정 금지]", "미확정 정보와 예외", "유지하거나 새 모델 사용을 보류", "자기 언어", "비식별 가상 과제"];
+
+  for (const [index, id] of requiredQuestionIds.entries()) {
+    const question = LEVEL_TEST_QUESTIONS.find((item) => item.id === id);
+    assert(question, `${id} 문항이 있어야 함`);
+    assert([question.text, ...question.options.map((option) => option.label)].join(" ").includes(requiredPhrases[index]));
+    assert.deepStrictEqual(question.options.map((option) => option.value), [0, 1, 2, 3]);
+  }
+});
+
+run("사건 접수와 퇴직금 자동화 문항은 부분 이행 순서대로 점수화해야 함", () => {
+  const intakeQuestion = LEVEL_TEST_QUESTIONS.find((question) => question.id === "p-01");
+  const severanceQuestion = LEVEL_TEST_QUESTIONS.find((question) => question.id === "p-02");
+  assert(intakeQuestion && severanceQuestion);
+  assert.deepStrictEqual(intakeQuestion.options.map((option) => option.value), [0, 1, 2, 3]);
+  assert(intakeQuestion.options[1].label.includes("접수 항목을 표준화"));
+  assert(intakeQuestion.options[2].label.includes("접수-분류-작업리스트"));
+  assert(intakeQuestion.options[3].label.includes("근로기준·내부절차"));
+  assert.deepStrictEqual(severanceQuestion.options.map((option) => option.value), [0, 1, 2, 3]);
+  assert(severanceQuestion.options[1].label.includes("입력값 목록만"));
+  assert(severanceQuestion.options[2].label.includes("입력값 점검표와 계산 로그"));
+  assert(severanceQuestion.options[3].label.includes("예외 반려 사유와 검수 증적"));
+});
+
+run("수준진단 결과는 가장 보완할 영역과 30초 구술방어 연습을 연결해야 함", () => {
+  const answers = buildPresetAnswers(3);
+  for (const question of LEVEL_TEST_QUESTIONS.filter((question) => question.area === "concept")) {
+    answers[question.id] = 0;
+  }
+  const result = calculateLevelTestResult(answers);
+  assert.strictEqual(result.practice.focusArea, "concept");
+  assert.strictEqual(result.practice.focusLabel, "질문·근거 읽기");
+  assert(result.practice.links.some((link) => link.href === "/lessons/14-1"));
+  assert(result.practice.links.some((link) => link.href === "/lessons/16-4"));
+
+  const levelTestPageSource = read("src/app/level-test/LevelTestPageClient.tsx");
+  assert(levelTestPageSource.includes("교육용 간이진단"));
+  assert(levelTestPageSource.includes("30초 구술방어 자가점검"));
+  assert(levelTestPageSource.includes("누구에게 설명하는지"));
+  assert(levelTestPageSource.includes("알아야 할 한 가지"));
+  assert(levelTestPageSource.includes("이번에 연습할 영역은"));
+  assert(!levelTestPageSource.includes("방금 가장 약했던 영역"));
+  assert(levelTestPageSource.includes("말의 속도·유창함을 채점하지 않습니다"));
+  assert(levelTestPageSource.includes('const STORAGE_VERSION = "V2"'));
+  assert(levelTestPageSource.includes("levelTestAnswers${STORAGE_VERSION}"));
+  assert(!levelTestPageSource.includes("levelTestAnswersV1"));
+});
+
+run("Fable 5.1과 GPT-6 Astra 강의는 공식 기준일·접근 상태·직접 출처를 포함해야 함", () => {
+  const fableLesson = lessons["14-1"];
+  const routingLesson = lessons["16-4"];
+  assert.strictEqual(fableLesson.updatedAt, "2026-09-05");
+  assert.strictEqual(routingLesson.updatedAt, "2026-09-05");
+  const fableContent = JSON.stringify(fableLesson);
+  const routingContent = JSON.stringify(routingLesson);
+  assert(fableContent.includes("2026년 9월 1일"));
+  assert(fableContent.includes("claude-fable-and-mythos-5-1"));
+  assert(fableContent.includes("PDF 안의 표·차트·도표 이해"));
+  assert(routingContent.includes("2026년 9월 3일"));
+  assert(routingContent.includes("제한된 조직에 단계적으로 제공"));
+  assert(routingContent.includes("복합 추론·조사·코딩·컴퓨터 사용"));
+  assert(routingContent.includes("양식에 맞춘 문서·스프레드시트·발표자료 제작"));
+  assert(routingContent.includes("https://openai.com/index/gpt-6-astra/"));
+  assert(routingContent.includes("https://developers.openai.com/api/docs/models/gpt-6-astra"));
+});
+
+run("보안 사고 문항은 접근 제한·증적 보존부터 복구·재발 방지까지 순서대로 점수화해야 함", () => {
+  const incidentQuestion = LEVEL_TEST_QUESTIONS.find((question) => question.id === "s-05");
+  assert(incidentQuestion);
+  assert.deepStrictEqual(incidentQuestion.options.map((option) => option.value), [0, 1, 2, 3]);
+  assert(incidentQuestion.options[2].label.includes("증적 보존과 원인 분석은 빠뜨린다"));
+  assert(incidentQuestion.options[3].label.includes("접근 제한·증적 보존 → 원인 분석 → 복구와 재발 방지"));
+});
+
 run("안전 게이트는 지정 문항 점수 기준으로 안전기초 추천을 보장해야 함", () => {
   const safeAnswers = buildPresetAnswers(1);
   const normalAnswers = buildPresetAnswers(2);
