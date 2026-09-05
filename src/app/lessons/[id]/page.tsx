@@ -66,6 +66,8 @@ export function buildLessonStructuredData(id: string, lesson: PublicLesson) {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   if (!isValidLessonId(id)) return { title: "유효하지 않은 강의입니다" };
+  const staticLesson = lessons[id];
+  if (!staticLesson) return { title: "강의를 찾을 수 없습니다" };
 
   let lesson: Record<string, unknown> | null = null;
   try {
@@ -75,8 +77,6 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   }
 
   if (!lesson) {
-    const staticLesson = lessons[id];
-    if (!staticLesson) return { title: "강의를 찾을 수 없습니다" };
     return {
       title: `${staticLesson.title} | 클로드 코드 강의`,
       description: staticLesson.summary,
@@ -106,6 +106,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 export default async function LessonPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   if (!isValidLessonId(id)) notFound();
+  const staticLesson = lessons[id];
+  if (!staticLesson) notFound();
 
   const authed = await isAuthenticated();
   const hasAccess = authed || (await getLessonAccessStatus());
@@ -118,7 +120,7 @@ export default async function LessonPage({ params }: { params: Promise<{ id: str
   }
 
   if (!lesson) {
-    lesson = lessons[id];
+    lesson = staticLesson;
   }
 
   if (!lesson) notFound();

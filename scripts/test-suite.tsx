@@ -1,4 +1,5 @@
 import "./visual-experience.test-cases";
+import "./storage.test";
 
 import fs from "node:fs";
 import path from "node:path";
