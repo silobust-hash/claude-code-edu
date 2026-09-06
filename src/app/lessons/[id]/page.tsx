@@ -78,7 +78,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
   if (!lesson) {
     return {
-      title: `${staticLesson.title} | 클로드 코드 강의`,
+      title: id === "16-4"
+        ? { absolute: "페이블 5.1·아스트라 운영 배정과 도입 비교 | 클로드 코드 강의" }
+        : `${staticLesson.title} | 클로드 코드 강의`,
       description: staticLesson.summary,
       alternates: { canonical: `/lessons/${id}` },
       openGraph: {
@@ -91,7 +93,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   }
 
   return {
-    title: `${lesson.title} | 클로드 코드 강의`,
+    title: id === "16-4"
+      ? { absolute: "페이블 5.1·아스트라 운영 배정과 도입 비교 | 클로드 코드 강의" }
+      : `${lesson.title} | 클로드 코드 강의`,
     description: (lesson.summary as string) || undefined,
     alternates: { canonical: `/lessons/${id}` },
     openGraph: {
